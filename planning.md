@@ -12,7 +12,6 @@
         - Pseudo-domínio único
     - Tipos de métodos de medição
         - Spinner
-        - SQUID
         - Alternating Field (AF)
         - Desmagnetização Térmica
         - Vibrating Sample Magnetometer (VSM)
@@ -22,9 +21,34 @@
         - Limite de detecção
         - Complexidade mineralógica
 - Microscopia magnética
-    - Apresentar a mudança de paradigma (bulk para escala de grão) 
-    - 
-
+    - Apresentar a mudança de paradigma (bulk para escala de grão)
+    - Quantum Diamond Microscope (QDM)
+        - Temperatura ambiente
+        - Explicar como funciona
+    - O mapa magnético
+        - Não entrega os vetores de magnetização diretamente
+        - Componente vertical do campo magnético (bz)
+        - Mostrar assinatura do dipolo
+        - Mapa raramente tem dipolo prefeito e isolado
+            - Múltiplos dipolos aglomerados e sobrepostos com intensidades diferentes
+            - Ruído intrumental 
+            - Variações de nível de base regionais
+        - Mostrar junto ao mapa de MEV
+            - Relacionar MEV ao sinal do QDM
+    - Nós temos o mapa do campo ($B_z$), mas nós queremos descobrir a fonte que gerou esse campo (justificativa do problema inverso)
+        - NÃO SE MEDE MAGNETIZAÇÃO
+    - Aproximação ao dipolo
+        - Assumimos que cada grão SD pode ser tratado como um dipolo magnético
+    - Para cada grão devemos estimar posição (v) e momento magnético (m)
+    - Berndt et al. vs Bellon et al.
+    - Dificuldades
+        - Analisar cada anomalia manualmente?
+        - Profundidade difícil de ser estimada
+        - Viés humano 
+    - Método de Souza-Junior
+        - Explicação do método
+        - Apresentar diferenças entre os métodos
+    - MAGALI
 
 
 ## Sumário
