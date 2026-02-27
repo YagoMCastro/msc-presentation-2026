@@ -1,5 +1,32 @@
 # Magali: An open tool for the magnetic microscopy community
 
+# Fluxo da apresentação
+- Paleomagnetismo
+    -  O que é?
+        - Pegar definição de alguma citação (Tauxe)
+    - Como os minerais são magnetizados?
+    - Importância do paleomagnetismo
+    - Tipos de grãos
+        - Multidomínio
+        - Domínio único
+        - Pseudo-domínio único
+    - Tipos de métodos de medição
+        - Spinner
+        - SQUID
+        - Alternating Field (AF)
+        - Desmagnetização Térmica
+        - Vibrating Sample Magnetometer (VSM)
+        - Kappabridge
+    - Problemas do paleomagnetismo (conexão com microscopia magnética)
+        - Problema clássico: se a amostra tiver muitos grãos MD, o sinal dos grãos SD é "engolido"
+        - Limite de detecção
+        - Complexidade mineralógica
+- Microscopia magnética
+    - Apresentar a mudança de paradigma (bulk para escala de grão) 
+    - 
+
+
+
 ## Sumário
 - Paleomagnetismo
 - Microscopia magnética
@@ -20,28 +47,3 @@
     - Resultados
 - Demonstrção em dados reais de microscopia magnética
 - Conclusões
-
-## Paleomagnetismo
-- Overview sobre paleomag
-- Apresentar o problema 
-
-## Microscopia magnética
-- Berndt 
-- Bellon
-    - Angular Misfit / N of particles
-        - Para partículas > 20uT misfit muito baixo que se aproximam a 0 graus
-    - Averaged Magnetic Moment / Field intensity
-        - A partir de 10uT, todos os cenários estão dentro do range de detectabilidade do QDM
-- Souza-Junior
-    - Criou fluxograma para estimativa semi-automática de dados de microscopia magnética
-    - Apresentar dado 
-- MAGALI
-
-## Métodos
-### Análise do fluxo de trabalho
-
-## Desenvolvimento de Software
-
-## Benchmark
-
-## Conclusões
