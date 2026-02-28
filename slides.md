@@ -73,7 +73,8 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
 
 ===============================================================================
 # O que é Paleomagnetismo?
-- O estudo do campo magnético da Terra conforme ele é **registrado** nas rochas
+
+Definição TAUXE
 
 ===============================================================================
 # Como os minerais são magnetizados?
@@ -100,6 +101,21 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
   **Reconstrução do paleocampo:** permite compreender como o campo magnético terrestre evoluiu ao longo de centenas de milhões de anos
 
 ===============================================================================
+# Tipos de grãos
+- Spinner
+- Alternating Field (AF)
+- Desmagnetização Térmica
+- Vibrating Sample Magnetometer (VSM)
+- Kappabridge
+
+===============================================================================
+# Métodos de medição
+
+===============================================================================
+# Problemas do Paleomagnetismo
+
+===============================================================================
+
 <div class="r-stretch">
   <img src="assets/sample.svg" height=100%>
 </div>
@@ -129,6 +145,10 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
 </ul>
 
 ===============================================================================
+# Quantum Diamond Microscope
+
+
+===============================================================================
 <div class="r-stretch">
 
   <img src="assets/qdm.jpg" height=115%>
@@ -141,6 +161,34 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
 </div>
 
 ===============================================================================
+# Mapa magnético
+
+- Não entrega os vetores de magnetização diretamente
+- Componente vertical do campo magnético (bz)
+- Mostrar assinatura do dipolo
+- Mapa raramente tem dipolo prefeito e isolado
+    - Múltiplos dipolos aglomerados e sobrepostos com intensidades diferentes
+    - Ruído intrumental 
+    - Variações de nível de base regionais
+- Mostrar junto ao mapa de MEV
+    - Relacionar MEV ao sinal do QDM
+
+<div class="footnote-left">
+
+[Citação]()
+</div>
+
+===============================================================================
+
+- Nós temos o mapa do campo ($B_z$), mas nós queremos descobrir a fonte que gerou esse campo (justificativa do problema inverso)
+    - NÃO SE MEDE MAGNETIZAÇÃO
+- Aproximação ao dipolo
+    - Assumimos que cada grão SD pode ser tratado como um dipolo magnético
+- Para cada grão devemos estimar posição (v) e momento magnético (m)
+
+
+===============================================================================
+
 <!-- .slide: class="slide-title" data-background-opacity="1" data-background-image="assets/ceramic.png"  data-background-size="contain" -->
 
 <div class="r-stretch">
@@ -149,6 +197,9 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
 
 [Souza-Junior et al 2024](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011082)
 </div>
+
+===============================================================================
+# Temos um problema
 
 ===============================================================================
 
@@ -182,143 +233,33 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
 [Bellon et al. (2025)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2025GL114771)
 </div>
 
+
 ===============================================================================
-<img src="assets/paper_1.png" style="width: 80%" >
+# Apliccações da microscopia magnetica
+
+
+
+===============================================================================
+# Dificuldades
+- Analisar cada anomalia manualmente?
+- Profundidade difícil de ser estimada
+- Viés humano 
+
+===============================================================================
 <img src="assets/paper_2.png" style="width: 80%" >
-
-===============================================================================
-# Souza-Junior et al. (2024)
-
-<div class="text-left">
-
-- **Souza-Junior et al. (2024)** propuseram um novo fluxo de trabalho que adapta técnicas de aeromagnetometria e processamento de imagens para **isolar o sinal** de partículas individuais
-
-</div>
-<div class="fragment text-left">
-
-- **Estimaram** a posição das fontes via **Deconvolução de Euler**, utilizando essas coordenadas como base para calcular os momentos magnéticos por **inversão linear**
-
-</div>
-
-<div class="footnote-center">
-
-[Souza-Junior et al. (2024)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2023GC011082)
-</div>
 
 ===============================================================================
 # Souza-Junior et al. (2025)
 
 <div class="text-left">
 
-- **Souza-Junior et al. (2025)** aprimoraram  o método com uma **inversão não-linear iterativa**: o sinal das fontes já modeladas é subtraído dos dados, revelando novos grãos no campo residual
-
-</div>
-<div class="fragment text-left">
-
-- **Processaram** dados reais espeleotema, localizando e caracterizando **centenas de partículas** em apenas **alguns minutos**
-
-</div>
 
 <div class="footnote-center">
 
 [Souza-Junior et al. (2025)](https://eartharxiv.org/repository/view/8869/)
 
 </div>
-
-===============================================================================
-# Necessidades
-
-<div class="fragment text-left">
-
-- Algoritmos para **detecção automática** de **grãos magnéticos** e determinação de seus **momentos magnéticos**
-
-</div>
-
-<div class="fragment text-left">
-
-- **Software aberto** para **modelagem direta** e técnicas de **inversão** específicas para microscopia magnética
-
-</div>
-
-<div class="fragment text-left">
-
-- **Convenções de dados**
-
-</div>
-
-===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/readme-banner.png"  data-background-size="contain" data-background-color="#262626" -->
-
-===============================================================================
-<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
-<div class="huge">
-
-O que é o Magali?
-
-<div class="large fragment">
-
-Biblioteca em Python <br><i class="fab fa-python"></i>
-
-</div>
-
-<div class="large fragment">
-
-Software livre e de código aberto  
-
-<i class="fab fa-github"></i> <i class="fas fa-lock-open"></i> <i class="fab fa-osi"></i>
-
-</div>
-
-</div>
-
-<div class="large fragment">
-
-Modelagem e processamento de dados de microscopia magnética  
-<i class="fas fa-magnet"></i> <i class="fas fa-microscope"></i>
-
-</div>
-
-===============================================================================
-<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
-# Por que queremos desenvolvê-la?
-
-<div class="fragment text-left">
-
-- Fornecer um código **fácil de usar**
-
-</div>
-
-<div class="fragment text-left">
-
-- Determinar as **posições espaciais** de **múltiplos** grãos
-
-</div>
-
-<div class="fragment text-left">
-
-- Facilitar a criação de **dados sintéticos**
-
-</div>
-
-<div class="fragment text-left">
-
-- Propor um **formato padrão de dados**
-
-</div>
-
-<div class="fragment text-left">
-
-- Servir como **base** para desenvolvimento de novos métodos
-
-</div>
-
-<div class="fragment text-left">
-
-- Explorar o potencial de estudos emergentes em **microscopia magnética**
-
-</div>
-
-===============================================================================
+=
 # Sumário
 
 <ul style="list-style: none">
@@ -340,51 +281,12 @@ Modelagem e processamento de dados de microscopia magnética
 ===============================================================================
 # Análise do Fluxo de Trabalho
 
-<div class="text-left">
+Apresentar fluxo de Souza-Junior
 
-**1. Detecção e separação automática de fontes**
-- Calculamos a **Amplitude do Gradiente Total (TGA)** do campo vertical $b_z$ e ajustamos o contraste
-- Identificamos as partículas **semi-automaticamente** usando o algoritmo *Laplacian of Gaussian* (LoG) para segmentar espacialmente as fontes
-
-</div>
 
 ===============================================================================
-# Análise do Fluxo de Trabalho
+# Continuação para cima
 
-<div class="text-left">
-
-**2. Estratégia progressiva de remoção de sinal**
-
-Para cada janela detectada:
-
-- Modelamos as anomalias mais fortes primeiro e removemos suas contribuições progressivamente
-- Simplificamos o campo magnético para permitir que fontes mais fracas emerjam, aumentando a precisão da localização
-
-</div>
-
-===============================================================================
-# Etapas da Inversão Iterativa
-
-<div class="text-left">
-
-- **a) Estimativa de localização:** calculamos a posição  inicial ($\mathbf{v_{inicial}}$)  da fonte (para a janela atual) resolvendo um sistema linear via Deconvolução de Euler
-
-</div>
-<div class="fragment text-left">
-
-- **b) Inversão linear do momento magnético:** estimamos o vetor de momento de dipolo inicial ($\mathbf{m_{inicial}}$) resolvendo um problema de mínimos quadrados, assumindo a posição previamente calculada como fixa
-
-</div>
-<div class="fragment text-left">
-
-- **c) Inversão não-linear híbrida:** refinamos simultaneamente a posição ($\mathbf{v}$) via Levenberg-Marquardt e reestimamos o momento ($\mathbf{m}$) a cada iteração até a convergência
-
-</div>
-<div class="fragment text-left">
-
-- **d) Remoção do sinal:** subtraímos o sinal do dipolo modelado dos dados observados, gerando um mapa de resíduos que é utilizado nos próximos ciclos
-
-</div>
 
 ===============================================================================
 # Derivadas e TGA
@@ -439,6 +341,9 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
   <li class="text-left fragment"><b>Minimiza</b> a dependência da direção de magnetização original</li>
   <li class="text-left fragment"><b>Atua</b> como um <b>filtro passa-alta</b>, removendo ruídos de longo comprimento de onda</li>
 </ul>
+
+===============================================================================
+# FIGURA TGA
 
 ===============================================================================
 # Realce de Contraste
@@ -512,43 +417,6 @@ $$\nabla \cdot \nabla G(x, y; \sigma) = \frac{x^2 + y^2 - 2\sigma^2}{2\pi\sigma^
 </div>
 
 ===============================================================================
-# Adaptação para Formas Elípticas (gLoG)
-
-<div class="fragment text-left">
-
-- Implementamos a versão **generalizada do Laplaciano do gaussiano (gLoG)** para superar a **limitação de simetria** do filtro padrão e detectar partículas alongadas
-
-</div>
-
-
-===============================================================================
-# Adaptação para Formas Elípticas (gLoG)
-
-<div class="text-left">
-
-- Calculamos derivadas direcionais utilizando **escalas independentes** ($\sigma_x$, $\sigma_y$) e um **ângulo de rotação** ($\theta$):
-
-$$x_\theta = x \cos \theta + y \sin \theta$$
-$$y_\theta = -x \sin \theta + y \cos \theta$$
-
-$$\text{gLoG}(x, y; \sigma_x, \sigma_y, \theta) = \sigma_x \sigma_y \left( \frac{\partial^2 G}{\partial x_\theta^2} + \frac{\partial^2 G}{\partial y_\theta^2} \right)$$
-
-</div>
-
-<div class="fragment text-left">
-
-- Obtemos uma **separação de fontes** precisa, robusta contra ruídos e adaptável a variações no tamanho e formato dos grãos
-
-</div>
-
-<div class="footnote-center">
-
-[Marr & Hildreth (1980)](https://www.google.com/url?sa=D&q=https://doi.org/10.1098/rspb.1980.0020&ust=1772178120000000&usg=AOvVaw059bB5Z6yShXdK7B2Con1D&hl=pt-BR&source=gmail)
-
-[Kong et al. (2013)](https://ieeexplore.ieee.org/document/6408211)
-</div>
-
-===============================================================================
 # Resumo
 
 <div class="text-left">
@@ -586,6 +454,8 @@ $$\text{gLoG}(x, y; \sigma_x, \sigma_y, \theta) = \sigma_x \sigma_y \left( \frac
 ===============================================================================
 # Equação de Homogeneidade de Euler
 
+UTILIZAR FORMA MAIS SIMPLES 
+#
 $$
 (x - x_c)\partial_x f + (y - y_c)\partial_y f + (z - z_c)\partial_z f = (b - f)\eta
 $$ 
@@ -853,6 +723,9 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 ===============================================================================
 # Inversão Híbrida
 
+
+# DEIXAR CLARO QUE  AQUI NOSSO MÉTODO SE DIFERE DE SOUZA-JUNIOR 2025
+
 <div class="fragment text-left">
 
 - **Exploramos a estrutura matemática do problema:** para uma localização fixa ($\mathbf{v}$), o campo magnético **depende linearmente** do momento magnético ($\mathbf{m}$)
@@ -1089,6 +962,102 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 </div>
 
+
+===============================================================================
+# Necessidades
+
+<div class="fragment text-left">
+
+- Algoritmos para **detecção automática** de **grãos magnéticos** e determinação de seus **momentos magnéticos**
+
+</div>
+
+<div class="fragment text-left">
+
+- **Software aberto** para **modelagem direta** e técnicas de **inversão** específicas para microscopia magnética
+
+</div>
+
+<div class="fragment text-left">
+
+- **Convenções de dados**
+
+</div>
+
+===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/readme-banner.png"  data-background-size="contain" data-background-color="#262626" -->
+
+===============================================================================
+<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
+<div class="huge">
+
+O que é o Magali?
+
+<div class="large fragment">
+
+Biblioteca em Python <br><i class="fab fa-python"></i>
+
+</div>
+
+<div class="large fragment">
+
+Software livre e de código aberto  
+
+<i class="fab fa-github"></i> <i class="fas fa-lock-open"></i> <i class="fab fa-osi"></i>
+
+</div>
+
+</div>
+
+<div class="large fragment">
+
+Modelagem e processamento de dados de microscopia magnética  
+<i class="fas fa-magnet"></i> <i class="fas fa-microscope"></i>
+
+</div>
+
+===============================================================================
+<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
+# Por que queremos desenvolvê-la?
+
+<div class="fragment text-left">
+
+- Fornecer um código **fácil de usar**
+
+</div>
+
+<div class="fragment text-left">
+
+- Determinar as **posições espaciais** de **múltiplos** grãos
+
+</div>
+
+<div class="fragment text-left">
+
+- Facilitar a criação de **dados sintéticos**
+
+</div>
+
+<div class="fragment text-left">
+
+- Propor um **formato padrão de dados**
+
+</div>
+
+<div class="fragment text-left">
+
+- Servir como **base** para desenvolvimento de novos métodos
+
+</div>
+
+<div class="fragment text-left">
+
+- Explorar o potencial de estudos emergentes em **microscopia magnética**
+
+</div>
+
+
+
 ===============================================================================
 # Implementação de Software
 
@@ -1246,6 +1215,10 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
   * **Erro Angular ($\theta$):** desvio de orientação (direção) entre o vetor real e o recuperado
 
 </div>
+
+
+===============================================================================
+# SEPARAR A COMPARAÇÃO EM DIVERSOS SLIDES
 
 ===============================================================================
 <!-- .slide: data-background-opacity="1" data-background-image="assets/comparison_result.png"  data-background-size="contain" data-background-color="#262626" -->
@@ -1455,6 +1428,11 @@ O processamento automatizado identificou com sucesso:
 </div>
 
 ===============================================================================
+# SEPARAR EXEMPLO EM 3 SLIDES
+
+
+
+===============================================================================
 <!-- .slide: data-background-image="assets/example_result.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
@@ -1537,6 +1515,8 @@ O processamento automatizado identificou com sucesso:
 
 ===============================================================================
 # Limitações
+
+# FOCAR NAS LIMITAÇÕES DO SOFTWARE, NÃO NAS METODOLÓGICAS
 
 <div class="fragment text-left">
 
