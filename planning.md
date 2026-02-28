@@ -1,7 +1,7 @@
 # Magali: An open tool for the magnetic microscopy community
 
 # Fluxo da apresentação
-- Paleomagnetismo
+## Paleomagnetismo
     -  O que é?
         - Pegar definição de alguma citação (Tauxe)
     - Como os minerais são magnetizados?
@@ -20,7 +20,7 @@
         - Problema clássico: se a amostra tiver muitos grãos MD, o sinal dos grãos SD é "engolido"
         - Limite de detecção
         - Complexidade mineralógica
-- Microscopia magnética
+## Microscopia magnética
     - Apresentar a mudança de paradigma (bulk para escala de grão)
     - Quantum Diamond Microscope (QDM)
         - Temperatura ambiente
@@ -49,6 +49,14 @@
         - Explicação do método
         - Apresentar diferenças entre os métodos
     - MAGALI
+## Desenvolvimento de Software
+    - Apresentar o Fatiando a Terra
+    - Ciência aberta
+    - Mostrar github
+    - Falar das dependências
+    - Testes
+    - Documentação
+    - CI/CD
 
 
 ## Sumário
