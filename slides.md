@@ -1180,6 +1180,7 @@ Modelagem e processamento de dados de microscopia magnética
 </ul>
 
 ===============================================================================
+# Comparação de Performance e Acurácia
 <div class="text-left">
 
 - Avaliamos o **Magali** contra o algoritmo de inversão não-linear de **Souza-Junior et al. (2025)**.
@@ -1187,23 +1188,52 @@ Modelagem e processamento de dados de microscopia magnética
 </div>
 <div class="fragment text-left">
 
-- Definimos dois cenários sintéticos com diferentes resoluções de malha ($\Delta \in [0.3, 2.0]~\mu\text{m}$):
-  1. **Modelo "Simple":** Um único dipolo isolado
-  2. **Modelo "1-Interf.":** Um dipolo alvo + uma fonte interferente próxima
+- **Garantimos condições justas:** ambos os métodos partem da mesma estimativa inicial via Deconvolução de Euler ($\eta=3$) e o nível de base é previamente removido
 
 </div>
 <div class="fragment text-left">
 
-- **Garantimos condições justas:** ambos os métodos partem da mesma estimativa inicial via Deconvolução de Euler ($\eta=3$) e o nível de base é previamente removido
+- **Quantificamos** o desempenho em função do número de pontos de dados ($N$) realizando **5 inversões independentes** por resolução para obter médias estáveis
 
 </div>
+
+
+===============================================================================
+
+<div class="row">
+<div class="col">
+
+- Definimos dois cenários sintéticos com diferentes resoluções de malha ($\Delta \in [0.3, 2.0]~\mu\text{m}$):
+
+1. **Modelo Simples:** Um único dipolo isolado
+
+</div>
+
+<div class="col-medium"><img src="assets/simple-model.png" style="width: 100%" ></div>
+</div>
+
+===============================================================================
+
+<div class="row">
+<div class="col">
+
+- Definimos dois cenários sintéticos com diferentes resoluções de malha ($\Delta \in [0.3, 2.0]~\mu\text{m}$):
+
+1. **Modelo "Simple":** Um único dipolo isolado
+
+2. **Modelo "1-Interf.":** Um dipolo alvo + uma fonte interferente próxima
+ADD MODELO 1INTERF e outros grids
+</div>
+
+<div class="col-medium"><img src="assets/simple-model.png" style="width: 100%" ></div>
+</div>
+
 
 ===============================================================================
 # Métricas de Avaliação
 
 <div class="fragment text-left">
 
-- **Quantificamos** o desempenho em função do número de pontos de dados ($N$) realizando **5 inversões independentes** por resolução para obter médias estáveis
 
 </div>
 <div class="fragment text-left">
@@ -1218,10 +1248,108 @@ Modelagem e processamento de dados de microscopia magnética
 
 
 ===============================================================================
-# SEPARAR A COMPARAÇÃO EM DIVERSOS SLIDES
+<div class="row">
+<div class="col">
+
+- **Simple:** 
+
+  - **Souza Júnior (2025):** mantém um erro quase constante, menor que do **Magali** e abaixo de **0,5 μm**
+  
+  - **Magali:** **estabiliza** em um erro pouco acima de **0,5 μm** para altas densidades de pontos
+
+</div>
+<div class="col-medium"><img src="assets/location_difference.png" style="width: 100%" ></div>
+</div>
+
 
 ===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/comparison_result.png"  data-background-size="contain" data-background-color="#262626" -->
+<div class="row">
+<div class="col">
+
+
+- **1-Interf.:** 
+
+  - **Souza Júnior (2025):** mantém um erro quase constante pouco acima de **2 μm** 
+ 
+  - **Magali:** melhora com o aumento de $N$, atingindo valores menores que **1 μm**
+
+</div>
+<div class="col-medium"><img src="assets/location_difference.png" style="width: 100%" ></div>
+</div>
+
+===============================================================================
+<div class="row">
+<div class="col">
+
+- **Simple:** Magali apresenta um erro de intensidade menor em comparação a Souza Júnior (2025) e é de **~1 nT**
+
+- **1-Interf.:** Souza-Junior (2025) apresenta um erro de intensidade menor em comparação ao do Magali e é de **~5 nT** enquanto Magali é de **~0.6 nT**
+
+
+</div>
+<div class="col-medium"><img src="assets/intensity_error.png" style="width: 100%" ></div>
+</div>
+
+===============================================================================
+
+<div class="row">
+<div class="col">
+
+- **Souza Júnior (2025):** tempo de execução **cresce linearmente** com o aumento do númeo de dados ($N$).
+
+- **Magali:** mantém tempos de execução estáveis e abaixo de **0,5 segundos**.
+</div>
+<div class="col-medium"><img src="assets/execution_time_comparison.png" style="width: 100%" ></div>
+</div>
+
+===============================================================================
+<div class="row">
+<div class="col">
+
+- **1-Interf.:** melhoria de aproximadamente **90%** para todos os números de dados
+
+- **Simple:** Melhoria quase sempre maior que **60%** superando **90%** em cenários com mais de **5.000 pontos**
+</div>
+<div class="col-medium"><img src="assets/percentage_of_improvement_execution_time.png" style="width: 100%" ></div>
+</div>
+
+===============================================================================
+<div class="row">
+<div class="col">
+
+- **Simple:**
+  - **Souza-Junior (2025):** é constante a **~1 grau**
+
+  - **Magali:** inicia a valor similar ao de Souza-Junior (2025) e decai levemente conforme a densidade de pontos aumenta
+
+</div>
+<div class="col-medium"><img src="assets/angular_error.png" style="width: 100%" ></div>
+</div>
+
+===============================================================================
+<div class="row">
+<div class="col">
+
+- **1-Interf.:**
+  - **Souza Júnior (2025):**  permanece praticamente constante aa **12 graus**, independentemente do volume de dados
+
+  - **Magali:** diminui conforme $N$ aumenta em ambos os cenários, se aproximando a **6 graus**
+
+</div>
+<div class="col-medium"><img src="assets/angular_error.png" style="width: 100%" ></div>
+</div>
+
+===============================================================================
+<div class="row">
+<div class="col">
+
+- **Simple:** cresce conforme o número de pontos aumenta e estabiliza acima de **60%**
+
+- **1-Interf.:** cresce conforme o número de pontos aumenta, atingindo valor **~45%**
+
+</div>
+<div class="col-medium"><img src="assets/percentage_of_improvement_angular_error.png" style="width: 100%" ></div>
+</div>
 
 ===============================================================================
 # Sumário
