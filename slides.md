@@ -454,27 +454,49 @@ $$\nabla \cdot \nabla G(x, y; \sigma) = \frac{x^2 + y^2 - 2\sigma^2}{2\pi\sigma^
 ===============================================================================
 # Equação de Homogeneidade de Euler
 
-UTILIZAR FORMA MAIS SIMPLES 
-#
 $$
-(x - x_c)\partial_x f + (y - y_c)\partial_y f + (z - z_c)\partial_z f = (b - f)\eta
-$$ 
+(\mathbf{x}-\mathbf{v})\cdot \nabla f = (b-f)\eta
+$$
 
 <div class="text-left">
 <ul>
-  <li class="fragment">$x,y,z$ : coordenadas dos dados</li>
-  <li class="fragment">$x_c,y_c,z_c$ : coordenadas da fonte do campo magnético</li>
+  <li class="fragment">$\mathbf{x}=[x,y,z]^T$ : coordenadas dos dados</li>
+  <li class="fragment">$\mathbf{v}=[x_c,y_c,z_c]^T$ : coordenadas da fonte do campo magnético</li>
   <li class="fragment">$f$ : função homogênea (ex.: $b_z$)</li>
   <li class="fragment">$b$ : nível de base (deslocamento constante do sinal)</li>
-  <li class="fragment">$\eta$ : índice estrutural</li>
+  <li class="fragment">$\eta$ : índice estrutural ($\eta=3$ para dipolos)</li>
 </ul>
 </div>
 
 <div class="footnote-center">
 
+[Reid et al. 1990](https://pubs.geoscienceworld.org/seg/geophysics/article-abstract/55/1/80/72314/Magnetic-interpretation-in-three-dimensions-using?redirectedFrom=fulltext)
 [Souza-Junior et al. 2024](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011082)
 
 </div>
+
+
+===============================================================================
+# Equação de Homogeneidade de Euler
+
+$$
+(\mathbf{x}-\mathbf{v})\cdot \nabla f = (b-f)\eta
+$$
+
+<div class="quote">
+
+A taxa de **variação do campo** ($\nabla f$) multiplicada pela **distância vetorial** ($\mathbf{x}-\mathbf{v}$) é proporcional à **amplitude do campo medido** ($b-f$)
+</div>
+
+<div class="footnote-center">
+
+[Reid et al. 1990](https://pubs.geoscienceworld.org/seg/geophysics/article-abstract/55/1/80/72314/Magnetic-interpretation-in-three-dimensions-using?redirectedFrom=fulltext)
+[Souza-Junior et al. 2024](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011082)
+
+</div>
+
+
+
 
 ===============================================================================
 # Equação de Homogeneidade de Euler
@@ -568,8 +590,6 @@ $$
 </div>
 
 ===============================================================================
-# Para resolver
-
 <ol>
   <li class="fragment">
     <strong>Expandindo a expressão:</strong><br>
@@ -585,6 +605,11 @@ $$
     \[
       \boxed{
       \mathbf{G}^\top \mathbf{G} \mathbf{p} = \mathbf{G}^\top \mathbf{h}^o
+      }
+    \]
+    \[
+      \boxed{
+        \mathbf{p} = (\mathbf{G}^\top \mathbf{G})^{-1} \mathbf{G}^\top \mathbf{h}^o
       }
     \]
   </li>
@@ -1228,25 +1253,6 @@ ADD MODELO 1INTERF e outros grids
 <div class="col-medium"><img src="assets/simple-model.png" style="width: 100%" ></div>
 </div>
 
-
-===============================================================================
-# Métricas de Avaliação
-
-<div class="fragment text-left">
-
-
-</div>
-<div class="fragment text-left">
-
-- Analisamos quatro pilares fundamentais:
-  * **Tempo de Execução:** custo computacional médio
-  * **Erro de Localização ($E_r$):** distância euclidiana entre a posição real e a estimada
-  * **Erro de Intensidade ($E_I$):** diferença na magnitude do momento magnético
-  * **Erro Angular ($\theta$):** desvio de orientação (direção) entre o vetor real e o recuperado
-
-</div>
-
-
 ===============================================================================
 <div class="row">
 <div class="col">
@@ -1429,7 +1435,29 @@ import matplotlib.pyplot as plt
 import skimage.exposure
 import ensaio
 import harmonica as hm
+</code></pre>
+</section>
 
+===============================================================================
+
+<section>
+<style>
+  pre.compact code {
+    line-height: 1.0em !important;
+    font-size: 1.3em !important;
+  }
+  .fragment {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+  .block-space {
+    margin-top: -1.0em !important;
+  }
+</style>
+<pre class="compact"><code class="python" data-trim data-noescape>
+<span>
 data_paths = {
     # Use the Ensaio package to fetch the speleothem dataset from the internet
     "speleothem": ensaio.fetch_morroco_speleothem_qdm(
