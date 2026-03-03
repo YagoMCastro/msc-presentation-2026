@@ -1585,7 +1585,36 @@ Modelagem e processamento de dados de microscopia magnética
 
 </div>
 
-<div class="col-medium"><img src="assets/simple-model.png" style="width: 100%" ></div>
+<div class="col-medium"><img src="assets/simple-model.png" style="width: 100%" >Espaçamento: $2 \mu m$</div>
+</div>
+
+===============================================================================
+
+<div class="row">
+<div class="col">
+
+- Definimos dois cenários sintéticos com diferentes resoluções de malha ($\Delta \in [0.3, 2.0]~\mu\text{m}$):
+
+1. **Modelo Simples:** Um único dipolo isolado
+
+</div>
+
+<div class="col-medium"><img src="assets/simple-model-1.png" style="width: 100%" > Espaçamento: $1 \mu m$</div>
+</div>
+
+
+===============================================================================
+
+<div class="row">
+<div class="col">
+
+- Definimos dois cenários sintéticos com diferentes resoluções de malha ($\Delta \in [0.3, 2.0]~\mu\text{m}$):
+
+1. **Modelo Simples:** Um único dipolo isolado
+
+</div>
+
+<div class="col-medium"><img src="assets/simple-model-2.png" style="width: 100%" > Espaçamento: $0.3 \mu m$</div>
 </div>
 
 ===============================================================================
@@ -1598,11 +1627,45 @@ Modelagem e processamento de dados de microscopia magnética
 1. **Modelo "Simple":** Um único dipolo isolado
 
 2. **Modelo "1-Interf.":** Um dipolo alvo + uma fonte interferente próxima
-ADD MODELO 1INTERF e outros grids
+
 </div>
 
-<div class="col-medium"><img src="assets/simple-model.png" style="width: 100%" ></div>
+<div class="col-medium"><img src="assets/one-interf.png" style="width: 100%"> Espaçamento: $2 \mu m$</div>
 </div>
+
+===============================================================================
+
+<div class="row">
+<div class="col">
+
+- Definimos dois cenários sintéticos com diferentes resoluções de malha ($\Delta \in [0.3, 2.0]~\mu\text{m}$):
+
+1. **Modelo "Simple":** Um único dipolo isolado
+
+2. **Modelo "1-Interf.":** Um dipolo alvo + uma fonte interferente próxima
+
+</div>
+
+<div class="col-medium"><img src="assets/one-interf-1.png" style="width: 100%">Espaçamento: $1 \mu m$</div>
+</div>
+
+
+===============================================================================
+
+<div class="row">
+<div class="col">
+
+- Definimos dois cenários sintéticos com diferentes resoluções de malha ($\Delta \in [0.3, 2.0]~\mu\text{m}$):
+
+1. **Modelo "Simple":** Um único dipolo isolado
+
+2. **Modelo "1-Interf.":** Um dipolo alvo + uma fonte interferente próxima
+
+</div>
+
+<div class="col-medium"><img src="assets/one-interf-2.png" style="width: 100%">Espaçamento: $0.3 \mu m$</div>
+</div>
+
 
 ===============================================================================
 <div class="row">
