@@ -108,12 +108,18 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 
 ===============================================================================
 # Tipos de Grãos Magnéticos
+<div class="text-left fragment">
 
 - **Multidomínio (MD):** são grãos maiores que se subdividem em vários domínios, cada uma apontando em direções diferentes. Isto reduz a estabilidade magnética, tornando-os registradores pouco confiáveis
+</div>
+<div class="text-left fragment">
 
 - **Domínio Único (SD):** são grãos pequenos em que a magnetização permanece uniforme e alinhada em uma única direção, apresentando altíssima estabilidade
+</div>
+<div class="text-left fragment">
 
 - **Pseudo-Domínio Único (PSD):** apresentam tamanhos intermediários, podem registrar o campo magnético com elevada fidelidade e estabilidade, contrariando interpretações mais antigas que os consideravam menos confiáveis
+</div>
 
 ===============================================================================
 # Limitações do Paleomagnetismo
@@ -152,22 +158,22 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 ===============================================================================
 # Quantum Diamond Microscope
 
-<div class="fragment">
+<div class="text-left fragment">
 
 - Utiliza uma placa de diamante sintético com defeitos cristalinos chamados **Centros Nitrogênio-Vacância (NV)**
 </div>
 
-<div class="fragment">
+<div class="text-left fragment">
 
 - Ao receber um laser verde e micro-ondas, os centros NV emitem uma luz vermelha. A **intensidade dessa fluorescência** é alterada de acordo com o **campo magnético** da rocha próxima ao diamante
 </div>
 
-<div class="fragment">
+<div class="text-left fragment">
 
 - Uma câmera captura essa luz e gera um **mapa do campo magnético** da superfície medida com resolução espacial **micrométrica**
 </div>
 
-<div class="fragment">
+<div class="text-left fragment">
 
 - Diferente de sensores criogênicos, o QDM opera em **temperatura ambiente**, simplificando a **logística laboratorial**
 </div>
