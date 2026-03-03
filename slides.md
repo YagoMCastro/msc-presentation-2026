@@ -476,25 +476,21 @@ $$||\vec{\mathbf{\nabla}}f(x, y, z)|| = \sqrt{(\partial_x f)^2 + (\partial_y f)^
 
 <div class="text-left">
 
-- **Aproximamos** as derivadas horizontais utilizando um esquema de **diferenças finitas centrais** de segunda ordem (assumindo espaçamento uniforme $\Delta x$):
+- No dado continuado para cima, **aproxima-se** as derivadas horizontais utilizando um esquema de **diferenças finitas centrais** de segunda ordem (assumindo espaçamento uniforme $\Delta x$ e $\Delta y$):
 
 $$\partial_x f(x, y, z) \approx \frac{f(x + \Delta x, y, z) - f(x - \Delta x, y, z)}{2 \Delta x}$$
 
 $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y, z)}{2 \Delta y}$$
 
 </div>
-<div class="fragment text-left">
 
-- Minimizamos a amplificação de ruídos de curto comprimento de onda ao optar por **diferenças finitas** em vez da **Transformada Rápida de Fourier (FFT)** para as derivadas em $x$ e $y$
-
-</div>
 
 ===============================================================================
 # Cálculo em Z
 
 <div class="text-left">
 
-- **Obtemos** as variações no eixo vertical ($f(z + \Delta z)$ e $f(z - \Delta z)$) aplicando **continuação para cima e para baixo** no domínio do número de onda
+- **Obtem-se** as variações no eixo vertical ($f(z + \Delta z)$ e $f(z - \Delta z)$) aplicando **continuação para cima** no dado original a uma altura abaixo e uma acima do anteriormente continuado
 
 </div>
 
@@ -519,6 +515,32 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 <div class="col"><img src="assets/synthetic.png" style="width: 100%" ></div>
 <div class="col"><img src="assets/tga_iso.png" style="width: 80%" ></div>
 </div>
+
+===============================================================================
+<h2>Etapa 1: Detecção da Fonte</h2>
+  
+<p class="text-left">
+  <strong>Objetivo:</strong> isolar cada partícula magnética na imagem
+</p>
+
+<p class="text-left">
+  <strong>Métodos utilizados:</strong>
+</p>
+
+<ul>
+  <li >
+    <b>Continuação para cima:</b> atenua ruídos de alta frequência (filtro passa-baixa) e estabiliza o campo para o cálculo de gradientes 
+  </li>
+  <li>
+    <b>Amplitude do Gradiente Total (TGA):</b> realça o sinal próximo à fonte através de um filtro passa-alta
+  </li>
+  <li style="color: red !important;">
+    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
+  </li>
+  <li>
+    <b>Segmentação LoG (Laplaciano do Gaussiano):</b> detecta “blobs” e define uma janela individual por partícula e as organiza por intensidade de sinal decrescente para o processamento iterativo
+  </li>
+</ul>
 
 ===============================================================================
 # Realce de Contraste
@@ -555,16 +577,48 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 ===============================================================================
 <div class="row">
+<div class="col"><img src="assets/tga_iso.png" style="width: 80%" ></div>
+<div class="col"><img src="assets/tga_stretched.png" style="width: 100%" ></div>
+</div>
+
+===============================================================================
+<div class="row">
 <div class="col"><img src="assets/data_up.png" style="width: 100%" ></div>
 <div class="col"><img src="assets/stretched.png" style="width: 100%" ></div>
 </div>
 
 ===============================================================================
+<h2>Etapa 1: Detecção da Fonte</h2>
+  
+<p class="text-left">
+  <strong>Objetivo:</strong> isolar cada partícula magnética na imagem
+</p>
+
+<p class="text-left">
+  <strong>Métodos utilizados:</strong>
+</p>
+
+<ul>
+  <li >
+    <b>Continuação para cima:</b> atenua ruídos de alta frequência (filtro passa-baixa) e estabiliza o campo para o cálculo de gradientes 
+  </li>
+  <li>
+    <b>Amplitude do Gradiente Total (TGA):</b> realça o sinal próximo à fonte através de um filtro passa-alta
+  </li>
+  <li>
+    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
+  </li>
+  <li style="color: red !important;">
+    <b>Segmentação LoG (Laplaciano do Gaussiano):</b> detecta “blobs” e define uma janela individual por partícula e as organiza por intensidade de sinal decrescente para o processamento iterativo
+  </li>
+</ul>
+
+===============================================================================
 # Filtro LoG
 
 <div class="text-left">
 
-- **Utilizamos** o algoritmo *Laplacian of Gaussian* (LoG) para identificar os picos de intensidade (centros das partículas)
+- **Utiliza-se** o algoritmo Laplaciano do Gaussiano (LoG) para identificar os picos de intensidade (centros das partículas)
 
 </div>
 
@@ -573,10 +627,14 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 <div class="text-left">
 
-- Utilizando um parâmetro de escala ($\sigma$), **suavizamos** a imagem primeiro com um kernel Gaussiano para **eliminar ruídos de alta frequência**:
+- Utiliza-se um parâmetro de escala ($\sigma$), **suavizamos** a imagem primeiro com um kernel Gaussiano para **eliminar ruídos de alta frequência**:
 
 $$G(x, y; \sigma) = \frac{1}{2\pi\sigma^2} e^{-\frac{x^2 + y^2}{2\sigma^2}}$$
 
+<div class="footnote-center">
+
+**Kernel** funciona como um filtro que é convolvido com a imagem
+</div>
 </div>
 
 <div class="fragment text-left">
@@ -588,25 +646,56 @@ $$\nabla \cdot \nabla G(x, y; \sigma) = \frac{x^2 + y^2 - 2\sigma^2}{2\pi\sigma^
 </div>
 
 ===============================================================================
-# Resumo
-
-<div class="text-left">
-
-- **O Desafio:** dados reais de microscopia contêm ruídos instrumentais e pequenas variações de alta frequência que geram "falsos positivos" na detecção
-
+<div class="row">
+  <div class="col">
+    <img src="assets/stretched.png" style="width: 100%">
+  </div>
+  <div class="col">
+    <img src="assets/detection.png" style="width: 100%">
+  </div>
 </div>
 
-<div class="fragment text-left">
+===============================================================================
+<p class="text-left">
+  <b>Etapa 1 - Detecção da fonte</b>
+</p>
 
-- **Gaussiano:** aplicamos um filtro que atua como um "desfoque" da imagem. Ele  **"suaviza"** a imagem apaga os ruídos pequenos e preserva apenas a forma principal da imagem.
+<p class="text-left">
+  <b>Etapa 2 - Processamento iterativo (por janela)</b>
+</p>
 
-</div>
+<ul>
+  <li class="text-left">
+    (a) <b>Isolamento dos dados:</b>
+    selecionar os dados magnéticos dentro da janela
+  </li>
 
-<div class="fragment text-left">
+  <li style="color: red !important;" class="text-left">
+    (b) <b>Deconvolução de Euler:</b>
+    estimar a posição da fonte
+  </li>
 
-- **Laplaciano:** com o dado já limpo, calculamos a curvatura do sinal para **detectar** o seu ponto de inflexão mais agudo, identificando o centro da partícula
+  <li class="text-left">
+    (c) <b>Inversão linear:</b>
+    estimar o momento do dipolo usando posição fixa
+  </li>
 
-</div>
+  <li class="text-left">
+    (d) <b>Inversão híbrida:</b>
+    refinar posição e momento via
+    <b>Levenberg–Marquardt</b>
+  </li>
+
+  <li class="text-left">
+    (e) <b>Remoção do sinal:</b>
+    modelar o dipolo diretamente e subtrair do conjunto de dados completo
+  </li>
+</ul>
+
+<p class="text-left">
+  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
+  aplicar as etapas 1 e 2 ao conjunto de dados residual
+</p>
 
 ===============================================================================
 # Deconvolução de Euler
@@ -787,6 +876,49 @@ $$
 </ol>
 
 ===============================================================================
+<p class="text-left">
+  <b>Etapa 1 - Detecção da fonte</b>
+</p>
+
+<p class="text-left">
+  <b>Etapa 2 - Processamento iterativo (por janela)</b>
+</p>
+
+<ul>
+  <li class="text-left">
+    (a) <b>Isolamento dos dados:</b>
+    selecionar os dados magnéticos dentro da janela
+  </li>
+
+  <li class="text-left">
+    (b) <b>Deconvolução de Euler:</b>
+    estimar a posição da fonte
+  </li>
+
+  <li style="color: red !important;" class="text-left">
+    (c) <b>Inversão linear:</b>
+    estimar o momento do dipolo usando posição fixa
+  </li>
+
+  <li class="text-left">
+    (d) <b>Inversão híbrida:</b>
+    refinar posição e momento via
+    <b>Levenberg–Marquardt</b>
+  </li>
+
+  <li class="text-left">
+    (e) <b>Remoção do sinal:</b>
+    modelar o dipolo diretamente e subtrair do conjunto de dados completo
+  </li>
+</ul>
+
+<p class="text-left">
+  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
+  aplicar as etapas 1 e 2 ao conjunto de dados residual
+</p>
+
+
+===============================================================================
 # Inversão linear
 ## Modelo de Campo de Dipolo
 
@@ -912,12 +1044,50 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 <p class="fragment">A solução fornece o momento de dipolo estimado ($\mathbf{m}$)</p>
 
+===============================================================================
+<p class="text-left">
+  <b>Etapa 1 - Detecção da fonte</b>
+</p>
+
+<p class="text-left">
+  <b>Etapa 2 - Processamento iterativo (por janela)</b>
+</p>
+
+<ul>
+  <li class="text-left">
+    (a) <b>Isolamento dos dados:</b>
+    selecionar os dados magnéticos dentro da janela
+  </li>
+
+  <li class="text-left">
+    (b) <b>Deconvolução de Euler:</b>
+    estimar a posição da fonte
+  </li>
+
+  <li class="text-left">
+    (c) <b>Inversão linear:</b>
+    estimar o momento do dipolo usando posição fixa
+  </li>
+
+  <li style="color: red !important;" class="text-left">
+    (d) <b>Inversão híbrida:</b>
+    refinar posição e momento via
+    <b>Levenberg–Marquardt</b>
+  </li>
+
+  <li class="text-left">
+    (e) <b>Remoção do sinal:</b>
+    modelar o dipolo diretamente e subtrair do conjunto de dados completo
+  </li>
+</ul>
+
+<p class="text-left">
+  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
+  aplicar as etapas 1 e 2 ao conjunto de dados residual
+</p>
 
 ===============================================================================
-# Inversão Híbrida
-
-
-# DEIXAR CLARO QUE  AQUI NOSSO MÉTODO SE DIFERE DE SOUZA-JUNIOR 2025
+# Aspectos importantes
 
 <div class="fragment text-left">
 
@@ -936,33 +1106,62 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 </div>
 
 ===============================================================================
-# Inversão Híbrida
+# Inversão Hibrida
 
-<div class="fragment text-left">
+<ul>
+  <li class="fragment">
+    <b>1. Inicialização:</b> chute inicial de posição ($\mathbf{v}$) obtido via Deconvolução de Euler
+  </li>
+  
+  <li class="fragment">
+    <b>2. Inversão acoplada (Loop Principal):</b>
+    <ul>
+      <li class="fragment">
+        (A) <b>Estimativa linear:</b> fixa a posição e calcula o momento ($\mathbf{m}$) via Mínimos Quadrados
+      </li>
+      <li class="fragment">
+        (B) <b>Atualização não linear:</b> refina a posição da fonte ($\mathbf{v}$) via algoritmo Levenberg-Marquardt
+      </li>
+    </ul>
+  </li>
 
-- Implementamos uma estratégia onde a inversão linear para o momento dipolar ($\mathbf{m}$) é **aninhada** dentro da inversão não-linear de **Levenberg-Marquardt (LM)** para a localização $\mathbf{v}$
+  <li class="fragment">
+    <b>3. Modelagem direta:</b> modelagem do dipolo com os parâmetros estimados e remoção no dado
+  </li>
 
-</div>
-<div class="fragment text-left">
+  <li class="fragment">
+    <b>4. Convergência:</b> o processo encerra quando a redução da função objetivo atinge a tolerância definida
+  </li>
+</ul>
 
-- **Atualizamos** os parâmetros em cada iteração seguindo este ciclo:
+===============================================================================
+# Inversão Hibrida
 
-</div>
-<div class="fragment text-left">
+<ul>
+  <li>
+    <b>1. Inicialização:</b> chute inicial de posição ($\mathbf{v}$) obtido via Deconvolução de Euler
+  </li>
+  
+  <li>
+    <b>2. Inversão acoplada (Loop Principal):</b>
+    <ul>
+      <li>
+        (A) <b>Estimativa linear:</b> fixa a posição e calcula o momento ($\mathbf{m}$) via Mínimos Quadrados
+      </li>
+      <li style="color: red !important;">
+        (B) <b>Atualização não linear:</b> refina a posição da fonte ($\mathbf{v}$) via algoritmo Levenberg-Marquardt
+      </li>
+    </ul>
+  </li>
 
-1. Fixamos uma localização de teste ($\mathbf{v}$), obtida utilizando Deconvolução de Euler
+  <li>
+    <b>3. Modelagem direta:</b> modelagem do dipolo com os parâmetros estimados e remoção no dado
+  </li>
 
-</div>
-<div class="fragment text-left">
-
-2. Estimamos o momento ($\mathbf{m}$) para aquela posição
-
-</div>
-<div class="fragment text-left">
-
-3. Atualizamos a localização ($\mathbf{v}$) com base no gradiente do erro
-
-</div>
+  <li>
+    <b>4. Convergência:</b> o processo encerra quando a redução da função objetivo atinge a tolerância de $10^{-2}$
+  </li>
+</ul>
 
 ===============================================================================
 # Otimização via Levenberg-Marquardt
@@ -1002,70 +1201,10 @@ $$\Psi(\mathbf{v}) = \| \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \|^2$$
 
 $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \mathbf{J}) \right) \Delta\mathbf{v} = \mathbf{J}^T \big( \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \big)$$
 
+- $\mathbf{J}$: matriz Jacobiana
 - $\mathbf{J}^T \mathbf{J}$: aproximação da Hessiana
 - $\alpha \cdot \mathrm{diag}(\mathbf{J}^T \mathbf{J})$: amortecimento escalonado pela curvatura local
 - $(\mathbf{d}^o - \mathbf{d}(\mathbf{v}))$: vetor de resíduos
-</div>
-
-===============================================================================
-# Matriz Jacobiana
-
-<div class="text-left">
-
-- Derivamos **analiticamente** o modelo direto da componente vertical do dipolo magnético para construir a matriz **Jacobiana**:
-
-<p>
-\[
-\mathbf{J} =
-\begin{bmatrix}
-\frac{\partial b_{z,1}}{\partial x_c} & \frac{\partial b_{z,1}}{\partial y_c} & \frac{\partial b_{z,1}}{\partial z_c} \\
-\frac{\partial b_{z,2}}{\partial x_c} & \frac{\partial b_{z,2}}{\partial y_c} & \frac{\partial b_{z,2}}{\partial z_c} \\
-\vdots & \vdots & \vdots \\
-\frac{\partial b_{z,N}}{\partial x_c} & \frac{\partial b_{z,N}}{\partial y_c} & \frac{\partial b_{z,N}}{\partial z_c}
-\end{bmatrix}
-\]
-</p>
-
-</div>
-
-===============================================================================
-<p>
-\[
-\frac{\partial b_z}{\partial x_c} =
-\frac{\mu_0}{4\pi}
-\Big[
-m_x \left( \frac{15 \Delta z \Delta x^2}{r^7} - \frac{3 \Delta z}{r^5} \right)
-+ m_y \frac{15 \Delta z \Delta y \Delta x}{r^7}
-+ m_z \left( \frac{15 \Delta z^2 \Delta x}{r^7} - \frac{3 \Delta x}{r^5} \right)
-\Big]
-\]
-</p>
-<p>
-\[
-\frac{\partial b_z}{\partial y_c} =
-\frac{\mu_0}{4\pi}
-\Big[
-m_x \frac{15 \Delta z \Delta x \Delta y}{r^7}
-+ m_y \left( \frac{15 \Delta z \Delta y^2}{r^7} - \frac{3 \Delta z}{r^5} \right)
-+ m_z \left( \frac{15 \Delta z^2 \Delta y}{r^7} - \frac{3 \Delta y}{r^5} \right)
-\Big]
-\]
-</p>
-<p>
-\[
-\frac{\partial b_z}{\partial z_c} =
-\frac{\mu_0}{4\pi}
-\Big[
-m_x \left( \frac{15 \Delta x \Delta z^2}{r^7} - \frac{3 \Delta x}{r^5} \right)
-+ m_y \left( \frac{15 \Delta y \Delta z^2}{r^7} - \frac{3 \Delta y}{r^5} \right)
-+ m_z \left( \frac{15 \Delta z^3}{r^7} - \frac{9 \Delta z}{r^5} \right)
-\Big]
-\]
-</p>
-<div class="footnote-center">
-
-O uso de derivadas analíticas em vez de diferenças finitas garante **maior precisão** e **eficiência computacional** na convergência
-
 </div>
 
 ===============================================================================
@@ -1086,7 +1225,9 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 - Ajustamos $\alpha$ dinamicamente via estratégia de **região de confiança**:
   - **Redução do erro = Sucesso:** aceitamos $\Delta \mathbf{v}$ e dividimos $\alpha$ por 10 tendendo a **Gauss-Newton**
+    - Utiliza a curvatura da Hessiana ($\mathbf{J}^T \mathbf{J}$) para dar passos longos
   - **Aumento do erro = Levenberg-Marquardt:** rejeitamos $\Delta \mathbf{v}$ e multiplicamos $\alpha$ por 10 tendendo a **Steepest Descent**
+    - O termo diagonal domina, fazendo o passo seguir a direção do gradiente negativo
 
 </div>
 
@@ -1098,62 +1239,109 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 - Limitamos o deslocamento máximo por iteração ($\|\Delta \mathbf{v}\| \le 10\mu m$) para evitar atualizações que não façam sentido fisicamente e garantir que a solução permaneça dentro da janela de dados
 
 </div>
-<div class="fragment text-left">
-
-- **Estruturamos** a convergência em dois loops:
-  - **Loop Interno:** refina a posição ($\mathbf{v}$) via **Levenberg-Marquardt** com momento fixo
-  - **Loop Externo:** reestima o momento ($\mathbf{m}$) via **inversão linear** com posição fixa
-
-</div>
-<div class="fragment text-left">
-
-- Finalizamos o processo quando a **redução relativa do resíduo** atinge a tolerância de **$10^{-2}$**
-
-</div>
 
 ===============================================================================
-# Resumo
+<p class="text-left">
+  <b>Etapa 1 - Detecção da fonte</b>
+</p>
 
-<div class="fragment text-left">
+<p class="text-left">
+  <b>Etapa 2 - Processamento iterativo (por janela)</b>
+</p>
 
-1. **Inicialização:**
-   - Partimos da estimativa de Euler para a posição inicial  ($\mathbf{v}$)
-   - Definimos a tolerância de convergência e inicializamos o parâmetro de Marquardt ($\alpha$) com base na curvatura da Hessiana aproximada
+<ul>
+  <li class="text-left">
+    (a) <b>Isolamento dos dados:</b>
+    selecionar os dados magnéticos dentro da janela
+  </li>
 
-</div>
+  <li class="text-left">
+    (b) <b>Deconvolução de Euler:</b>
+    estimar a posição da fonte
+  </li>
+
+  <li class="text-left">
+    (c) <b>Inversão linear:</b>
+    estimar o momento do dipolo usando posição fixa
+  </li>
+
+  <li class="text-left">
+    (d) <b>Inversão híbrida:</b>
+    refinar posição e momento via
+    <b>Levenberg–Marquardt</b>
+  </li>
+
+  <li style="color: red !important;" class="text-left">
+    (e) <b>Remoção do sinal:</b>
+    modelar o dipolo diretamente e subtrair do conjunto de dados completo
+  </li>
+</ul>
+
+<p class="text-left">
+  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
+  aplicar as etapas 1 e 2 ao conjunto de dados residual
+</p>
 
 ===============================================================================
-<div class="text-left">
+<p class="text-left">
+  <b>Etapa 1 - Detecção da fonte</b>
+</p>
 
-2. **Inversão Acoplada (Loop Externo):**
-   - Alternamos entre a **estimativa do momento** e o **refinamento da posição** até que a redução da função objetivo global seja **inferior à tolerância definida**
+<p class="text-left">
+  <b>Etapa 2 - Processamento iterativo (por janela)</b>
+</p>
 
-</div>
-<div class="fragment text-left">
+<ul>
+  <li class="text-left">
+    (a) <b>Isolamento dos dados:</b>
+    selecionar os dados magnéticos dentro da janela
+  </li>
 
-  - **A) Estimativa linear do momento:** com a posição ($\mathbf{v}$) fixa, **calculamos** analiticamente o momento ($\mathbf{m}$) via mínimos quadrados
+  <li class="text-left">
+    (b) <b>Deconvolução de Euler:</b>
+    estimar a posição da fonte
+  </li>
 
-</div>
-<div class="fragment text-left">
+  <li class="text-left">
+    (c) <b>Inversão linear:</b>
+    estimar o momento do dipolo usando posição fixa
+  </li>
 
-  - **B) Atualização não-linear da posição:** com o momento ($\mathbf{m}$) fixo, **refinamos** a localização ($\mathbf{v}$) através do loop interno de Levenberg-Marquardt
+  <li class="text-left">
+    (d) <b>Inversão híbrida:</b>
+    refinar posição e momento via
+    <b>Levenberg–Marquardt</b>
+  </li>
 
-</div>
-<div class="fragment text-left">
+  <li class="text-left">
+    (e) <b>Remoção do sinal:</b>
+    modelar o dipolo diretamente e subtrair do conjunto de dados completo
+  </li>
+</ul>
 
-  - **C) Misfit:** calculamos o dado predito e avaliamos o **misfit global**
-
-</div>
-
+<p  style="color: red !important;" class="text-left">
+  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
+  aplicar as etapas 1 e 2 ao conjunto de dados residual
+</p>
 
 
 ===============================================================================
-<div class="text-left">
+# Sumário
 
-3. **Convergência:**
-  - Finalizamos o algoritmo quando a melhoria entre iterações sucessivas se torna insignificante, extraindo os **vetores de posição e momento finais da fonte**
-
-</div>
+<ul style="list-style: none">
+  <li><b>Paleomagnetismo</b></li>
+  <li><b>Microscopia magnética</b></li>
+  <li>
+    <b>Métodos</b>
+    <ul style="list-style: none">
+      <li>Fundamentação Teórica</li>
+      <li  style="color: red !important;">Desenvolvimento de software</li>
+    </ul>
+  </li>
+  <li><b>Comparação de Performance e Acurácia</b></li>  
+  <li><b>Demonstração em dados reais de microscopia magnética</b></li>
+  <li><b>Conclusões</b></li>
+</ul>
 
 
 ===============================================================================
@@ -1249,8 +1437,6 @@ Modelagem e processamento de dados de microscopia magnética
 
 </div>
 
-
-
 ===============================================================================
 # Implementação de Software
 
@@ -1258,16 +1444,6 @@ Modelagem e processamento de dados de microscopia magnética
 
 - Integramos o pacote ao projeto **Fatiando a Terra**, uma iniciativa *open-source* nascida no Brasil (USP, 2008) e referência global em geofísica
 
-</div>
-<div class="fragment text-left">
-
-- Desenvolvemos o Magali sob **Licença BSD 3** como uma solução ponta a ponta para microscopia magnética:
-  - Filtragem avançada de dados
-  - Detecção automática de partículas
-  - Inversão acoplada
-  - Modelagem direta
-
-</div>
 
 ===============================================================================
 # Arquitetura 
@@ -1362,7 +1538,6 @@ Modelagem e processamento de dados de microscopia magnética
   <li>
     <b>Métodos</b>
     <ul style="list-style: none">
-      <li>Análise do Fluxo de Trabalho</li>
       <li>Fundamentação Teórica</li>
       <li>Desenvolvimento de software</li>
     </ul>
