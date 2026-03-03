@@ -54,7 +54,6 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
 
 ===============================================================================
 # Sumário
-
 <ul style="list-style: none">
   <li  style="color: red !important;"><b>Paleomagnetismo</b></li>
   <li><b>Microscopia magnética</b></li>
@@ -72,7 +71,6 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
 
 ===============================================================================
 # O que é Paleomagnetismo?
-
 <div class="quote">
 
 Aplicação de medições magnéticas de minerais de rochas para resolver problemas geológicos
@@ -124,7 +122,6 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 - **Barreira do limite de detecção:** amostras com sinais muito fracos não superam o ruído de fundo dos magnetômetros convencionais
 
 ===============================================================================
-
 <div class="r-stretch">
   <img src="assets/sample.svg" height=100%>
 </div>
@@ -190,13 +187,11 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 # Temos um problema
 
 ===============================================================================
-
 <img src="assets/berndt_paper.png" style="width: 80%" >
 
 - Bilhões de grãos seriam necessários para uma rocha obter TRM confiável
 
 ===============================================================================
-
 <img src="assets/bellon_paper.png" style="width: 80%" >
 
 ===============================================================================
@@ -411,7 +406,6 @@ $$F(k,\Delta z)=F(k,0) \cdot e^{-\Delta z |k|}$$
 
 Continuação para cima de $5 \mu m$
 
-
 ===============================================================================
 <h2>Etapa 1: Detecção da Fonte</h2>
   
@@ -440,7 +434,6 @@ Continuação para cima de $5 \mu m$
 
 ===============================================================================
 # Derivadas e TGA
-
 <div class="fragment text-left">
 
 - Calcula-se a **Amplitude do Gradiente Total (TGA)** de uma função harmônica (podendo ser o campo magnético) definida como a norma do vetor gradiente:
@@ -451,7 +444,6 @@ $$||\vec{\mathbf{\nabla}}f(x, y, z)|| = \sqrt{(\partial_x f)^2 + (\partial_y f)^
 
 ===============================================================================
 # Derivadas e TGA
-
 <div class="text-left">
 
 - No dado continuado para cima, **aproximam-se** as derivadas horizontais utilizando um esquema de **diferenças finitas centrais** de segunda ordem (assumindo espaçamento uniforme $\Delta x$ e $\Delta y$):
@@ -465,7 +457,6 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 ===============================================================================
 # Cálculo em Z
-
 <div class="text-left">
 
 - **Obtem-se** as variações no eixo vertical ($f(z + \Delta z)$ e $f(z - \Delta z)$) aplicando **continuação para cima** no dado original a uma altura abaixo e uma acima do anteriormente continuado
@@ -480,7 +471,6 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 ===============================================================================
 # Vantagens do TGA
-
 <ul>
   <li class="text-left fragment"><b>Gera</b> valores estritamente positivos</li>
   <li class="text-left fragment"><b>Centraliza</b> os picos diretamente sobre as fontes magnéticas</li>
@@ -567,7 +557,6 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 ===============================================================================
 <h2>Etapa 1: Detecção da Fonte</h2>
-  
 <p class="text-left">
   <strong>Objetivo:</strong> isolar cada partícula magnética na imagem
 </p>
@@ -593,7 +582,6 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 ===============================================================================
 # Filtro LoG
-
 <div class="text-left">
 
 - **Utiliza-se** o algoritmo Laplaciano do Gaussiano (LoG) para identificar os picos de intensidade (centros das partículas)
@@ -602,7 +590,6 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 ===============================================================================
 # Filtro LoG
-
 <div class="text-left">
 
 - Utiliza-se um parâmetro de escala ($\sigma$), **suavizamos** a imagem primeiro com um kernel Gaussiano para **eliminar ruídos de alta frequência**:
@@ -719,7 +706,6 @@ $$\nabla \cdot \nabla G(x, y; \sigma) = \frac{x^2 + y^2 - 2\sigma^2}{2\pi\sigma^
 
 ===============================================================================
 # Deconvolução de Euler
-
 <p class="fragment text-left">É um método para estimar a <b>localização</b> e a <b>profundidade</b> de fontes magnéticas</p>
 <div class="text-left fragment">
   <b>Características:</b><br>
@@ -899,7 +885,6 @@ $$
 <p class="text-left">
   <b>Etapa 1 - Detecção da fonte</b>
 </p>
-
 <p class="text-left">
   <b>Etapa 2 - Processamento iterativo (por janela)</b>
 </p>
@@ -941,7 +926,6 @@ $$
 ===============================================================================
 # Inversão linear
 ## Modelo de Campo de Dipolo
-
 <p class="text-left">O campo $\mathbf{b}$ gerado por um dipolo $\mathbf{m} = [m_x \ m_y \ m_z]^\top$:</p>
 $$
 \mathbf{b} = 
@@ -1023,7 +1007,6 @@ $$
 
 ===============================================================================
 # Formulação do Problema
-
 <p class="text-left">
 Dadas $N$ observações de $b_z$ em uma janela contendo uma única fonte,
 forma-se um sistema linear $N \times 3$:
@@ -1055,7 +1038,6 @@ b_{z_N}
 
 ===============================================================================
 # Estimativa por Mínimos Quadrados
-
 <p class="text-left">Minimiza-se a função objetivo:</p>
 
 $$\Gamma(\mathbf{m}) = \|\mathbf{d}^{o}-\mathbf{A}\mathbf{m}\|^2=(\mathbf{d}^{o}-\mathbf{A}\mathbf{m})^T(\mathbf{d}^{o}-\mathbf{A}\mathbf{m})$$
@@ -1108,7 +1090,6 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 ===============================================================================
 # Aspectos importantes
-
 <div class="fragment text-left">
 
 - **Exploramos a estrutura matemática do problema:** para uma localização fixa ($\mathbf{v}$), o campo magnético **depende linearmente** do momento magnético ($\mathbf{m}$)
@@ -1127,7 +1108,6 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 ===============================================================================
 # Inversão Hibrida
-
 <ul>
   <li class="fragment">
     <b>1. Inicialização:</b> chute inicial de posição ($\mathbf{v}$) obtido via Deconvolução de Euler
@@ -1156,7 +1136,6 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 ===============================================================================
 # Inversão Hibrida
-
 <ul>
   <li>
     <b>1. Inicialização:</b> chute inicial de posição ($\mathbf{v}$) obtido via Deconvolução de Euler
@@ -1185,7 +1164,6 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 ===============================================================================
 # Otimização via Levenberg-Marquardt
-
 <div class="fragment text-left">
 
 - Utilizamos este método porr ser **baseado em gradiente**, sendo melhor optimizado quando comparado a métodos que **independem de derivadas**, como Nelder-Mead, para problemas **suaves e diferenciáveis**
@@ -1209,7 +1187,6 @@ $$\Psi(\mathbf{v}) = \| \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \|^2$$
 
 ===============================================================================
 # Inversão Híbrida
-
 <div class="fragment text-left">
 
 - Partimos da estimativa inicial de posição ($\mathbf{v}$) obtida via **Deconvolução de Euler** e realizamos uma inversão linear inicial para o momento ($\mathbf{m}$)
@@ -1229,7 +1206,6 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 ===============================================================================
 # Parâmetro de Marquardt 
-
 <div class="text-left">
 
 - Inicializamos o **parâmetro de Marquardt ($\alpha$)** de forma não arbitrária, baseando-nos na mediana da diagonal da aproximação Hessiana para o condicionamento do sistema:
@@ -1344,7 +1320,6 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
   aplicar as etapas 1 e 2 ao conjunto de dados residual
 </p>
 
-
 ===============================================================================
 # Sumário
 
@@ -1363,10 +1338,8 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
   <li><b>Conclusões</b></li>
 </ul>
 
-
 ===============================================================================
 # Necessidades
-
 <div class="fragment text-left">
 
 - Algoritmos para **detecção automática** de **grãos magnéticos** e determinação de seus **momentos magnéticos**
@@ -1403,7 +1376,6 @@ Software livre e de código aberto
 </div>
 
 </div>
-
 <div class="large fragment">
 
 Modelagem e processamento de dados de microscopia magnética  
@@ -1414,37 +1386,31 @@ Modelagem e processamento de dados de microscopia magnética
 ===============================================================================
 <!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
 # Por que queremos desenvolvê-la?
-
 <div class="fragment text-left">
 
 - Fornecer um código **fácil de usar**
 
 </div>
-
 <div class="fragment text-left">
 
 - Determinar as **posições espaciais** de **múltiplos** grãos
 
 </div>
-
 <div class="fragment text-left">
 
 - Facilitar a criação de **dados sintéticos**
 
 </div>
-
 <div class="fragment text-left">
 
 - Propor um **formato padrão de dados**
 
 </div>
-
 <div class="fragment text-left">
 
 - Servir como **base** para desenvolvimento de novos métodos
 
 </div>
-
 <div class="fragment text-left">
 
 - Explorar o potencial de estudos emergentes em **microscopia magnética**
@@ -1493,7 +1459,6 @@ Modelagem e processamento de dados de microscopia magnética
 
 ===============================================================================
 # Robustez e Pipeline de CI/CD
-
 <div class="fragment text-left">
 
 - **Integração Contínua (CI):** implementamos um pipeline automatizado que executa nossos de **testes de unidade** a cada *commit*, assegurando **100% de cobertura** das funções presentes no pacote
@@ -1505,7 +1470,6 @@ Modelagem e processamento de dados de microscopia magnética
 
 ===============================================================================
 # Robustez e Pipeline de CI/CD
-
 <div class="text-left">
 
 - **Matriz de build multiplataforma:** utilizamos **GitHub Actions** para disparar rotinas de verificação em **Linux, Windows e macOS** simultaneamente, garantindo estabilidade cross-platform
@@ -1523,7 +1487,6 @@ Modelagem e processamento de dados de microscopia magnética
 
 ===============================================================================
 # Distribuição e Ciência Aberta
-
 <div class="fragment text-left">
 
 - **Adotamos os pilares da Ciência Aberta**: desenvolvimento transparente no GitHub, issue tracking público e documentação completa com tutoriais replicáveis
@@ -1540,7 +1503,6 @@ Modelagem e processamento de dados de microscopia magnética
 
 ===============================================================================
 # Sumário
-
 <ul style="list-style: none">
   <li><b>Paleomagnetismo</b></li>
   <li><b>Microscopia magnética</b></li>
@@ -1575,7 +1537,6 @@ Modelagem e processamento de dados de microscopia magnética
 </div>
 
 ===============================================================================
-
 <div class="row">
 <div class="col">
 
@@ -1589,7 +1550,6 @@ Modelagem e processamento de dados de microscopia magnética
 </div>
 
 ===============================================================================
-
 <div class="row">
 <div class="col">
 
@@ -1604,7 +1564,6 @@ Modelagem e processamento de dados de microscopia magnética
 
 
 ===============================================================================
-
 <div class="row">
 <div class="col">
 
@@ -1618,7 +1577,6 @@ Modelagem e processamento de dados de microscopia magnética
 </div>
 
 ===============================================================================
-
 <div class="row">
 <div class="col">
 
@@ -1634,7 +1592,6 @@ Modelagem e processamento de dados de microscopia magnética
 </div>
 
 ===============================================================================
-
 <div class="row">
 <div class="col">
 
