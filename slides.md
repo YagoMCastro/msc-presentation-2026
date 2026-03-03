@@ -13,13 +13,13 @@ The reveal.js configuration can be found in index.html
 
 <h1 id="talk-title">
   
-Towards an open source tool for the magnetic microscopy community 🧲🔬
+Magali: uma ferramenta aberta para a comunidade de microscopia
+magnética🧲🔬
 
 </h1>
 <p id="talk-authors">
   <a id="talk-speaker"><b>Yago Moreira Castro</b></a>,
   Leonardo Uieda,
-  Gelson Ferreira de Souza-Junior
 </p>
 
 <!-- Place location and date side-by-side with affiliation logos -->
@@ -195,7 +195,7 @@ Definição TAUXE
 </div>
 <div class="footnote-center">
 
-[Souza-Junior et al 2024](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011082)
+[Souza-Junior et al 2025](https://eartharxiv.org/repository/view/8869/)
 </div>
 
 ===============================================================================
@@ -259,7 +259,8 @@ Definição TAUXE
 [Souza-Junior et al. (2025)](https://eartharxiv.org/repository/view/8869/)
 
 </div>
-=
+
+===============================================================================
 # Sumário
 
 <ul style="list-style: none">
@@ -279,10 +280,72 @@ Definição TAUXE
 </ul>
 
 ===============================================================================
-# Análise do Fluxo de Trabalho
+<p class="text-left fragment" data-fragment-index="0">
+  <b>Etapa 1 - Detecção da fonte</b>
+</p>
 
-Apresentar fluxo de Souza-Junior
+<p class="text-left fragment" data-fragment-index="1">
+  <b>Etapa 2 - Processamento iterativo (por janela)</b>
+</p>
 
+<ul>
+  <li class="text-left fragment" data-fragment-index="2">
+    (a) <strong>Isolamento dos dados:</strong> selecionar os dados magnéticos dentro da janela
+  </li>
+  <li class="text-left fragment" data-fragment-index="3">
+    (b) <strong>Deconvolução de Euler:</strong> estimar a <em>posição</em> da fonte
+  </li>
+  <li class="text-left fragment" data-fragment-index="4">
+    (c) <strong>Inversão linear:</strong> estimar o <em>momento</em> do dipolo usando posição fixa
+  </li>
+
+  <div style="display: grid;">
+    <li class="text-left fragment fade-in-then-out" data-fragment-index="5" style="grid-area: 1/1; list-style: none;">
+(d) <strong>Inversão não linear:</strong> refinar posição e momento via 
+<a href="https://academic.oup.com/comjnl/article-abstract/7/4/308/354237?redirectedFrom=fulltext">Nelder-Mead</a>
+</li>
+
+<li class="text-left fragment fade-in" data-fragment-index="6" style="grid-area: 1/1; list-style: none;">
+(d) <strong>Inversão hibrida:</strong> refinar posição e momento via 
+<strong>Levenberg-Marquardt</strong>
+</li>
+  </div>
+
+  <li class="text-left fragment" data-fragment-index="7">
+    (e) <strong>Remoção do sinal:</strong> modelar o dipolo diretamente e subtrair do conjunto de dados completo
+  </li>
+</ul>
+
+<p class="text-left fragment" data-fragment-index="8">
+  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
+  aplicar as etapas 1 e 2 ao conjunto de dados residual
+</p>
+
+===============================================================================
+<h2>Etapa 1: Detecção da Fonte</h2>
+  
+<p class="text-left">
+  <strong>Objetivo:</strong> isolar cada partícula magnética na imagem
+</p>
+
+<p class="text-left fragment">
+  <strong>Métodos utilizados:</strong>
+</p>
+
+<ul>
+  <li class="fragment">
+    <b>Continuação para cima:</b> atenua ruídos de alta frequência (filtro passa-baixa) e estabiliza o campo para o cálculo de gradientes 
+  </li>
+  <li class="fragment">
+    <b>Amplitude do Gradiente Total (TGA):</b> realça o sinal próximo à fonte através de um filtro passa-alta
+  </li>
+  <li class="fragment">
+    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
+  </li>
+  <li class="fragment">
+    <b>Segmentação LoG (Laplaciano do Gaussiano):</b> detecta “blobs” e define uma janela individual por partícula e as organiza por intensidade de sinal decrescente para o processamento iterativo
+  </li>
+</ul>
 
 ===============================================================================
 # Continuação para cima
@@ -364,7 +427,6 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 </ul>
 
 ===============================================================================
-
 # Por que usar limites por percentil?
 
 - <!-- .element: class="fragment" -->
@@ -380,14 +442,12 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
     Garante a visualização de sinais fracos e fortes
 
 ===============================================================================
-
 <div class="row">
 <div class="col"><img src="assets/data_up.png" style="width: 100%" ></div>
 <div class="col"><img src="assets/stretched.png" style="width: 100%" ></div>
 </div>
 
 ===============================================================================
-
 # Filtro LoG
 
 <div class="text-left">
@@ -397,7 +457,6 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 </div>
 
 ===============================================================================
-
 # Filtro LoG
 
 <div class="text-left">
@@ -495,16 +554,13 @@ A taxa de **variação do campo** ($\nabla f$) multiplicada pela **distância ve
 
 </div>
 
-
-
-
 ===============================================================================
 # Equação de Homogeneidade de Euler
 
 $$
 (x - x_c)\partial_x f + (y - y_c)\partial_y f + (z - z_c)\partial_z f = (b - f)\eta
 $$ 
-<p class="fragment"> Expandimos para um modelo pseudo-paramétrico com parâmetros $x_c, y_c, z_c, b$</p>
+<p class="fragment"> Expandindo para um modelo pseudo-paramétrico com parâmetros $x_c, y_c, z_c, b$</p>
 <div class="fragment">
 
 $$
@@ -513,8 +569,8 @@ $$
 </div>
 <div class="footnote-center">
 
-[Souza-Junior et al 2024](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011082)
-
+[Reid et al. 1990](https://pubs.geoscienceworld.org/seg/geophysics/article-abstract/55/1/80/72314/Magnetic-interpretation-in-three-dimensions-using?redirectedFrom=fulltext)
+[Souza-Junior et al. 2024](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011082)
 </div>
 
 ===============================================================================
@@ -562,8 +618,8 @@ $$\mathbf{Gp=h}$$
 </div>
 <div class="footnote-center">
 
+[Reid et al. 1990](https://pubs.geoscienceworld.org/seg/geophysics/article-abstract/55/1/80/72314/Magnetic-interpretation-in-three-dimensions-using?redirectedFrom=fulltext)
 [Souza-Junior et al. 2024](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011082)
-
 </div>
 
 ===============================================================================
@@ -591,7 +647,7 @@ $$
 
 ===============================================================================
 <ol>
-  <li class="fragment">
+  <li>
     <strong>Expandindo a expressão:</strong><br>
     \[
     \Phi(\mathbf{p}) = (\mathbf{h}^o - \mathbf{G}\mathbf{p})^\top (\mathbf{h}^o - \mathbf{G}\mathbf{p}) = \underbrace{\mathbf{h}^{o\top}\mathbf{h}^o - 2\mathbf{p}^\top \mathbf{G}^\top \mathbf{h}^o + \mathbf{p}^\top \mathbf{G}^\top \mathbf{G} \mathbf{p}}_\text{Paraboloid}
@@ -647,7 +703,7 @@ m_z
 $$
 <br>
 <div class="text-left"><ul>
-<li> $r=\sqrt{(x-x_c)^2+(y-y_c)^2+(z-z_c)^2}$ </li>
+<li> $r=\sqrt{(x-x_c)^2+(y-y_c)^2+(z-z_c)^2}$: distância cartesiana entre os pontos de observação e da fonte</li>
 <li> $\mu_0$ : permeabilidade magnética</li>
 </ul></div>
 
@@ -1222,7 +1278,6 @@ Modelagem e processamento de dados de microscopia magnética
 
 </div>
 
-
 ===============================================================================
 
 <div class="row">
@@ -1377,39 +1432,6 @@ ADD MODELO 1INTERF e outros grids
 </ul>
 
 ===============================================================================
-# Aplicação em Dados Reais
-
-<div class="fragment text-left">
-
-- Demonstramos a robustez do Magali aplicando-o a três conjuntos independentes de dados reais com diferentes características:
-
-</div>
-
-<div class="fragment text-left">
-
-  1. **Espeleotema (Caverna Wintimdouine):** sinal fraco, poucas partículas
-
-</div>
-<div class="fragment text-left">
-
-  2. **Cerâmica Arqueológica:** densidade moderada, partículas SD-PSD estáveis com claro sinal dipolar
-
-</div>
-<div class="fragment text-left">
-
-  3. **Basalto:** alta densidade, partículas muito próximas com forte contribuição multidomínio (cenário de altíssima complexidade)
-
-</div>
-
-
-
-<div class="fragment text-left">
-
-- Todo o processamento foi realizado com **menos de 50 linhas** de código
-
-</div>
-
-===============================================================================
 
 <section>
 <style>
@@ -1426,15 +1448,17 @@ ADD MODELO 1INTERF e outros grids
   .block-space {
     margin-top: -1.0em !important;
   }
+  .code {
+    line-height: 0.2em;
+  }
 </style>
 <pre class="compact"><code class="python" data-trim data-noescape>
-<span>
-import magali as mg
-import numpy as np
-import matplotlib.pyplot as plt
-import skimage.exposure
-import ensaio
-import harmonica as hm
+  <span class="fragment code">import magali as mg</span>
+  <span class="fragment code">import numpy as np</span>
+  <span class="fragment code">import matplotlib.pyplot as plt</span>
+  <span class="fragment code">import skimage.exposure</span>
+  <span class="fragment code">import ensaio</span>
+  <span class="fragment code">import harmonica as hm</span>
 </code></pre>
 </section>
 
@@ -1455,18 +1479,20 @@ import harmonica as hm
   .block-space {
     margin-top: -1.0em !important;
   }
+  .code {
+    line-height: 0.2em;
+  }
 </style>
 <pre class="compact"><code class="python" data-trim data-noescape>
-<span>
-data_paths = {
-    # Use the Ensaio package to fetch the speleothem dataset from the internet
-    "speleothem": ensaio.fetch_morroco_speleothem_qdm(
-        version=1,
-        file_format="matlab",
-    ),
-    "ceramic": "data/ceramic/NRM1.mat",
-    "basalt": "data/basalt/NRM1.mat",
-}
+<span class="fragment code">data_paths = {</span>
+<span class="fragment code">    # Use the Ensaio package to fetch the speleothem dataset from the internet</span>
+<span class="fragment code">    "speleothem": ensaio.fetch_morroco_speleothem_qdm(</span>
+<span class="fragment code">        version=1,</span>
+<span class="fragment code">        file_format="matlab",</span>
+<span class="fragment code">    ),</span>
+<span class="fragment code">    "ceramic": "data/ceramic/NRM1.mat",</span>
+<span class="fragment code">    "basalt": "data/basalt/NRM1.mat",</span>
+<span class="fragment code">}</span>
 </code></pre>
 </section>
 
@@ -1482,23 +1508,71 @@ data_paths = {
     display: block;
     margin: 0 !important;
     padding: 0 !important;
-    transform: none !important;
+    transform: none !important;    
   }
   .block-space {
     margin-top: -1.0em !important;
   }
+  .code {
+    line-height: 0.2em;
+  }
 </style>
 <pre class="compact"><code class="python" data-trim data-noescape>
 <span>
-# Repeat the processing for each dataset but using slightly different parameters
-size_ranges = {"speleothem": [20, 150], "ceramic": [10, 150], "basalt": [10, 30]}
-detection_thresholds = {"speleothem": 0.02, "ceramic": 0.02, "basalt": 0.002}
-datasets, locations, dipole_moments, bounding_boxes = {}, {}, {}, {}
+<span class="fragment code"># Repeat the processing for each dataset but using slightly different parameters</span>
+<span class="fragment code">size_ranges = {"speleothem": [20, 150], "ceramic": [10, 150], "basalt": [10, 30]}</span>
+<span class="fragment code">detection_thresholds = {"speleothem": 0.02, "ceramic": 0.02, "basalt": 0.002}</span>
+<span class="fragment code">datasets, locations, dipole_moments, bounding_boxes = {}, {}, {}, {}</span>
 </code></pre>
 </section>
 
 ===============================================================================
 
+<section>
+<style>
+  pre.compact code {
+    line-height: 1.0em !important;
+    font-size: 1.3em !important;
+  }
+  .fragment-code {
+    display: block;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    line-height: 0.2em;
+  }
+  .block-space {
+    margin-top: -1.0em !important;
+  }
+  .code {
+    line-height: 0.2em;
+  }
+</style>
+<pre class="compact"><code class="python" data-trim data-noescape>
+<span>
+<span class="fragment code">for name in ["speleothem", "ceramic", "basalt"]:</span>
+<span class="fragment code">    # Use Magali to load the data from Harvard's QDM Matlab file format</span>
+<span class="fragment code">    datasets[name] = mg.read_qdm_harvard(data_paths[name])</span>
+<span class="fragment code">    # Upward continue the data by 5 microns using the Harmonica package</span>
+<span class="fragment code">    height_difference = 5</span>
+<span class="fragment code">    data_up = (</span>
+<span class="fragment code">        hm.upward_continuation(datasets[name], height_difference)</span>
+<span class="fragment code">        .assign_attrs(datasets[name].attrs)</span>
+<span class="fragment code">        .assign_coords(x=datasets[name].x, y=datasets[name].y)</span>
+<span class="fragment code">        .assign_coords(z=datasets[name].z + height_difference)</span>
+<span class="fragment code">        .rename("bz")</span>
+<span class="fragment code">    )</span>
+<span class="fragment code">    # Calculate data derivatives and TGA</span>
+<span class="fragment code">    data_tga = mg.total_gradient_amplitude_grid(data_up)</span>
+<span class="fragment code">    # Stretch the TGA contrast to highlight weak sources</span>
+<span class="fragment code">    data_stretched = skimage.exposure.rescale_intensity(</span>
+<span class="fragment code">        data_tga,</span>
+<span class="fragment code">        in_range=tuple(np.percentile(data_tga, (1, 99))),</span>
+<span class="fragment code">    )</span>
+</code></pre>
+</section>
+
+===============================================================================
 <section>
 <style>
   pre.compact code {
@@ -1514,78 +1588,95 @@ datasets, locations, dipole_moments, bounding_boxes = {}, {}, {}, {}
   .block-space {
     margin-top: -1.0em !important;
   }
-</style>
-<pre class="compact"><code class="python" data-trim data-noescape>
-<span>
-for name in ["speleothem", "ceramic", "basalt"]:
-    # Use Magali to load the data from Harvard's QDM Matlab file format
-    datasets[name] = mg.read_qdm_harvard(data_paths[name])
-    # Upward continue the data by 5 microns using the Harmonica package
-    height_difference = 5
-    data_up = (
-        hm.upward_continuation(datasets[name], height_difference)
-        .assign_attrs(datasets[name].attrs)
-        .assign_coords(x=datasets[name].x, y=datasets[name].y)
-        .assign_coords(z=datasets[name].z + height_difference)
-        .rename("bz")
-    )
-    # Calculate data derivatives and TGA
-    data_tga = mg.total_gradient_amplitude_grid(data_up)
-    # Stretch the TGA contrast to highlight weak sources
-    data_stretched = skimage.exposure.rescale_intensity(
-        data_tga,
-        in_range=tuple(np.percentile(data_tga, (1, 99))),
-    )
-</code></pre>
-</section>
-
-===============================================================================
-<section>
-<style>
-  pre.compact code {
-    line-height: 1.0em !important;
-    font-size: 1.3em !important;
-  }
-  .fragment {
-    display: block;
-    margin: 0 !important;
-    padding: 0 !important;
-    transform: none !important;
-  }
-  .block-space {
-    margin-top: -1.0em !important;
+  .code {
+    line-height: 0.2em;
   }
 </style>
 <pre class="compact"><code class="python" data-trim data-noescape>
 <span>
-    # Use the LoG to detect the sources in the stretched TGA
-    bounding_boxes[name] = mg.detect_anomalies(
-        data_stretched,
-        size_range=size_ranges[name],  # μm
-        detection_threshold=detection_thresholds[name],
-        border_exclusion=2,
-    )
-    # Run the non-linear inversion to estimate dipole moments and locations
-    results = mg.iterative_nonlinear_inversion(
-        data_up, bounding_boxes[name], copy_data=True
-    )
-    locations[name] = results[1]
-    dipole_moments[name] = results[2]
+<span class="fragment code">    # Use the LoG to detect the sources in the stretched TGA</span>
+<span class="fragment code">    bounding_boxes[name] = mg.detect_anomalies(</span>
+<span class="fragment code">        data_stretched,</span>
+<span class="fragment code">        size_range=size_ranges[name],  # μm</span>
+<span class="fragment code">        detection_threshold=detection_thresholds[name],</span>
+<span class="fragment code">        border_exclusion=2,</span>
+<span class="fragment code">    )</span>
+<span class="fragment code">    # Run the non-linear inversion to estimate dipole moments and locations</span>
+<span class="fragment code">    results = mg.iterative_nonlinear_inversion(</span>
+<span class="fragment code">        data_up, bounding_boxes[name], copy_data=True</span>
+<span class="fragment code">    )</span>
+<span class="fragment code">    locations[name] = results[1]</span>
+<span class="fragment code">    dipole_moments[name] = results[2]</span>
 </code></pre>
 </section>
 
 ===============================================================================
+# Estalagmite (Marrocos)
+<img src="assets/result-speleothem.png" style="width: 100%" >
+<div class="row">
+<div class="col text-left small">
 
-O processamento automatizado identificou com sucesso:
-  - **57 fontes** no Espeleotema
-  - **397 fontes** na Cerâmica
-  - **661 fontes** no Basalto
+- **57 possíveis fontes** detectadas
+- **Mineralogia e pulsos:** diferenciação de **hematita** (+Y) e **magnetita** (-Y) através de campos de pulso IRM (2.7 T e 0.3 T)
+</div>
 
+<div class="col text-left small">
+
+- **Poucos grãos** quando comparado a outros datasets
+
+- **Baixa dispersão** de momentos estimados
+</div>
+
+</div>
+<div class="footnote-center">
+
+[Carmo et al 2019](https://figshare.com/articles/dataset/QDM_magnetic_microscopy_dataset_of_a_speleothem_from_Morocco/22965200/1?file=40707380)
+
+[Souza-Junior et al 2024](https://figshare.com/articles/dataset/QDM_magnetic_microscopy_dataset_of_a_speleothem_from_Morocco/22965200/1?file=40707380)
 </div>
 
 ===============================================================================
-# SEPARAR EXEMPLO EM 3 SLIDES
+# Fragmento de ladrilho cerâmico
+<img src="assets/result-ceramic.png" style="width: 100%" >
+<div class="row">
+<div class="col text-left small">
 
+- **397 posíveis  fontes** detectadas
+  
+- **Mineralogia:** **titanomagnetita** (SD/PSD) portadora da NRM em **assembleia estável e dispersa**
+</div>
+<div class="col text-left small">
+
+- Número de fontes **consideravelmente maior** que do espeleotema
+- Momentos estimados **razoavelmente concentados**
+</div>
+
+</div>
+<div class="footnote-center">
+
+[Souza-Junior et al 2025](https://eartharxiv.org/repository/view/8869/)
+</div>
+
+===============================================================================
+# Rocha Basáltica
+<img src="assets/result-basalt.png" style="width: 100%" >
+<div class="row">
+<div class="col text-left small">
+
+- **661 possíveis fontes** encontradas
+- **Mineralogia:** **magnetita** de baixo Ti ($10-50$ µm) com grãos SD, PSD e multidomínio (MD)</li>
+</div>
+
+<div class="col text-left small">
+
+- **Complexidade:** assembleia densamente compactada com sinais na matriz e inclusões em fenocristais de plagioclásio
+- Momentos magnéticos estimados com **alta dispersão**
+</div>
+</div>
+<div class="footnote-center">
+
+[Souza-Junior et al 2025](https://eartharxiv.org/repository/view/8869/)
+</div>
 
 
 ===============================================================================
