@@ -348,15 +348,124 @@ Definição TAUXE
 </ul>
 
 ===============================================================================
-# Continuação para cima
+<h2>O que é uma Função Harmônica?</h2>
 
+<div >
+
+<div class="text-left">
+  <ul>
+    <li class="fragment" data-fragment-index="1">
+      <b>Definição Matemática:</b> É uma função que satisfaz a <b>Equação de Laplace</b>:
+      $$\nabla \cdot \nabla f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} = 0$$
+    </li>
+    <li class="fragment" data-fragment-index="2">
+      <b>Aplicação Física:</b> No espaço livre (entre a amostra e o sensor), o potencial magnético é harmônico.
+    </li>
+    <li class="fragment" data-fragment-index="3">
+      <b>Propriedades Cruciais:</b>
+      <ul>
+        <li><b>Suavidade:</b> não possui máximos ou mínimos locais fora das fontes</li>
+        <li><b>Previsibilidade:</b> os valores acima ($z > 0$) são determinados unicamente pelos valores na superfície ($z = 0$)</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+
+===============================================================================
+# Filtro no domínio da frequência
+
+$$F(k,\Delta z)=F(k,0) \cdot e^{-\Delta z |k|}$$
+
+<div class="fragment text-left">
+
+- $\Delta z$: variação de altura
+</div>
+<div class="fragment text-left">
+
+- $|k|$: número de onda (frequência espacial)
+</div>
+<div class="fragment text-left">
+
+- $F(k, 0)$: espectro do campo original
+</div>
+<div class="fragment text-left">
+
+- $e^{-\Delta z|\mathbf{k}|}$: operador de continuação
+</div>
+
+
+<div class="footnote-center">
+
+[Blakely (1995)](https://www.cambridge.org/core/books/potential-theory-in-gravity-and-magnetic-applications/348880F23008E16E663D6AD14A41D8DE)
+</div>
+
+===============================================================================
+# Continuação para cima
+## Filtro no domínio da frequência
+
+$$F(k,\Delta z)=F(k,0) \cdot e^{-\Delta z |k|}$$
+
+<div class="fragment text-left">
+
+- **Como funciona:** atenua o sinal conforme a altura
+</div>
+<div class="fragment text-left">
+
+- **Suaviza ruídos** sem inventar dados
+
+</div>
+<div class="fragment text-left">
+
+  - Prepara o sinal para o **cálculo de derivadas**
+</div>
+
+<div class="footnote-center">
+
+[Blakely (1995)](https://www.cambridge.org/core/books/potential-theory-in-gravity-and-magnetic-applications/348880F23008E16E663D6AD14A41D8DE)
+</div>
+
+===============================================================================
+<div class="row">
+<div class="col"><img src="assets/qdm_data.png" style="width: 100%" ></div>
+<div class="col"><img src="assets/data_up.png" style="width: 100%" ></div>
+</div>
+
+Continuação para cima de $5 \mu m$
+
+
+===============================================================================
+<h2>Etapa 1: Detecção da Fonte</h2>
+  
+<p class="text-left">
+  <strong>Objetivo:</strong> isolar cada partícula magnética na imagem
+</p>
+
+<p class="text-left">
+  <strong>Métodos utilizados:</strong>
+</p>
+
+<ul>
+  <li >
+    <b>Continuação para cima:</b> atenua ruídos de alta frequência (filtro passa-baixa) e estabiliza o campo para o cálculo de gradientes 
+  </li>
+  <li style="color: red !important;">
+    <b>Amplitude do Gradiente Total (TGA):</b> realça o sinal próximo à fonte através de um filtro passa-alta
+  </li>
+  <li>
+    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
+  </li>
+  <li>
+    <b>Segmentação LoG (Laplaciano do Gaussiano):</b> detecta “blobs” e define uma janela individual por partícula e as organiza por intensidade de sinal decrescente para o processamento iterativo
+  </li>
+</ul>
 
 ===============================================================================
 # Derivadas e TGA
 
 <div class="fragment text-left">
 
-- Calculamos a **Amplitude do Gradiente Total (TGA)** a partir da componente vertical do campo magnético vertical ($b_z$), definida como a norma do vetor gradiente:
+- Calcula-se a **Amplitude do Gradiente Total (TGA)** de uma função harmônica (podendo ser o campo magnético) definida como a norma do vetor gradiente:
 
 $$||\vec{\mathbf{\nabla}}f(x, y, z)|| = \sqrt{(\partial_x f)^2 + (\partial_y f)^2 + (\partial_z f)^2}$$
 
@@ -406,7 +515,10 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 </ul>
 
 ===============================================================================
-# FIGURA TGA
+<div class="row">
+<div class="col"><img src="assets/synthetic.png" style="width: 100%" ></div>
+<div class="col"><img src="assets/tga_iso.png" style="width: 80%" ></div>
+</div>
 
 ===============================================================================
 # Realce de Contraste
