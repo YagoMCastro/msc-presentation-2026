@@ -74,7 +74,16 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
 ===============================================================================
 # O que é Paleomagnetismo?
 
-Definição TAUXE
+<div class="quote">
+
+Aplicação de medições magnéticas de minerais de rochas para resolver problemas geológicos
+
+
+</div>
+<div class="footnote-center">
+
+[Lisa Tauxe](https://magician.ucsd.edu/SIO247/)
+</div>
 
 ===============================================================================
 # Como os minerais são magnetizados?
@@ -101,18 +110,19 @@ Definição TAUXE
   **Reconstrução do paleocampo:** permite compreender como o campo magnético terrestre evoluiu ao longo de centenas de milhões de anos
 
 ===============================================================================
-# Tipos de grãos
-- Spinner
-- Alternating Field (AF)
-- Desmagnetização Térmica
-- Vibrating Sample Magnetometer (VSM)
-- Kappabridge
+# Tipos de Grãos Magnéticos
+
+- **Multidomínio (MD):** são grãos maiores que se subdividem em vários domínios, cada uma apontando em direções diferentes. Isto reduz a estabilidade magnética, tornando-os registradores pouco confiáveis
+
+- **Domínio Único (SD):** são grãos pequenos em que a magnetização permanece uniforme e alinhada em uma única direção, apresentando altíssima estabilidade
+
+- **Pseudo-Domínio Único (PSD):** apresentam tamanhos intermediários, podem registrar o campo magnético com elevada fidelidade e estabilidade, contrariando interpretações mais antigas que os consideravam menos confiáveis
 
 ===============================================================================
-# Métodos de medição
+# Limitações do Paleomagnetismo
+- **Efeito de média e mistura de sinais:** sobreposição com magnetizações secundárias e impossibilidade de separar o sinal de minerais diferentes (ex: magnetita vs. hematita)
 
-===============================================================================
-# Problemas do Paleomagnetismo
+- **Barreira do limite de detecção:** amostras com sinais muito fracos não superam o ruído de fundo dos magnetômetros convencionais
 
 ===============================================================================
 
@@ -147,6 +157,13 @@ Definição TAUXE
 ===============================================================================
 # Quantum Diamond Microscope
 
+- Utiliza uma placa de diamante sintético com defeitos cristalinos chamados **Centros Nitrogênio-Vacância (NV)**
+
+- Ao receber um laser verde e micro-ondas, os centros NV emitem uma luz vermelha. A intensidade dessa fluorescência é alterada de acordo com o campo magnético da rocha próxima contato com o diamante
+
+- Uma câmera captura essa luz e gera um mapa da do campo magnético da superfície medida com resolução espacial micrométrica
+
+- Diferente de sensores criogênicos, o QDM opera em **temperatura ambiente**, simplificando a logística laboratorial
 
 ===============================================================================
 <div class="r-stretch">
@@ -159,33 +176,6 @@ Definição TAUXE
 
 [Harvard Paleomagnetics Lab](https://paleomag.fas.harvard.edu/laboratory)
 </div>
-
-===============================================================================
-# Mapa magnético
-
-- Não entrega os vetores de magnetização diretamente
-- Componente vertical do campo magnético (bz)
-- Mostrar assinatura do dipolo
-- Mapa raramente tem dipolo prefeito e isolado
-    - Múltiplos dipolos aglomerados e sobrepostos com intensidades diferentes
-    - Ruído intrumental 
-    - Variações de nível de base regionais
-- Mostrar junto ao mapa de MEV
-    - Relacionar MEV ao sinal do QDM
-
-<div class="footnote-left">
-
-[Citação]()
-</div>
-
-===============================================================================
-
-- Nós temos o mapa do campo ($B_z$), mas nós queremos descobrir a fonte que gerou esse campo (justificativa do problema inverso)
-    - NÃO SE MEDE MAGNETIZAÇÃO
-- Aproximação ao dipolo
-    - Assumimos que cada grão SD pode ser tratado como um dipolo magnético
-- Para cada grão devemos estimar posição (v) e momento magnético (m)
-
 
 ===============================================================================
 
@@ -204,6 +194,8 @@ Definição TAUXE
 ===============================================================================
 
 <img src="assets/berndt_paper.png" style="width: 80%" >
+
+- Bilhões de grãos seriam necessários para uma rocha obter NRM confiável
 
 ===============================================================================
 
@@ -233,32 +225,20 @@ Definição TAUXE
 [Bellon et al. (2025)](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2025GL114771)
 </div>
 
-
 ===============================================================================
-# Apliccações da microscopia magnetica
 
+<!-- .slide: class="slide-title" data-background-opacity="1" data-background-image="assets/ceramic.png"  data-background-size="contain" -->
 
+<div class="r-stretch">
+</div>
+<div class="footnote-center">
 
-===============================================================================
-# Dificuldades
-- Analisar cada anomalia manualmente?
-- Profundidade difícil de ser estimada
-- Viés humano 
+[Souza-Junior et al 2025](https://eartharxiv.org/repository/view/8869/)
+</div>
+
 
 ===============================================================================
 <img src="assets/paper_2.png" style="width: 80%" >
-
-===============================================================================
-# Souza-Junior et al. (2025)
-
-<div class="text-left">
-
-
-<div class="footnote-center">
-
-[Souza-Junior et al. (2025)](https://eartharxiv.org/repository/view/8869/)
-
-</div>
 
 ===============================================================================
 # Sumário
@@ -1359,12 +1339,6 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 </div>
 
-<div class="fragment text-left">
-
-- **Convenções de dados**
-
-</div>
-
 ===============================================================================
 <!-- .slide: data-background-opacity="1" data-background-image="assets/readme-banner.png"  data-background-size="contain" data-background-color="#262626" -->
 
@@ -2024,32 +1998,9 @@ ADD MODELO 1INTERF e outros grids
 - **Democratizaremos** o acesso a ferramentas de ponta para a comunidade de paleomagnetistas, reduzindo barreiras técnicas via **PyPI** e **conda-forge**
 
 </div>
-
 <div class="fragment text-left">
 
-- **Estabelecemos** um padrão de reprodutibilidade seguindo os princípios **FAIR** (**F**indable, **A**ccessible, **I**nteroperable, **R**eusable), integrado ao ecossistema **Fatiando a Terra**
-
-</div>
-
-<div class="fragment text-left">
-
-- **Mitigamos** o isolamento metodológico através de desenvolvimento transparente, testes automatizados e documentação para novos usuários e pesquisadores avançados
-
-</div>
-
-===============================================================================
-# Limitações
-
-# FOCAR NAS LIMITAÇÕES DO SOFTWARE, NÃO NAS METODOLÓGICAS
-
-<div class="fragment text-left">
-
-- O método pressupõe **aproximações dipolares** e **isolamento via janelamento**
-
-</div>
-<div class="fragment text-left">
-
-- Fontes **fortemente não-dipolares** ou **clusters** densos ainda são desafios para o método
+- Mitigamos o isolamento metodológico através de **desenvolvimento transparente, testes automatizados e documentação** para novos usuários
 
 </div>
 
@@ -2078,6 +2029,22 @@ ADD MODELO 1INTERF e outros grids
   <div class="fragment text-left">
 
   - Incluir Magali no **conda-forge** e **PyPi**
+
+  </div>
+  <div class="fragment text-left">
+
+  - Melhorias na documentação
+
+  </div>
+
+  <div class="fragment text-left">
+
+  - Release V1.0
+
+  </div>
+    <div class="fragment text-left">
+
+  - Difundir o uso da biblioteca
 
   </div>
 
