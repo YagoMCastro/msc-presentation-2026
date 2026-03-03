@@ -61,7 +61,6 @@ Sinta-se à vontade para fotografar/compartilhar/reutilizar esta apresentação
   <li>
     <b>Métodos</b>
     <ul style="list-style: none">
-      <li>Análise do Fluxo de Trabalho</li>
       <li>Fundamentação Teórica</li>
       <li>Desenvolvimento de software</li>
     </ul>
@@ -144,7 +143,6 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
   <li>
     <b>Métodos</b>
     <ul style="list-style: none">
-      <li>Análise do Fluxo de Trabalho</li>
       <li>Fundamentação Teórica</li>
       <li>Desenvolvimento de software</li>
     </ul>
@@ -195,7 +193,7 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 
 <img src="assets/berndt_paper.png" style="width: 80%" >
 
-- Bilhões de grãos seriam necessários para uma rocha obter NRM confiável
+- Bilhões de grãos seriam necessários para uma rocha obter TRM confiável
 
 ===============================================================================
 
@@ -249,7 +247,6 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
   <li style="color: red !important;">
     <b>Métodos</b>
     <ul style="list-style: none">
-      <li>Análise do Fluxo de Trabalho</li>
       <li>Fundamentação Teórica</li>
       <li>Desenvolvimento de software</li>
     </ul>
@@ -353,7 +350,8 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 
 
 ===============================================================================
-# Filtro no domínio da frequência
+# Continuação para cima
+## Filtro no domínio da frequência
 
 $$F(k,\Delta z)=F(k,0) \cdot e^{-\Delta z |k|}$$
 
@@ -456,7 +454,7 @@ $$||\vec{\mathbf{\nabla}}f(x, y, z)|| = \sqrt{(\partial_x f)^2 + (\partial_y f)^
 
 <div class="text-left">
 
-- No dado continuado para cima, **aproxima-se** as derivadas horizontais utilizando um esquema de **diferenças finitas centrais** de segunda ordem (assumindo espaçamento uniforme $\Delta x$ e $\Delta y$):
+- No dado continuado para cima, **aproximam-se** as derivadas horizontais utilizando um esquema de **diferenças finitas centrais** de segunda ordem (assumindo espaçamento uniforme $\Delta x$ e $\Delta y$):
 
 $$\partial_x f(x, y, z) \approx \frac{f(x + \Delta x, y, z) - f(x - \Delta x, y, z)}{2 \Delta x}$$
 
@@ -634,6 +632,48 @@ $$\nabla \cdot \nabla G(x, y; \sigma) = \frac{x^2 + y^2 - 2\sigma^2}{2\pi\sigma^
     <img src="assets/detection.png" style="width: 100%">
   </div>
 </div>
+
+===============================================================================
+<p class="text-left">
+  <b>Etapa 1 - Detecção da fonte</b>
+</p>
+
+<p class="text-left">
+  <b>Etapa 2 - Processamento iterativo (por janela)</b>
+</p>
+
+<ul>
+  <li  style="color: red !important;" class="text-left">
+    (a) <b>Isolamento dos dados:</b>
+    selecionar os dados magnéticos dentro da janela
+  </li>
+
+  <li class="text-left">
+    (b) <b>Deconvolução de Euler:</b>
+    estimar a posição da fonte
+  </li>
+
+  <li class="text-left">
+    (c) <b>Inversão linear:</b>
+    estimar o momento do dipolo usando posição fixa
+  </li>
+
+  <li class="text-left">
+    (d) <b>Inversão híbrida:</b>
+    refinar posição e momento via
+    <b>Levenberg–Marquardt</b>
+  </li>
+
+  <li class="text-left">
+    (e) <b>Remoção do sinal:</b>
+    modelar o dipolo diretamente e subtrair do conjunto de dados completo
+  </li>
+</ul>
+
+<p class="text-left">
+  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
+  aplicar as etapas 1 e 2 ao conjunto de dados residual
+</p>
 
 ===============================================================================
 <p class="text-left">
@@ -1016,7 +1056,7 @@ b_{z_N}
 ===============================================================================
 # Estimativa por Mínimos Quadrados
 
-<p class="text-left">Minimizamos a função de erro:</p>
+<p class="text-left">Minimiza-se a função objetivo:</p>
 
 $$\Gamma(\mathbf{m}) = \|\mathbf{d}^{o}-\mathbf{A}\mathbf{m}\|^2=(\mathbf{d}^{o}-\mathbf{A}\mathbf{m})^T(\mathbf{d}^{o}-\mathbf{A}\mathbf{m})$$
 <p class="text-left">O que leva às equações normais:</p>
@@ -1148,7 +1188,7 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 <div class="fragment text-left">
 
-- Utilizamos a inversão de **Levenberg-Marquardt** por ser um método **baseado em gradiente**, sendo melhor optimizado quando comparado a métodos que **independem de derivadas**, como Nelder-Mead, para problemas **suaves e diferenciáveis**
+- Utilizamos este método porr ser **baseado em gradiente**, sendo melhor optimizado quando comparado a métodos que **independem de derivadas**, como Nelder-Mead, para problemas **suaves e diferenciáveis**
 
 </div>
 <div class="fragment text-left">
@@ -1157,8 +1197,8 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 $$\Psi(\mathbf{v}) = \| \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \|^2$$
 
-- $\mathbf{d}^o$ dados observados
-- $\mathbf{d}(\mathbf{v})$ dados preditos
+- $\mathbf{d}^o$: dados observados
+- $\mathbf{d}(\mathbf{v})$: dados preditos
 
 </div>
 <div class="footnote-center">
@@ -1172,12 +1212,12 @@ $$\Psi(\mathbf{v}) = \| \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \|^2$$
 
 <div class="fragment text-left">
 
-- Partimos da estimativa inicial de posição $\mathbf{v}$ obtida via **Deconvolução de Euler** e realizamos uma inversão linear inicial para o momento $\mathbf{m}$.
+- Partimos da estimativa inicial de posição ($\mathbf{v}$) obtida via **Deconvolução de Euler** e realizamos uma inversão linear inicial para o momento ($\mathbf{m}$)
 
 </div>
 <div class="fragment text-left">
 
-- Atualizamos a localização resolvendo o sistema amortecido para o incremento $\Delta \mathbf{v}$:
+- Atualizamos a localização resolvendo o sistema amortecido para o incremento ($\Delta \mathbf{v})$:
 
 $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \mathbf{J}) \right) \Delta\mathbf{v} = \mathbf{J}^T \big( \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \big)$$
 
@@ -1212,9 +1252,9 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </div>
 
 ===============================================================================
-# Estabilidade e Ciclo de Convergência
+# Estabilidade 
 
-<div class="fragment text-left">
+<div class="text-left">
 
 - Limitamos o deslocamento máximo por iteração ($\|\Delta \mathbf{v}\| \le 10\mu m$) para evitar atualizações que não façam sentido fisicamente e garantir que a solução permaneça dentro da janela de dados
 
@@ -1434,6 +1474,9 @@ Modelagem e processamento de dados de microscopia magnética
 <!-- .slide: data-background-opacity="1" data-background-image="assets/github_1.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/environment.png"  data-background-size="contain" data-background-color="#262626" -->
+
+===============================================================================
 <!-- .slide: data-background-opacity="1" data-background-image="assets/github_readme.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
@@ -1489,7 +1532,7 @@ Modelagem e processamento de dados de microscopia magnética
 
 <div class="fragment text-left">
 
-- Facilitaremos o acesso global da nossa futura **versão v0.1** através dos gerenciadores padrão da comunidade científica:
+- Facilitaremos o acesso global da nossa futura **versão v1.0** através dos gerenciadores padrão da comunidade científica:
   * **PyPI** (Python Package Index)
   * **conda-forge** (ambientes reprodutíveis)
 
@@ -1527,7 +1570,7 @@ Modelagem e processamento de dados de microscopia magnética
 </div>
 <div class="fragment text-left">
 
-- **Quantificamos** o desempenho em função do número de pontos de dados ($N$) realizando **5 inversões independentes** por resolução para obter médias estáveis
+- **Quantificamos** o desempenho em função do número de pontos de dados ($N$) realizando **5 inversões independentes** por resolução para obter medidas estáveis
 
 </div>
 
@@ -1942,7 +1985,6 @@ ADD MODELO 1INTERF e outros grids
   <li>
     <b>Métodos</b>
     <ul style="list-style: none">
-      <li>Análise do Fluxo de Trabalho</li>
       <li>Fundamentação Teórica</li>
       <li>Desenvolvimento de software</li>
     </ul>
