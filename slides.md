@@ -152,13 +152,25 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 ===============================================================================
 # Quantum Diamond Microscope
 
+<div class="fragment">
+
 - Utiliza uma placa de diamante sintético com defeitos cristalinos chamados **Centros Nitrogênio-Vacância (NV)**
+</div>
 
-- Ao receber um laser verde e micro-ondas, os centros NV emitem uma luz vermelha. A intensidade dessa fluorescência é alterada de acordo com o campo magnético da rocha próxima contato com o diamante
+<div class="fragment">
 
-- Uma câmera captura essa luz e gera um mapa da do campo magnético da superfície medida com resolução espacial micrométrica
+- Ao receber um laser verde e micro-ondas, os centros NV emitem uma luz vermelha. A **intensidade dessa fluorescência** é alterada de acordo com o **campo magnético** da rocha próxima ao diamante
+</div>
 
-- Diferente de sensores criogênicos, o QDM opera em **temperatura ambiente**, simplificando a logística laboratorial
+<div class="fragment">
+
+- Uma câmera captura essa luz e gera um **mapa do campo magnético** da superfície medida com resolução espacial **micrométrica**
+</div>
+
+<div class="fragment">
+
+- Diferente de sensores criogênicos, o QDM opera em **temperatura ambiente**, simplificando a **logística laboratorial**
+</div>
 
 ===============================================================================
 <div class="r-stretch">
