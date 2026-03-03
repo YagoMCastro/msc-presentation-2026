@@ -79,7 +79,7 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 </div>
 <div class="footnote-center">
 
-[Lisa Tauxe](https://magician.ucsd.edu/SIO247/)
+[Notas de aula de Lisa Tauxe](https://magician.ucsd.edu/SIO247/)
 </div>
 
 ===============================================================================
@@ -123,9 +123,18 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 
 ===============================================================================
 # Limitações do Paleomagnetismo
-- **Efeito de média e mistura de sinais:** sobreposição com magnetizações secundárias e impossibilidade de separar o sinal de minerais diferentes (ex: magnetita vs. hematita)
+<div class="text-left fragment">
 
-- **Barreira do limite de detecção:** amostras com sinais muito fracos não superam o ruído de fundo dos magnetômetros convencionais
+- Sobreposição com **magnetizações secundárias** e impossibilidade de **separar o sinal** de minerais diferentes (ex: magnetita vs. hematita)
+</div>
+<div class="text-left fragment">
+
+- Amostras com **sinais muito fracos** não superam o ruído de fundo dos magnetômetros convencionais
+</div>
+<div class="text-left fragment">
+
+- Diversos métodos **alteram a amostra**, seja alterando a magnetização ou destruindo-a
+</div>
 
 ===============================================================================
 <div class="r-stretch">
@@ -205,12 +214,12 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 # Temos um problema
 
 ===============================================================================
-<img src="assets/berndt_paper.png" style="width: 80%" >
+<img src="assets/berndt_paper.png" style="width: 80%">
 
-- Bilhões de grãos seriam necessários para uma rocha obter TRM confiável
+- $10^7$ a $10^9$ de grãos seriam necessários para uma rocha obter direções confiáveis
 
 ===============================================================================
-<img src="assets/bellon_paper.png" style="width: 80%" >
+<img src="assets/bellon_paper.png" style="width: 80%">
 
 ===============================================================================
 # Bellon et al. (2025)
@@ -252,8 +261,99 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 <img src="assets/paper_2.png" style="width: 80%" >
 
 ===============================================================================
-# Sumário
+<p class="text-left fragment" data-fragment-index="0">
+  <b>Etapa 1 - Detecção da fonte</b>
+</p>
 
+<p class="text-left fragment" data-fragment-index="1">
+  <b>Etapa 2 - Processamento iterativo (por janela)</b>
+</p>
+
+<ul>
+  <li class="text-left fragment" data-fragment-index="2">
+    (a) <b>Isolamento dos dados:</b> selecionar os dados magnéticos dentro da janela
+  </li>
+  <li class="text-left fragment" data-fragment-index="3">
+    (b) <b>Deconvolução de Euler:</b> estimar a <em>posição</em> da fonte
+  </li>
+  <li class="text-left fragment" data-fragment-index="4">
+    (c) <b>Inversão linear:</b> estimar o <em>momento</em> do dipolo usando posição fixa
+  </li>
+  <li class="text-left fragment" data-fragment-index="5">
+    (d) <b>Inversão não linear:</b> refinar posição e momento via 
+    <a href="https://academic.oup.com/comjnl/article-abstract/7/4/308/354237?redirectedFrom=fulltext">Nelder-Mead</a>
+  </li>
+  <li class="text-left fragment" data-fragment-index="7">
+    (e) <b>Remoção do sinal:</b> modelar o dipolo diretamente e subtrair do conjunto de dados completo
+  </li>
+</ul>
+<p class="text-left fragment" data-fragment-index="8">
+  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
+  aplicar as etapas 1 e 2 ao conjunto de dados residual
+</p>
+
+===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/readme-banner.png"  data-background-size="contain" data-background-color="#262626" -->
+
+===============================================================================
+<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
+<div class="huge">
+
+O que é o Magali?
+
+<div class="large fragment">
+
+Biblioteca em Python <br><i class="fab fa-python"></i>
+
+</div>
+
+<div class="large fragment">
+
+Software livre e de código aberto  
+
+<i class="fab fa-github"></i> <i class="fas fa-lock-open"></i> <i class="fab fa-osi"></i>
+
+</div>
+
+</div>
+<div class="large fragment">
+
+Modelagem e processamento de dados de microscopia magnética  
+<i class="fas fa-magnet"></i> <i class="fas fa-microscope"></i>
+
+</div>
+
+===============================================================================
+<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
+
+# Por que queremos desenvolvê-la?
+<div class="fragment text-left">
+
+- Fornecer um código **fácil de usar**
+</div>
+<div class="fragment text-left">
+
+- Determinar as **posições espaciais** de **múltiplos** grãos
+</div>
+<div class="fragment text-left">
+
+- Facilitar a criação de **dados sintéticos**
+</div>
+<div class="fragment text-left">
+
+- Propor um **formato padrão de dados**
+</div>
+<div class="fragment text-left">
+
+- Servir como **base** para desenvolvimento de novos métodos
+</div>
+<div class="fragment text-left">
+
+- Explorar o potencial de estudos emergentes em **microscopia magnética**
+</div>
+
+===============================================================================
+# Sumário
 <ul style="list-style: none">
   <li><b>Paleomagnetismo</b></li>
   <li><b>Microscopia magnética</b></li>
@@ -270,56 +370,14 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 </ul>
 
 ===============================================================================
-<p class="text-left fragment" data-fragment-index="0">
-  <b>Etapa 1 - Detecção da fonte</b>
-</p>
-
-<p class="text-left fragment" data-fragment-index="1">
-  <b>Etapa 2 - Processamento iterativo (por janela)</b>
-</p>
-
-<ul>
-  <li class="text-left fragment" data-fragment-index="2">
-    (a) <strong>Isolamento dos dados:</strong> selecionar os dados magnéticos dentro da janela
-  </li>
-  <li class="text-left fragment" data-fragment-index="3">
-    (b) <strong>Deconvolução de Euler:</strong> estimar a <em>posição</em> da fonte
-  </li>
-  <li class="text-left fragment" data-fragment-index="4">
-    (c) <strong>Inversão linear:</strong> estimar o <em>momento</em> do dipolo usando posição fixa
-  </li>
-
-  <div style="display: grid;">
-    <li class="text-left fragment fade-in-then-out" data-fragment-index="5" style="grid-area: 1/1; list-style: none;">
-(d) <strong>Inversão não linear:</strong> refinar posição e momento via 
-<a href="https://academic.oup.com/comjnl/article-abstract/7/4/308/354237?redirectedFrom=fulltext">Nelder-Mead</a>
-</li>
-
-<li class="text-left fragment fade-in" data-fragment-index="6" style="grid-area: 1/1; list-style: none;">
-(d) <strong>Inversão hibrida:</strong> refinar posição e momento via 
-<strong>Levenberg-Marquardt</strong>
-</li>
-  </div>
-
-  <li class="text-left fragment" data-fragment-index="7">
-    (e) <strong>Remoção do sinal:</strong> modelar o dipolo diretamente e subtrair do conjunto de dados completo
-  </li>
-</ul>
-
-<p class="text-left fragment" data-fragment-index="8">
-  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
-  aplicar as etapas 1 e 2 ao conjunto de dados residual
-</p>
-
-===============================================================================
 <h2>Etapa 1: Detecção da Fonte</h2>
   
 <p class="text-left">
-  <strong>Objetivo:</strong> isolar cada partícula magnética na imagem
+  <b>Objetivo:</b> isolar cada partícula magnética na imagem
 </p>
 
 <p class="text-left fragment">
-  <strong>Métodos utilizados:</strong>
+  <b>Métodos utilizados:</b>
 </p>
 
 <ul>
@@ -338,62 +396,9 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 </ul>
 
 ===============================================================================
-<h2>O que é uma Função Harmônica?</h2>
-
-<div >
-
-<div class="text-left">
-  <ul>
-    <li class="fragment" data-fragment-index="1">
-      <b>Definição Matemática:</b> É uma função que satisfaz a <b>Equação de Laplace</b>:
-      $$\nabla \cdot \nabla f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} = 0$$
-    </li>
-    <li class="fragment" data-fragment-index="2">
-      <b>Aplicação Física:</b> No espaço livre (entre a amostra e o sensor), o potencial magnético é harmônico.
-    </li>
-    <li class="fragment" data-fragment-index="3">
-      <b>Propriedades Cruciais:</b>
-      <ul>
-        <li><b>Suavidade:</b> não possui máximos ou mínimos locais fora das fontes</li>
-        <li><b>Previsibilidade:</b> os valores acima ($z > 0$) são determinados unicamente pelos valores na superfície ($z = 0$)</li>
-      </ul>
-    </li>
-  </ul>
-</div>
-
-
-===============================================================================
 # Continuação para cima
 ## Filtro no domínio da frequência
 
-$$F(k,\Delta z)=F(k,0) \cdot e^{-\Delta z |k|}$$
-
-<div class="fragment text-left">
-
-- $\Delta z$: variação de altura
-</div>
-<div class="fragment text-left">
-
-- $|k|$: número de onda (frequência espacial)
-</div>
-<div class="fragment text-left">
-
-- $F(k, 0)$: espectro do campo original
-</div>
-<div class="fragment text-left">
-
-- $e^{-\Delta z|\mathbf{k}|}$: operador de continuação
-</div>
-
-
-<div class="footnote-center">
-
-[Blakely (1995)](https://www.cambridge.org/core/books/potential-theory-in-gravity-and-magnetic-applications/348880F23008E16E663D6AD14A41D8DE)
-</div>
-
-===============================================================================
-# Continuação para cima
-## Filtro no domínio da frequência
 
 $$F(k,\Delta z)=F(k,0) \cdot e^{-\Delta z |k|}$$
 
@@ -428,11 +433,11 @@ Continuação para cima de $5 \mu m$
 <h2>Etapa 1: Detecção da Fonte</h2>
   
 <p class="text-left">
-  <strong>Objetivo:</strong> isolar cada partícula magnética na imagem
+  <b>Objetivo:</b> isolar cada partícula magnética na imagem
 </p>
 
 <p class="text-left">
-  <strong>Métodos utilizados:</strong>
+  <b>Métodos utilizados:</b>
 </p>
 
 <ul>
@@ -460,6 +465,11 @@ $$||\vec{\mathbf{\nabla}}f(x, y, z)|| = \sqrt{(\partial_x f)^2 + (\partial_y f)^
 
 </div>
 
+<div class="footnote-center">
+
+[Blakely (1995)](https://www.cambridge.org/core/books/potential-theory-in-gravity-and-magnetic-applications/348880F23008E16E663D6AD14A41D8DE)
+</div>
+
 ===============================================================================
 # Derivadas e TGA
 <div class="text-left">
@@ -483,7 +493,7 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 <div class="footnote-center">
 
-[Saleh et al. (2012)](https://journals.savba.sk/index.php/cgg/article/view/5158/1272)
+[Souza-Junior et al. (2025)](https://eartharxiv.org/repository/view/8869/)
 
 </div>
 
@@ -501,16 +511,18 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 <div class="col"><img src="assets/synthetic.png" style="width: 100%" ></div>
 <div class="col"><img src="assets/tga_iso.png" style="width: 80%" ></div>
 </div>
+SUBSTITUIR PELO DADO REAL
+
 
 ===============================================================================
 <h2>Etapa 1: Detecção da Fonte</h2>
   
 <p class="text-left">
-  <strong>Objetivo:</strong> isolar cada partícula magnética na imagem
+  <b>Objetivo:</b> isolar cada partícula magnética na imagem
 </p>
 
 <p class="text-left">
-  <strong>Métodos utilizados:</strong>
+  <b>Métodos utilizados:</b>
 </p>
 
 <ul>
@@ -547,27 +559,6 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 </ul>
 
 ===============================================================================
-# Por que usar limites por percentil?
-
-- <!-- .element: class="fragment" -->
-  **Escalonamento robusto**  
-    Ignora outliers extremos (ex.: ruído do sensor)
-
-- <!-- .element: class="fragment" -->
-  **Validação empírica**  
-    Funciona bem para dados reais de microscopia magnética
-
-- <!-- .element: class="fragment" -->
-  **Faixa dinâmica**  
-    Garante a visualização de sinais fracos e fortes
-
-===============================================================================
-<div class="row">
-<div class="col"><img src="assets/tga_iso.png" style="width: 80%" ></div>
-<div class="col"><img src="assets/tga_stretched.png" style="width: 100%" ></div>
-</div>
-
-===============================================================================
 <div class="row">
 <div class="col"><img src="assets/data_up.png" style="width: 100%" ></div>
 <div class="col"><img src="assets/stretched.png" style="width: 100%" ></div>
@@ -576,11 +567,11 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 ===============================================================================
 <h2>Etapa 1: Detecção da Fonte</h2>
 <p class="text-left">
-  <strong>Objetivo:</strong> isolar cada partícula magnética na imagem
+  <b>Objetivo:</b> isolar cada partícula magnética na imagem
 </p>
 
 <p class="text-left">
-  <strong>Métodos utilizados:</strong>
+  <b>Métodos utilizados:</b>
 </p>
 
 <ul>
@@ -639,100 +630,13 @@ $$\nabla \cdot \nabla G(x, y; \sigma) = \frac{x^2 + y^2 - 2\sigma^2}{2\pi\sigma^
 </div>
 
 ===============================================================================
-<p class="text-left">
-  <b>Etapa 1 - Detecção da fonte</b>
-</p>
-
-<p class="text-left">
-  <b>Etapa 2 - Processamento iterativo (por janela)</b>
-</p>
-
-<ul>
-  <li  style="color: red !important;" class="text-left">
-    (a) <b>Isolamento dos dados:</b>
-    selecionar os dados magnéticos dentro da janela
-  </li>
-
-  <li class="text-left">
-    (b) <b>Deconvolução de Euler:</b>
-    estimar a posição da fonte
-  </li>
-
-  <li class="text-left">
-    (c) <b>Inversão linear:</b>
-    estimar o momento do dipolo usando posição fixa
-  </li>
-
-  <li class="text-left">
-    (d) <b>Inversão híbrida:</b>
-    refinar posição e momento via
-    <b>Levenberg–Marquardt</b>
-  </li>
-
-  <li class="text-left">
-    (e) <b>Remoção do sinal:</b>
-    modelar o dipolo diretamente e subtrair do conjunto de dados completo
-  </li>
-</ul>
-
-<p class="text-left">
-  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
-  aplicar as etapas 1 e 2 ao conjunto de dados residual
-</p>
-
-===============================================================================
-<p class="text-left">
-  <b>Etapa 1 - Detecção da fonte</b>
-</p>
-
-<p class="text-left">
-  <b>Etapa 2 - Processamento iterativo (por janela)</b>
-</p>
-
-<ul>
-  <li class="text-left">
-    (a) <b>Isolamento dos dados:</b>
-    selecionar os dados magnéticos dentro da janela
-  </li>
-
-  <li style="color: red !important;" class="text-left">
-    (b) <b>Deconvolução de Euler:</b>
-    estimar a posição da fonte
-  </li>
-
-  <li class="text-left">
-    (c) <b>Inversão linear:</b>
-    estimar o momento do dipolo usando posição fixa
-  </li>
-
-  <li class="text-left">
-    (d) <b>Inversão híbrida:</b>
-    refinar posição e momento via
-    <b>Levenberg–Marquardt</b>
-  </li>
-
-  <li class="text-left">
-    (e) <b>Remoção do sinal:</b>
-    modelar o dipolo diretamente e subtrair do conjunto de dados completo
-  </li>
-</ul>
-
-<p class="text-left">
-  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
-  aplicar as etapas 1 e 2 ao conjunto de dados residual
-</p>
-
-===============================================================================
 # Deconvolução de Euler
-<p class="fragment text-left">É um método para estimar a <b>localização</b> e a <b>profundidade</b> de fontes magnéticas</p>
+<p class="fragment text-left">É um método baseado na equação de homogeneidade de Euler para estimar a <b>localização</b> e a <b>profundidade</b> de fontes magnéticas</p>
+<br>
 <div class="text-left fragment">
-  <b>Características:</b><br>
-  <ul class="text-left"> 
-    <li class="fragment">Assume um modelo de fonte dipolar</li>
-    <li class="fragment">Aplicado a cada região segmentada dos dados</li>
-    <li class="fragment">Fornece uma estimativa da posição da fonte</li>
-    <li class="fragment">Baseado na equação de homogeneidade de Euler</li>
-  </ul>
+
+Para este método assume-se um modelo de fonte dipolar</li>
+
 </div>
 
 ===============================================================================
@@ -755,7 +659,6 @@ $$
 <div class="footnote-center">
 
 [Reid et al. 1990](https://pubs.geoscienceworld.org/seg/geophysics/article-abstract/55/1/80/72314/Magnetic-interpretation-in-three-dimensions-using?redirectedFrom=fulltext)
-[Souza-Junior et al. 2024](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011082)
 
 </div>
 
@@ -775,7 +678,6 @@ A taxa de **variação do campo** ($\nabla f$) multiplicada pela **distância ve
 <div class="footnote-center">
 
 [Reid et al. 1990](https://pubs.geoscienceworld.org/seg/geophysics/article-abstract/55/1/80/72314/Magnetic-interpretation-in-three-dimensions-using?redirectedFrom=fulltext)
-[Souza-Junior et al. 2024](https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023GC011082)
 
 </div>
 
@@ -785,11 +687,11 @@ A taxa de **variação do campo** ($\nabla f$) multiplicada pela **distância ve
 $$
 (x - x_c)\partial_x f + (y - y_c)\partial_y f + (z - z_c)\partial_z f = (b - f)\eta
 $$ 
-<p class="fragment"> Expandindo para um modelo pseudo-paramétrico com parâmetros $x_c, y_c, z_c, b$</p>
+<p class="fragment"> Isolando os parâmetros parâmetros $x_c, y_c, z_c, b$</p>
 <div class="fragment">
 
 $$
-\underbrace{x_c \partial_x f + y_c \partial_y f + z_c \partial_z f + \eta b}_\text{Paremétrica} = \underbrace{x \partial_x f + y \partial_y f + z \partial_z f + \eta f}_\text{Não-paramétrica}
+\underbrace{x_c \partial_x f + y_c \partial_y f + z_c \partial_z f + \eta b}_\text{Com parâmetros} = \underbrace{x \partial_x f + y \partial_y f + z \partial_z f + \eta f}_\text{Sem parâmetros}
 $$
 </div>
 <div class="footnote-center">
@@ -873,13 +775,13 @@ $$
 ===============================================================================
 <ol>
   <li>
-    <strong>Expandindo a expressão:</strong><br>
+    <b>Expandindo a expressão:</b><br>
     \[
     \Phi(\mathbf{p}) = (\mathbf{h}^o - \mathbf{G}\mathbf{p})^\top (\mathbf{h}^o - \mathbf{G}\mathbf{p}) = \underbrace{\mathbf{h}^{o\top}\mathbf{h}^o - 2\mathbf{p}^\top \mathbf{G}^\top \mathbf{h}^o + \mathbf{p}^\top \mathbf{G}^\top \mathbf{G} \mathbf{p}}_\text{Paraboloid}
     \]
   </li>
   <li class="fragment">
-    <strong>Utilizamos o gradiente em respeito a \(\mathbf{p}\) and atribuímos zero:</strong><br>
+    <b>Utilizamos o gradiente em respeito a \(\mathbf{p}\) and atribuímos zero:</b><br>
     \[
       \nabla_{\mathbf{p}} \Phi(\mathbf{p}) = -2 \mathbf{G}^\top \mathbf{h}^o + 2 \mathbf{G}^\top \mathbf{G} \mathbf{p}=\mathbf{0}
     \]
@@ -895,51 +797,9 @@ $$
     \]
   </li>
   <li class="fragment">
-    <strong>Resolvemos as equações normais e estimar $x_c$, $y_c$, $z_c$ e $b$:</strong><br>
+    <b>Assim estimamos $x_c$, $y_c$, $z_c$ e $b$:</b><br>
   </li>
 </ol>
-
-===============================================================================
-<p class="text-left">
-  <b>Etapa 1 - Detecção da fonte</b>
-</p>
-<p class="text-left">
-  <b>Etapa 2 - Processamento iterativo (por janela)</b>
-</p>
-
-<ul>
-  <li class="text-left">
-    (a) <b>Isolamento dos dados:</b>
-    selecionar os dados magnéticos dentro da janela
-  </li>
-
-  <li class="text-left">
-    (b) <b>Deconvolução de Euler:</b>
-    estimar a posição da fonte
-  </li>
-
-  <li style="color: red !important;" class="text-left">
-    (c) <b>Inversão linear:</b>
-    estimar o momento do dipolo usando posição fixa
-  </li>
-
-  <li class="text-left">
-    (d) <b>Inversão híbrida:</b>
-    refinar posição e momento via
-    <b>Levenberg–Marquardt</b>
-  </li>
-
-  <li class="text-left">
-    (e) <b>Remoção do sinal:</b>
-    modelar o dipolo diretamente e subtrair do conjunto de dados completo
-  </li>
-</ul>
-
-<p class="text-left">
-  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
-  aplicar as etapas 1 e 2 ao conjunto de dados residual
-</p>
-
 
 ===============================================================================
 # Inversão linear
@@ -1064,6 +924,13 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 <p class="fragment">A solução fornece o momento de dipolo estimado ($\mathbf{m}$)</p>
 
+
+===============================================================================
+
+- Temos estimativas de momentos e posição
+- Entretanto, estas são ruins na presença de fontes interferentes
+COMPLETAR SLIDE
+
 ===============================================================================
 <p class="text-left">
   <b>Etapa 1 - Detecção da fonte</b>
@@ -1142,13 +1009,8 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
       </li>
     </ul>
   </li>
-
   <li class="fragment">
-    <b>3. Modelagem direta:</b> modelagem do dipolo com os parâmetros estimados e remoção no dado
-  </li>
-
-  <li class="fragment">
-    <b>4. Convergência:</b> o processo encerra quando a redução da função objetivo atinge a tolerância definida
+    <b>3. Convergência:</b> o processo encerra quando a redução da função objetivo atinge a tolerância  de $10^{-2}$ 
   </li>
 </ul>
 
@@ -1170,13 +1032,8 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
       </li>
     </ul>
   </li>
-
   <li>
-    <b>3. Modelagem direta:</b> modelagem do dipolo com os parâmetros estimados e remoção no dado
-  </li>
-
-  <li>
-    <b>4. Convergência:</b> o processo encerra quando a redução da função objetivo atinge a tolerância de $10^{-2}$
+    <b>3. Convergência:</b> o processo encerra quando a redução da função objetivo atinge a tolerância de $10^{-2}$
   </li>
 </ul>
 
@@ -1193,7 +1050,7 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 $$\Psi(\mathbf{v}) = \| \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \|^2$$
 
-- $\mathbf{d}^o$: dados observados
+- $\mathbf{d}^o$: dados observados do campo magnético
 - $\mathbf{d}(\mathbf{v})$: dados preditos
 
 </div>
@@ -1205,11 +1062,6 @@ $$\Psi(\mathbf{v}) = \| \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \|^2$$
 
 ===============================================================================
 # Inversão Híbrida
-<div class="fragment text-left">
-
-- Partimos da estimativa inicial de posição ($\mathbf{v}$) obtida via **Deconvolução de Euler** e realizamos uma inversão linear inicial para o momento ($\mathbf{m}$)
-
-</div>
 <div class="fragment text-left">
 
 - Atualizamos a localização resolvendo o sistema amortecido para o incremento ($\Delta \mathbf{v})$:
@@ -1240,14 +1092,13 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 - Ajustamos $\alpha$ dinamicamente via estratégia de **região de confiança**:
   - **Redução do erro = Sucesso:** aceitamos $\Delta \mathbf{v}$ e dividimos $\alpha$ por 10 tendendo a **Gauss-Newton**
     - Utiliza a curvatura da Hessiana ($\mathbf{J}^T \mathbf{J}$) para dar passos longos
-  - **Aumento do erro = Levenberg-Marquardt:** rejeitamos $\Delta \mathbf{v}$ e multiplicamos $\alpha$ por 10 tendendo a **Steepest Descent**
+  - **Aumento do erro = Falha:** rejeitamos $\Delta \mathbf{v}$ e multiplicamos $\alpha$ por 10 tendendo a **Steepest Descent**
     - O termo diagonal domina, fazendo o passo seguir a direção do gradiente negativo
 
 </div>
 
 ===============================================================================
 # Estabilidade 
-
 <div class="text-left">
 
 - Limitamos o deslocamento máximo por iteração ($\|\Delta \mathbf{v}\| \le 10\mu m$) para evitar atualizações que não façam sentido fisicamente e garantir que a solução permaneça dentro da janela de dados
@@ -1255,85 +1106,46 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </div>
 
 ===============================================================================
-<p class="text-left">
-  <b>Etapa 1 - Detecção da fonte</b>
-</p>
-
-<p class="text-left">
-  <b>Etapa 2 - Processamento iterativo (por janela)</b>
-</p>
-
-<ul>
-  <li class="text-left">
-    (a) <b>Isolamento dos dados:</b>
-    selecionar os dados magnéticos dentro da janela
-  </li>
-
-  <li class="text-left">
-    (b) <b>Deconvolução de Euler:</b>
-    estimar a posição da fonte
-  </li>
-
-  <li class="text-left">
-    (c) <b>Inversão linear:</b>
-    estimar o momento do dipolo usando posição fixa
-  </li>
-
-  <li class="text-left">
-    (d) <b>Inversão híbrida:</b>
-    refinar posição e momento via
-    <b>Levenberg–Marquardt</b>
-  </li>
-
-  <li style="color: red !important;" class="text-left">
-    (e) <b>Remoção do sinal:</b>
-    modelar o dipolo diretamente e subtrair do conjunto de dados completo
-  </li>
-</ul>
-
-<p class="text-left">
-  <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
-  aplicar as etapas 1 e 2 ao conjunto de dados residual
-</p>
+# Recapitulando
 
 ===============================================================================
-<p class="text-left">
+<p class="text-left fragment" data-fragment-index="0">
   <b>Etapa 1 - Detecção da fonte</b>
 </p>
 
-<p class="text-left">
+<p class="text-left fragment" data-fragment-index="1">
   <b>Etapa 2 - Processamento iterativo (por janela)</b>
 </p>
 
 <ul>
-  <li class="text-left">
-    (a) <b>Isolamento dos dados:</b>
-    selecionar os dados magnéticos dentro da janela
+  <li class="text-left fragment" data-fragment-index="2">
+    (a) <b>Isolamento dos dados:</b> selecionar os dados magnéticos dentro da janela
+  </li>
+  <li class="text-left fragment" data-fragment-index="3">
+    (b) <b>Deconvolução de Euler:</b> estimar a <em>posição</em> da fonte
+  </li>
+  <li class="text-left fragment" data-fragment-index="4">
+    (c) <b>Inversão linear:</b> estimar o <em>momento</em> do dipolo usando posição fixa
   </li>
 
-  <li class="text-left">
-    (b) <b>Deconvolução de Euler:</b>
-    estimar a posição da fonte
-  </li>
+  <div style="display: grid;">
+    <li class="text-left fragment fade-in-then-out" data-fragment-index="5" style="grid-area: 1/1; list-style: none;">
+(d) <b>Inversão não linear:</b> refinar posição e momento via 
+<a href="https://academic.oup.com/comjnl/article-abstract/7/4/308/354237?redirectedFrom=fulltext">Nelder-Mead</a>
+</li>
 
-  <li class="text-left">
-    (c) <b>Inversão linear:</b>
-    estimar o momento do dipolo usando posição fixa
-  </li>
+<li class="text-left fragment fade-in" data-fragment-index="6" style="grid-area: 1/1; list-style: none;">
+(d) <b>Inversão hibrida:</b> refinar posição e momento via 
+<b>Levenberg-Marquardt</b>
+</li>
+  </div>
 
-  <li class="text-left">
-    (d) <b>Inversão híbrida:</b>
-    refinar posição e momento via
-    <b>Levenberg–Marquardt</b>
-  </li>
-
-  <li class="text-left">
-    (e) <b>Remoção do sinal:</b>
-    modelar o dipolo diretamente e subtrair do conjunto de dados completo
+  <li class="text-left fragment" data-fragment-index="7">
+    (e) <b>Remoção do sinal:</b> modelar o dipolo diretamente e subtrair do conjunto de dados completo
   </li>
 </ul>
 
-<p  style="color: red !important;" class="text-left">
+<p class="text-left fragment" data-fragment-index="8">
   <b>Etapa 3 - Repetir a detecção nos dados residuais:</b>
   aplicar as etapas 1 e 2 ao conjunto de dados residual
 </p>
@@ -1355,91 +1167,6 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
   <li><b>Demonstração em dados reais de microscopia magnética</b></li>
   <li><b>Conclusões</b></li>
 </ul>
-
-===============================================================================
-# Necessidades
-<div class="fragment text-left">
-
-- Algoritmos para **detecção automática** de **grãos magnéticos** e determinação de seus **momentos magnéticos**
-
-</div>
-
-<div class="fragment text-left">
-
-- **Software aberto** para **modelagem direta** e técnicas de **inversão** específicas para microscopia magnética
-
-</div>
-<div class="fragment text-left">
-
-- **Convenção de dados**
-</div>
-
-
-
-===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/readme-banner.png"  data-background-size="contain" data-background-color="#262626" -->
-
-===============================================================================
-<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
-<div class="huge">
-
-O que é o Magali?
-
-<div class="large fragment">
-
-Biblioteca em Python <br><i class="fab fa-python"></i>
-
-</div>
-
-<div class="large fragment">
-
-Software livre e de código aberto  
-
-<i class="fab fa-github"></i> <i class="fas fa-lock-open"></i> <i class="fab fa-osi"></i>
-
-</div>
-
-</div>
-<div class="large fragment">
-
-Modelagem e processamento de dados de microscopia magnética  
-<i class="fas fa-magnet"></i> <i class="fas fa-microscope"></i>
-
-</div>
-
-===============================================================================
-<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
-# Por que queremos desenvolvê-la?
-<div class="fragment text-left">
-
-- Fornecer um código **fácil de usar**
-
-</div>
-<div class="fragment text-left">
-
-- Determinar as **posições espaciais** de **múltiplos** grãos
-
-</div>
-<div class="fragment text-left">
-
-- Facilitar a criação de **dados sintéticos**
-
-</div>
-<div class="fragment text-left">
-
-- Propor um **formato padrão de dados**
-
-</div>
-<div class="fragment text-left">
-
-- Servir como **base** para desenvolvimento de novos métodos
-
-</div>
-<div class="fragment text-left">
-
-- Explorar o potencial de estudos emergentes em **microscopia magnética**
-
-</div>
 
 ===============================================================================
 <!-- .slide: data-background-opacity="1" data-background-image="assets/fatiando-website.png"  data-background-size="contain" data-background-color="#262626" -->
@@ -1493,21 +1220,18 @@ Modelagem e processamento de dados de microscopia magnética
 <!-- .slide: data-background-opacity="1" data-background-image="assets/test.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/checks.png"  data-background-size="contain" data-background-color="#262626" -->
+
+===============================================================================
 # Robustez e Pipeline de CI/CD
 <div class="text-left">
 
 - **Matriz de build multiplataforma:** utilizamos **GitHub Actions** para disparar rotinas de verificação em **Linux, Windows e macOS** simultaneamente, garantindo estabilidade cross-platform
-
 </div>
 <div class="fragment text-left">
 
 - **Entrega contínua (CD):** o fluxo de trabalho será preparado para **deploy automatizado** no PyPI e conda-forge, assegurando que as melhorias cheguem ao usuário final de forma rápida e segura
-
 </div>
-
-===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/checks.png"  data-background-size="contain" data-background-color="#262626" -->
-
 
 ===============================================================================
 # Distribuição e Ciência Aberta
@@ -1682,11 +1406,11 @@ Modelagem e processamento de dados de microscopia magnética
 <div class="row">
 <div class="col">
 
-- **Simple:** Magali apresenta um erro de intensidade menor em comparação a Souza Júnior (2025) e é de **~1 nT**
+- **Simple:** Magali apresenta um erro de intensidade menor em comparação a Souza Júnior (2025) e é de **~1 Am^2**
 
-- **1-Interf.:** Souza-Junior (2025) apresenta um erro de intensidade menor em comparação ao do Magali e é de **~5 nT** enquanto Magali é de **~0.6 nT**
+- **1-Interf.:** Souza-Junior (2025) apresenta um erro de intensidade menor em comparação ao do Magali e é de **~5 Am^2** enquanto Magali é de **~0.6 Am^2**
 
-
+CONSERTAR FIGURA
 </div>
 <div class="col-medium"><img src="assets/intensity_error.png" style="width: 100%" ></div>
 </div>
@@ -1995,7 +1719,7 @@ Attributes:
 </section>
 
 ===============================================================================
-# Estalagmite (Marrocos)
+# Estalagmite
 <img src="assets/result-speleothem.png" style="width: 100%" >
 <div class="row">
 <div class="col text-left small">
@@ -2006,7 +1730,7 @@ Attributes:
 
 <div class="col text-left small">
 
-- **Poucos grãos** quando comparado a outros datasets
+- **Poucas anomalias** quando comparado a outros datasets
 
 - **Baixa dispersão** de momentos estimados
 </div>
@@ -2014,9 +1738,7 @@ Attributes:
 </div>
 <div class="footnote-center">
 
-[Carmo et al 2019](https://figshare.com/articles/dataset/QDM_magnetic_microscopy_dataset_of_a_speleothem_from_Morocco/22965200/1?file=40707380)
-
-[Souza-Junior et al 2024](https://figshare.com/articles/dataset/QDM_magnetic_microscopy_dataset_of_a_speleothem_from_Morocco/22965200/1?file=40707380)
+[Carmo et al 2023](https://figshare.com/articles/dataset/QDM_magnetic_microscopy_dataset_of_a_speleothem_from_Morocco/22965200/1?file=40707380)
 </div>
 
 ===============================================================================
@@ -2038,7 +1760,7 @@ Attributes:
 </div>
 <div class="footnote-center">
 
-[Souza-Junior et al 2025](https://eartharxiv.org/repository/view/8869/)
+[Poletti et. al 2016](https://www.sciencedirect.com/science/article/pii/S0012821X16301625)
 </div>
 
 ===============================================================================
@@ -2053,7 +1775,7 @@ Attributes:
 
 <div class="col text-left small">
 
-- **Complexidade:** assembleia densamente compactada com sinais na matriz e inclusões em fenocristais de plagioclásio
+- Região com **alta concentração** de anomalias sobrepostas
 - Momentos magnéticos estimados com **alta dispersão**
 </div>
 </div>
