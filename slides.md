@@ -1438,72 +1438,20 @@ Modelagem e processamento de dados de microscopia magnética
 </div>
 
 ===============================================================================
-# Implementação de Software
+<!-- .slide: data-background-opacity="1" data-background-image="assets/fatiando-website.png"  data-background-size="contain" data-background-color="#262626" -->
 
-<div class="fragment text-left">
-
-- Integramos o pacote ao projeto **Fatiando a Terra**, uma iniciativa *open-source* nascida no Brasil (USP, 2008) e referência global em geofísica
+===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/documentation-home.png"  data-background-size="contain" data-background-color="#262626" -->
 
 
 ===============================================================================
-# Arquitetura 
-
-<div class="fragment text-left">
-
-- Estruturamos a ferramenta de forma modular
-</div>
-
-<div class="fragment text-left">
-
-- Aceleramos os gargalos computacionais utilizando **Numba**
-  - A compilação *Just-in-Time* (JIT) e a vetorização permitem que a nossa inversão processe mapas de alta resolução com desempenho melhor
-
-</div>
+<!-- .slide: data-background-opacity="1" data-background-image="assets/documentation-api.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
-# Robustez e Pipeline de CI/CD
-
-<div class="fragment text-left">
-
-- **Integração Contínua (CI):** implementamos um pipeline automatizado que executa nossos de **testes de unidade** a cada *commit*, assegurando **100% de cobertura** das funções presentes no pacote
-
-</div>
-<div class="fragment text-left">
-
-- **Regressão Visual Automática:** validamos a integridade dos modelos físicos comparando os outputs gráficos **pixel a pixel**. Isso garante que atualizações no código não alterem a consistência dos resultados 
-
-</div>
+<!-- .slide: data-background-opacity="1" data-background-image="assets/documentation-function.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
-# Robustez e Pipeline de CI/CD
-
-<div class="text-left">
-
-- **Matriz de build multiplataforma:** utilizamos **GitHub Actions** para disparar rotinas de verificação em **Linux, Windows e macOS** simultaneamente, garantindo estabilidade cross-platform
-
-</div>
-<div class="fragment text-left">
-
-- **Entrega contínua (CD):** o fluxo de trabalho será preparado para **deploy automatizado** no PyPI e conda-forge, assegurando que as melhorias cheguem ao usuário final de forma rápida e segura
-
-</div>
-
-===============================================================================
-# Distribuição e Ciência Aberta
-
-<div class="fragment text-left">
-
-- **Adotamos os pilares da Ciência Aberta**: desenvolvimento transparente no GitHub, issue tracking público e documentação completa com tutoriais replicáveis
-
-</div>
-
-<div class="fragment text-left">
-
-- Facilitaremos o acesso global da nossa futura **versão v0.1** através dos gerenciadores padrão da comunidade científica:
-  * **PyPI** (Python Package Index)
-  * **conda-forge** (ambientes reprodutíveis)
-
-</div>
+<!-- .slide: data-background-opacity="1" data-background-image="assets/documentation-tutorial.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
 <!-- .slide: data-background-opacity="1" data-background-image="assets/github.png"  data-background-size="contain" data-background-color="#262626" -->
@@ -1527,7 +1475,51 @@ Modelagem e processamento de dados de microscopia magnética
 <!-- .slide: data-background-opacity="1" data-background-image="assets/pull_request_details_2.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
+# Robustez e Pipeline de CI/CD
+
+<div class="fragment text-left">
+
+- **Integração Contínua (CI):** implementamos um pipeline automatizado que executa nossos de **testes de unidade** a cada *commit*, assegurando **100% de cobertura** das funções presentes no pacote
+
+</div>
+
+===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/test.png"  data-background-size="contain" data-background-color="#262626" -->
+
+===============================================================================
+# Robustez e Pipeline de CI/CD
+
+<div class="text-left">
+
+- **Matriz de build multiplataforma:** utilizamos **GitHub Actions** para disparar rotinas de verificação em **Linux, Windows e macOS** simultaneamente, garantindo estabilidade cross-platform
+
+</div>
+<div class="fragment text-left">
+
+- **Entrega contínua (CD):** o fluxo de trabalho será preparado para **deploy automatizado** no PyPI e conda-forge, assegurando que as melhorias cheguem ao usuário final de forma rápida e segura
+
+</div>
+
+===============================================================================
 <!-- .slide: data-background-opacity="1" data-background-image="assets/checks.png"  data-background-size="contain" data-background-color="#262626" -->
+
+
+===============================================================================
+# Distribuição e Ciência Aberta
+
+<div class="fragment text-left">
+
+- **Adotamos os pilares da Ciência Aberta**: desenvolvimento transparente no GitHub, issue tracking público e documentação completa com tutoriais replicáveis
+
+</div>
+
+<div class="fragment text-left">
+
+- Facilitaremos o acesso global da nossa futura **versão v0.1** através dos gerenciadores padrão da comunidade científica:
+  * **PyPI** (Python Package Index)
+  * **conda-forge** (ambientes reprodutíveis)
+
+</div>
 
 ===============================================================================
 # Sumário
@@ -1966,8 +1958,6 @@ ADD MODELO 1INTERF e outros grids
 </div>
 
 
-===============================================================================
-<!-- .slide: data-background-image="assets/example_result.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
 # Sumário
@@ -2121,7 +2111,7 @@ Contato:
 <br>
 Código-fonte desta apresentação:
 <br>
-[github.com/yagomcastro/msc-presentation](https://github.com/yagomcastro/msc-presentation)
+[github.com/yagomcastro/msc-presentation-2026](https://github.com/yagomcastro/msc-presentation-2026)
 
 <i class="fab fa-creative-commons"></i><i class="fab fa-creative-commons-by"></i>
 <br>
