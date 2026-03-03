@@ -2,7 +2,7 @@
 
 **Presenter**: Yago Moreira Castro
 
-**Preview:** [yagomcastro.github.io/msc-presentation](https://yagomcastro.github.io/msc-presentation)
+**Preview:** [yagomcastro.github.io/msc-presentation-2026](https://yagomcastro.github.io/msc-presentation-2026)
 
 > A template by Leonardo Uieda was used to create this presentation:
 > https://github.com/leouieda/talk-template
