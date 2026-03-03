@@ -19,7 +19,7 @@ magnética🧲🔬
 </h1>
 <p id="talk-authors">
   <a id="talk-speaker"><b>Yago Moreira Castro</b></a>,
-  Leonardo Uieda,
+  Leonardo Uieda
 </p>
 
 <!-- Place location and date side-by-side with affiliation logos -->
