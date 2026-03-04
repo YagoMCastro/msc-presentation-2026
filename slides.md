@@ -1830,55 +1830,58 @@ Attributes:
 </ul>
 
 ===============================================================================
-# Contribuições Metodológicas
+# Motivação e Problema
 
-<div class="fragment text-left">
+<div class="text-left fragment">
 
-- Consolidamos um **fluxo completo de inversão** (detecção, Euler e refinamento) em um pacote unificado, extensível e de código aberto
-
+- A microscopia magnética viabilizou o paleomagnetismo em escala de grão
 </div>
 
-<div class="fragment text-left">
+<div class="text-left fragment">
 
-- Otimizamos a inversão não-linear através da **estratégia híbrida** com o algoritmo de **Levenberg-Marquardt**, utilizando derivadas analíticas do modelo direto
-
+- Não existe software livre, organizado e padronizado para inversão desses dados
 </div>
 
-<div class="fragment text-left">
+<div class="text-left fragment">
 
-- Eliminamos problemas de escalonamento numérico e instabilidade ao **desacoplar os parâmetros** de momento dipolar (linear) e posição (não-linear)
-
+- Códigos da literatura normalmente são desenvolvidos para o escopo específico de cada artigo e não seguem a práticas comuns de reprodutibilidade
 </div>
 
-===============================================================================
-# Benchmarking
+<div class="fragment">
 
-<div class="fragment text-left">
-
-- Alcançamos **ganhos de eficiência superiores a 90%** em comparação ao método de referência (Souza-Junior et al., 2025). O tempo de execução mostrou-se **insensível à densidade de dados**, mantendo-se em níveis **abaixo de 1 segundo**
-
-</div>
-
-<div class="fragment text-left">
-
-- Elevamos a **precisão** em cenários complexos (fontes interferentes):
-  * Redução de **60% no erro angular** para o modelo simples
-  * Redução de **40% no erro angular** no caso de fonte interferente
-
+**Consequência:** dificuldade de comparação, validação e avanço coletivo
 </div>
 
 ===============================================================================
-# Ciência Aberta
+# Problemas Metodológicos
+<div class="text-left fragment">
 
-<div class="fragment text-left">
-
-- **Democratizaremos** o acesso a ferramentas de ponta para a comunidade de paleomagnetistas, reduzindo barreiras técnicas via **PyPI** e **conda-forge**
-
+- O método de inversão lienar aplicado em Souza-Junior et al. (20255) necessita normalização
 </div>
-<div class="fragment text-left">
 
-- Mitigamos o isolamento metodológico através de **desenvolvimento transparente, testes automatizados e documentação** para novos usuários
+<div class="text-left fragment">
 
+- Nelder-Mead não utiliza gradiente
+</div>
+
+===============================================================================
+# Contribuição do Magali
+
+<div class="quote">
+
+Implementação do  **workflow completo** de Souza-Junior et al (2025) com o avanço metodológico da **inversão híbrida** que  utiliza **derivadas analíticas**, evitando **normalização** e busca **extensiva**, em uma biblioteca **open-source**
+</div>
+
+===============================================================================
+# Avaliação de Desempenho da Alteração Metodológica
+<div class="text-left fragment">
+
+- Tempo de execução sub-segundo com ganho de &gt; 90% de eficiência
+</div>
+
+<div class="text-left fragment">
+
+- Redução do erro angular &gt; 60% para o modelo simples e de 40% para o modelo com interferência
 </div>
 
 ===============================================================================
