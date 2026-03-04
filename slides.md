@@ -174,7 +174,7 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 
 <div class="text-left fragment">
 
-- Ao receber um laser verde e micro-ondas, os centros NV emitem uma luz vermelha. A **intensidade dessa fluorescência** é alterada de acordo com o **campo magnético** da rocha próxima ao diamante
+- Ao receber um laser verde e micro-ondas, os centros NV emitem uma luz. A **intensidade dessa fluorescência** é alterada de acordo com o **campo magnético** da rocha próxima ao diamante
 </div>
 
 <div class="text-left fragment">
@@ -554,21 +554,16 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
   </li>
 </ul>
 
-===============================================================================
-# Filtro LoG
-<div class="text-left">
-
-- **Utiliza-se** o algoritmo Laplaciano do Gaussiano (LoG) para identificar os picos de intensidade (centros das partículas)
-
-</div>
 
 ===============================================================================
 # Filtro LoG
 <div class="text-left">
 
-- Utiliza-se um parâmetro de escala ($\sigma$), **suavizamos** a imagem primeiro com um kernel Gaussiano para **eliminar ruídos de alta frequência**:
+- **Suavizamos** a imagem primeiro com um kernel Gaussiano para **eliminar ruídos de alta frequência**:
 
 $$G(x, y; \sigma) = \frac{1}{2\pi\sigma^2} e^{-\frac{x^2 + y^2}{2\sigma^2}}$$
+
+- $\sigma$: parâmetro de escala
 
 <div class="footnote-center">
 
@@ -576,7 +571,10 @@ $$G(x, y; \sigma) = \frac{1}{2\pi\sigma^2} e^{-\frac{x^2 + y^2}{2\sigma^2}}$$
 </div>
 </div>
 
-<div class="fragment text-left">
+===============================================================================
+# Filtro LoG
+
+<div class="text-left">
 
 - Aplicamos o operador **Laplaciano** (soma das derivadas de segunda ordem) para destacar zonas de **variação rápida**:
 
@@ -596,11 +594,15 @@ $$\nabla \cdot \nabla G(x, y; \sigma) = \frac{x^2 + y^2 - 2\sigma^2}{2\pi\sigma^
 
 ===============================================================================
 # Deconvolução de Euler
-<p class="fragment text-left">É um método baseado na equação de homogeneidade de Euler para estimar a <b>localização</b> e a <b>profundidade</b> de fontes magnéticas</p>
-<br>
+
+<div class="text-left">
+
+- É um método baseado na equação de homogeneidade de Euler para estimar a <b>localização</b> e a <b>profundidade</b> de fontes magnéticas
+</div>
+
 <div class="text-left fragment">
 
-Para este método assume-se um modelo de fonte dipolar</li>
+- Para este método assume-se um modelo de **fonte dipolar**</li>
 
 </div>
 
@@ -742,7 +744,7 @@ $$
   <li>
     <b>Expandindo a expressão:</b><br>
     \[
-    \Phi(\mathbf{p}) = (\mathbf{h}^o - \mathbf{G}\mathbf{p})^\top (\mathbf{h}^o - \mathbf{G}\mathbf{p}) = \underbrace{\mathbf{h}^{o\top}\mathbf{h}^o - 2\mathbf{p}^\top \mathbf{G}^\top \mathbf{h}^o + \mathbf{p}^\top \mathbf{G}^\top \mathbf{G} \mathbf{p}}_\text{Paraboloid}
+    \Phi(\mathbf{p}) = (\mathbf{h}^o - \mathbf{G}\mathbf{p})^\top (\mathbf{h}^o - \mathbf{G}\mathbf{p}) = \underbrace{\mathbf{h}^{o\top}\mathbf{h}^o - 2\mathbf{p}^\top \mathbf{G}^\top \mathbf{h}^o + \mathbf{p}^\top \mathbf{G}^\top \mathbf{G} \mathbf{p}}_\text{Paraboloide}
     \]
   </li>
   <li class="fragment">
@@ -795,7 +797,7 @@ $$
 <br>
 <div class="text-left"><ul>
 <li> $r=\sqrt{(x-x_c)^2+(y-y_c)^2+(z-z_c)^2}$: distância cartesiana entre os pontos de observação e da fonte</li>
-<li> $\mu_0$ : permeabilidade magnética</li>
+<li> $\mu_0$ : permeabilidade magnética no vácuo</li>
 </ul></div>
 
 ===============================================================================
@@ -1145,9 +1147,6 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <!-- .slide: data-background-opacity="1" data-background-image="assets/github_1.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/environment.png"  data-background-size="contain" data-background-color="#262626" -->
-
-===============================================================================
 <!-- .slide: data-background-opacity="1" data-background-image="assets/github_readme.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
@@ -1177,17 +1176,6 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <!-- .slide: data-background-opacity="1" data-background-image="assets/checks.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
-# Robustez e Pipeline de CI/CD
-<div class="text-left">
-
-- **Matriz de build multiplataforma:** utilizamos **GitHub Actions** para disparar rotinas de verificação em **Linux, Windows e macOS** simultaneamente, garantindo estabilidade cross-platform
-</div>
-<div class="fragment text-left">
-
-- **Entrega contínua (CD):** o fluxo de trabalho será preparado para **deploy automatizado** no PyPI e conda-forge, assegurando que as melhorias cheguem ao usuário final de forma rápida e segura
-</div>
-
-===============================================================================
 # Distribuição e Ciência Aberta
 <div class="fragment text-left">
 
@@ -1197,20 +1185,17 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 <div class="fragment text-left">
 
-- Facilitaremos o acesso global da nossa futura **versão v1.0** através dos gerenciadores padrão da comunidade científica:
+- **Entrega contínua (CD):** facilitaremos o acesso global da nossa futura **versão v1.0** através dos gerenciadores padrão da comunidade científica:
   * **PyPI** (Python Package Index)
   * **conda-forge** (ambientes reprodutíveis)
 
 </div>
 
+===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="black" -->
 
 ===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#262626" -->
-
-
-===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-conda.png"  data-background-size="contain" data-background-color="#262626" -->
-
+<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-conda.png"  data-background-size="contain" data-background-color="black" -->
 
 ===============================================================================
 # Sumário
@@ -1238,7 +1223,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </div>
 <div class="fragment text-left">
 
-- **Garantimos condições justas:** ambos os métodos partem da mesma estimativa inicial via Deconvolução de Euler ($\eta=3$) e o nível de base é previamente removido
+- **Garantimos condições justas:** ambos os métodos partem da **mesma estimativa inicial** via Deconvolução de Euler ($\eta=3$) e o **nível de base é previamente removido**. Os métodos foram executados em um notebook de processador **Ryzen 3** com **8 Gb RAM**
 
 </div>
 <div class="fragment text-left">
@@ -1369,9 +1354,9 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <div class="row">
 <div class="col">
 
-- **Simple:** Magali apresenta um erro de intensidade menor em comparação a Souza Júnior (2025) e é de ~1 $Am^2$
+- **Simple:** Magali apresenta um erro de intensidade menor em comparação a Souza Júnior (2025) e é de ~1 $10^{-14}Am^2$
 
-- **1-Interf.:** Souza-Junior (2025) apresenta um erro de intensidade menor em comparação ao do Magali e é de ~5 $Am^2$ enquanto Magali é de ~0.6 $Am^2$
+- **1-Interf.:** Souza-Junior et al. (2025) apresenta um erro de intensidade menor em comparação ao do Magali e é de ~5 $10^{-14}Am^2$ enquanto Magali é de ~0.6 $10^{-14}Am^2$
 
 </div>
 <div class="col-medium"><img src="assets/intensity_error.png" style="width: 100%" ></div>
@@ -1405,9 +1390,9 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <div class="col">
 
 - **Simple:**
-  - **Souza-Junior (2025):** é constante a **~1 grau**
+  - **Souza-Junior et al. (2025):** é constante a **~1 grau**
 
-  - **Magali:** inicia a valor similar ao de Souza-Junior (2025) e decai levemente conforme a densidade de pontos aumenta
+  - **Magali:** inicia a valor similar ao de Souza-Junior et al. (2025) e decai levemente conforme a densidade de pontos aumenta
 
 </div>
 <div class="col-medium"><img src="assets/angular_error_simple.png" style="width: 100%" ></div>
@@ -1717,15 +1702,26 @@ Attributes:
 <div class="row">
 <div class="col text-left small">
 
+<div class="fragment">
+
 - **57 possíveis fontes** detectadas
+</div>
+
+
+<div class="fragment">
+
 - **Mineralogia e pulsos:** diferenciação de **hematita** (+Y) e **magnetita** (-Y) através de campos de pulso IRM (2.7 T e 0.3 T)
+</div>
+
 </div>
 
 <div class="col text-left small">
 
-- **Poucas anomalias** quando comparado a outros datasets
+<div class="fragment">
 
 - **Baixa dispersão** de momentos estimados
+</div>
+
 </div>
 
 </div>
@@ -1740,14 +1736,24 @@ Attributes:
 <div class="row">
 <div class="col text-left small">
 
+<div class="fragment">
+
 - **397 posíveis  fontes** detectadas
-  
+</div>
+
+<div class="fragment">
+
 - **Mineralogia:** **titanomagnetita** (SD/PSD) portadora da NRM em **assembleia estável e dispersa**
 </div>
-<div class="col text-left small">
+  
+</div>
 
-- Número de fontes **consideravelmente maior** que do espeleotema
+<div class="col text-left small">
+<div class="fragment">
+
 - Momentos estimados **razoavelmente concentados**
+</div>
+
 </div>
 
 </div>
@@ -1762,14 +1768,32 @@ Attributes:
 <div class="row">
 <div class="col text-left small">
 
+
+
+<div class="fragment">
+
 - **661 possíveis fontes** encontradas
+</div>
+
+
+<div class="fragment">
+
 - **Mineralogia:** **magnetita** de baixo Ti ($10-50$ µm) com grãos SD, PSD e multidomínio (MD)</li>
+</div>
 </div>
 
 <div class="col text-left small">
 
+
+<div class="fragment">
+
 - Região com **alta concentração** de anomalias sobrepostas
+</div>
+
+<div class="fragment">
+
 - Momentos magnéticos estimados com **alta dispersão**
+</div>
 </div>
 </div>
 <div class="footnote-center">
@@ -1796,21 +1820,19 @@ Attributes:
 </ul>
 
 ===============================================================================
-# Motivação e Problema
-
 <div class="text-left fragment">
 
-- A microscopia magnética viabilizou o paleomagnetismo em escala de grão
+- A **microscopia magnética** viabilizou o **paleomagnetismo** em escala de grão
 </div>
 
 <div class="text-left fragment">
 
-- Não existe software livre, organizado e padronizado para inversão desses dados
+- Códigos da literatura normalmente são desenvolvidos para o **escopo específico de cada artigo** e não seguem a práticas comuns de **reprodutibilidade**
 </div>
 
 <div class="text-left fragment">
 
-- Códigos da literatura normalmente são desenvolvidos para o escopo específico de cada artigo e não seguem a práticas comuns de reprodutibilidade
+- Não existe **software livre**, organizado e padronizado para inversão desses dados
 </div>
 
 <div class="fragment">
@@ -1819,43 +1841,21 @@ Attributes:
 </div>
 
 ===============================================================================
-# Problemas Metodológicos
-<div class="text-left fragment">
-
-- O método de inversão lienar aplicado em Souza-Junior et al. (20255) necessita normalização
-</div>
-
-<div class="text-left fragment">
-
-- Nelder-Mead não utiliza gradiente
-</div>
-
-===============================================================================
-# Contribuição do Magali
-
 <div class="quote">
 
 Implementação do  **workflow completo** de Souza-Junior et al (2025) com o avanço metodológico da **inversão híbrida** que  utiliza **derivadas analíticas**, evitando **normalização** e busca **extensiva**, em uma biblioteca **open-source**
 </div>
 
 ===============================================================================
-# Avaliação de Desempenho da Alteração Metodológica
-<div class="text-left fragment">
 
-- Tempo de execução sub-segundo com ganho de &gt; 90% de eficiência
-</div>
+- Tempo de execução abaixo de 1 segundo com ganho de **&gt; 90% de eficiência**
 
-<div class="text-left fragment">
-
-- Redução do erro angular &gt; 60% para o modelo simples e de 40% para o modelo com interferência
-</div>
+- Redução do erro angular **&gt; 60%** para o modelo simples e de **40%** para o modelo com interferência
 
 ===============================================================================
-# Trabalhos Futuros
-
 <div class="text-left">
 
-- Projetamos para o futuro do Magali:
+- Projetamos para o **futuro** do Magali:
 
   <div class="fragment text-left">
 
@@ -1879,18 +1879,18 @@ Implementação do  **workflow completo** de Souza-Junior et al (2025) com o ava
   </div>
   <div class="fragment text-left">
 
-  - Melhorias na documentação
+  - Melhorias na **documentação**
 
   </div>
 
   <div class="fragment text-left">
 
-  - Release V1.0
+  - Release **V1.0**
 
   </div>
     <div class="fragment text-left">
 
-  - Difundir o uso da biblioteca
+  - **Difundir** o uso da biblioteca
 
   </div>
 
@@ -1899,7 +1899,7 @@ Implementação do  **workflow completo** de Souza-Junior et al (2025) com o ava
 ===============================================================================
 <div class="quote">
 
-**Magali** une **rigor matemático** e **ciência aberta** para consolidar o **paleomagnetismo de escala de grão** como uma técnica rápida, acessível e totalmente reproduzível
+**Magali** une **rigor matemático** e **ciência aberta** para consolidar o **paleomagnetismo de escala de grão** como uma técnica rápida, acessível e totalmente reprodutível
 
 </div>
 
