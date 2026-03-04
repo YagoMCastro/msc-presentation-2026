@@ -384,42 +384,7 @@ Modelagem e processamento de dados de microscopia magnética
   <li class="fragment">
     <b>Continuação para cima:</b> atenua ruídos de alta frequência (filtro passa-baixa) e estabiliza o campo para o cálculo de gradientes 
   </li>
-  <li class="fragment">
-    <b>Amplitude do Gradiente Total (TGA):</b> realça o sinal próximo à fonte através de um filtro passa-alta
-  </li>
-  <li class="fragment">
-    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
-  </li>
-  <li class="fragment">
-    <b>Segmentação LoG (Laplaciano do Gaussiano):</b> detecta “blobs” e define uma janela individual por partícula e as organiza por intensidade de sinal decrescente para o processamento iterativo
-  </li>
 </ul>
-
-===============================================================================
-# Continuação para cima
-## Filtro no domínio da frequência
-
-
-$$F(k,\Delta z)=F(k,0) \cdot e^{-\Delta z |k|}$$
-
-<div class="fragment text-left">
-
-- **Como funciona:** atenua o sinal conforme a altura
-</div>
-<div class="fragment text-left">
-
-- **Suaviza ruídos** sem inventar dados
-
-</div>
-<div class="fragment text-left">
-
-  - Prepara o sinal para o **cálculo de derivadas**
-</div>
-
-<div class="footnote-center">
-
-[Blakely (1995)](https://www.cambridge.org/core/books/potential-theory-in-gravity-and-magnetic-applications/348880F23008E16E663D6AD14A41D8DE)
-</div>
 
 ===============================================================================
 <div class="row">
@@ -444,20 +409,14 @@ Continuação para cima de $5 \mu m$
   <li >
     <b>Continuação para cima:</b> atenua ruídos de alta frequência (filtro passa-baixa) e estabiliza o campo para o cálculo de gradientes 
   </li>
-  <li style="color: red !important;">
+  <li>
     <b>Amplitude do Gradiente Total (TGA):</b> realça o sinal próximo à fonte através de um filtro passa-alta
-  </li>
-  <li>
-    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
-  </li>
-  <li>
-    <b>Segmentação LoG (Laplaciano do Gaussiano):</b> detecta “blobs” e define uma janela individual por partícula e as organiza por intensidade de sinal decrescente para o processamento iterativo
   </li>
 </ul>
 
 ===============================================================================
 # Derivadas e TGA
-<div class="fragment text-left">
+<div class="text-left">
 
 - Calcula-se a **Amplitude do Gradiente Total (TGA)** de uma função harmônica (podendo ser o campo magnético) definida como a norma do vetor gradiente:
 
@@ -508,11 +467,9 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 ===============================================================================
 <div class="row">
-<div class="col"><img src="assets/synthetic.png" style="width: 100%" ></div>
-<div class="col"><img src="assets/tga_iso.png" style="width: 80%" ></div>
+<div class="col"><img src="assets/data_up.png" style="width: 100%" ></div>
+<div class="col"><img src="assets/tga.png" style="width: 80%" ></div>
 </div>
-SUBSTITUIR PELO DADO REAL
-
 
 ===============================================================================
 <h2>Etapa 1: Detecção da Fonte</h2>
@@ -532,11 +489,8 @@ SUBSTITUIR PELO DADO REAL
   <li>
     <b>Amplitude do Gradiente Total (TGA):</b> realça o sinal próximo à fonte através de um filtro passa-alta
   </li>
-  <li style="color: red !important;">
-    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
-  </li>
   <li>
-    <b>Segmentação LoG (Laplaciano do Gaussiano):</b> detecta “blobs” e define uma janela individual por partícula e as organiza por intensidade de sinal decrescente para o processamento iterativo
+    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
   </li>
 </ul>
 
@@ -557,6 +511,17 @@ SUBSTITUIR PELO DADO REAL
 <li>$ v_{\text{max}} = 99^\text{º} $ percentil</li>
 <li><b>Saída:</b> valores reescalados para o intervalo $[0, 1]$</li>
 </ul>
+
+===============================================================================
+<div class="row">
+  <div class="col">
+    <img src="assets/tga.png" style="width: 80%">
+  </div>
+  <div class="col">
+    <img src="assets/stretched.png" style="width: 100%">
+  </div>
+</div>
+
 
 ===============================================================================
 <div class="row">
@@ -584,7 +549,7 @@ SUBSTITUIR PELO DADO REAL
   <li>
     <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
   </li>
-  <li style="color: red !important;">
+  <li>
     <b>Segmentação LoG (Laplaciano do Gaussiano):</b> detecta “blobs” e define uma janela individual por partícula e as organiza por intensidade de sinal decrescente para o processamento iterativo
   </li>
 </ul>
@@ -1817,8 +1782,6 @@ Attributes:
 
 [Souza-Junior et al 2025](https://eartharxiv.org/repository/view/8869/)
 </div>
-
-
 
 ===============================================================================
 # Sumário
