@@ -974,7 +974,7 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 </div>
 
 ===============================================================================
-# Inversão Hibrida
+# Inversão Híbrida
 <ul>
   <li class="fragment">
     <b>1. Inicialização:</b> chute inicial de posição ($\mathbf{v}$) obtido via Deconvolução de Euler
@@ -993,29 +993,6 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
   </li>
   <li class="fragment">
     <b>3. Convergência:</b> o processo encerra quando a redução da função objetivo atinge a tolerância  de $10^{-2}$ 
-  </li>
-</ul>
-
-===============================================================================
-# Inversão Hibrida
-<ul>
-  <li>
-    <b>1. Inicialização:</b> chute inicial de posição ($\mathbf{v}$) obtido via Deconvolução de Euler
-  </li>
-  
-  <li>
-    <b>2. Inversão acoplada (Loop Principal):</b>
-    <ul>
-      <li>
-        (A) <b>Estimativa linear:</b> fixa a posição e calcula o momento ($\mathbf{m}$) via Mínimos Quadrados
-      </li>
-      <li style="color: red !important;">
-        (B) <b>Atualização não linear:</b> refina a posição da fonte ($\mathbf{v}$) via algoritmo Levenberg-Marquardt
-      </li>
-    </ul>
-  </li>
-  <li>
-    <b>3. Convergência:</b> o processo encerra quando a redução da função objetivo atinge a tolerância de $10^{-2}$
   </li>
 </ul>
 
@@ -1067,9 +1044,9 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <div class="fragment text-left">
 
 - Ajustamos $\alpha$ dinamicamente via estratégia de **região de confiança**:
-  - **Redução do erro = Sucesso:** aceitamos $\Delta \mathbf{v}$ e dividimos $\alpha$ por 10 tendendo a **Gauss-Newton**
+  - **$\downarrow$ valor da função objetivo = Sucesso:** aceitamos $\Delta \mathbf{v}$ e dividimos $\alpha$ por 10 tendendo a **Gauss-Newton**
     - Utiliza a curvatura da Hessiana ($\mathbf{J}^T \mathbf{J}$) para dar passos longos
-  - **Aumento do erro = Falha:** rejeitamos $\Delta \mathbf{v}$ e multiplicamos $\alpha$ por 10 tendendo a **Steepest Descent**
+  - **$\uparrow$ valor da função objetivo = Falha:** rejeitamos $\Delta \mathbf{v}$ e multiplicamos $\alpha$ por 10 tendendo a **Steepest Descent**
     - O termo diagonal domina, fazendo o passo seguir a direção do gradiente negativo
 
 </div>
@@ -1112,7 +1089,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </li>
 
 <li class="text-left fragment fade-in" data-fragment-index="6" style="grid-area: 1/1; list-style: none;">
-(d) <b>Inversão hibrida:</b> refinar posição e momento via 
+(d) <b>Inversão híbrida:</b> refinar posição e momento via 
 <b>Levenberg-Marquardt</b>
 </li>
   </div>
