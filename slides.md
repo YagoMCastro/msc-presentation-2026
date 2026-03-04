@@ -1244,6 +1244,15 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 </div>
 
+
+===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#262626" -->
+
+
+===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-conda.png"  data-background-size="contain" data-background-color="#262626" -->
+
+
 ===============================================================================
 # Sumário
 <ul style="list-style: none">
