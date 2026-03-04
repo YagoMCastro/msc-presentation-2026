@@ -490,7 +490,7 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
     <b>Amplitude do Gradiente Total (TGA):</b> realça o sinal próximo à fonte através de um filtro passa-alta
   </li>
   <li>
-    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
+    <b>Realce de contraste:</b> utiliza percentis (1º a 99º) para destacar partículas de baixa intensidade
   </li>
 </ul>
 
@@ -547,7 +547,7 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
     <b>Amplitude do Gradiente Total (TGA):</b> realça o sinal próximo à fonte através de um filtro passa-alta
   </li>
   <li>
-    <b>Realce de contraste:</b> utiliza percentis (1º e 99º) para destacar partículas de baixa intensidade
+    <b>Realce de contraste:</b> utiliza percentis (1º a 99º) para destacar partículas de baixa intensidade
   </li>
   <li>
     <b>Segmentação LoG (Laplaciano do Gaussiano):</b> detecta “blobs” e define uma janela individual por partícula e as organiza por intensidade de sinal decrescente para o processamento iterativo
@@ -746,7 +746,7 @@ $$
     \]
   </li>
   <li class="fragment">
-    <b>Utilizamos o gradiente em respeito a \(\mathbf{p}\) and atribuímos zero:</b><br>
+    <b>Utilizamos o gradiente em respeito a \(\mathbf{p}\) e atribuímos zero:</b><br>
     \[
       \nabla_{\mathbf{p}} \Phi(\mathbf{p}) = -2 \mathbf{G}^\top \mathbf{h}^o + 2 \mathbf{G}^\top \mathbf{G} \mathbf{p}=\mathbf{0}
     \]
@@ -891,10 +891,27 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 
 ===============================================================================
+<div class="text-left" >
 
-- Temos estimativas de momentos e posição
-- Entretanto, estas são ruins na presença de fontes interferentes
-COMPLETAR SLIDE
+- Temos estimativas de **momentos** e **posição**
+</div>
+
+<div class="text-left fragment">
+
+- A Deconvolução de Euler não estima tão bem a **profundidade**
+</div>
+
+<div class="text-left fragment">
+
+- Problema das **fontes interferentes** 
+</div>
+
+===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/simple-model-2.png"  data-background-size="contain" data-background-color="#262626" -->
+
+
+===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/one-interf-2.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
 <p class="text-left">
@@ -942,7 +959,7 @@ COMPLETAR SLIDE
 # Aspectos importantes
 <div class="fragment text-left">
 
-- **Exploramos a estrutura matemática do problema:** para uma localização fixa ($\mathbf{v}$), o campo magnético **depende linearmente** do momento magnético ($\mathbf{m}$)
+- Para uma localização fixa ($\mathbf{v}$), o campo magnético **depende linearmente** do momento magnético ($\mathbf{m}$)
 
 </div>
 <div class="fragment text-left">
@@ -1737,7 +1754,7 @@ Attributes:
 </div>
 <div class="footnote-center">
 
-[Carmo et al 2023](https://figshare.com/articles/dataset/QDM_magnetic_microscopy_dataset_of_a_speleothem_from_Morocco/22965200/1?file=40707380)
+[Amostra e caracterização: Carmo et al. 2023](https://figshare.com/articles/dataset/QDM_magnetic_microscopy_dataset_of_a_speleothem_from_Morocco/22965200/1?file=40707380)
 </div>
 
 ===============================================================================
@@ -1759,7 +1776,7 @@ Attributes:
 </div>
 <div class="footnote-center">
 
-[Poletti et. al 2016](https://www.sciencedirect.com/science/article/pii/S0012821X16301625)
+[Amostra e caracterização: Poletti et al. (2016)](https://www.sciencedirect.com/science/article/pii/S0012821X16301625)
 </div>
 
 ===============================================================================
@@ -1780,7 +1797,7 @@ Attributes:
 </div>
 <div class="footnote-center">
 
-[Souza-Junior et al 2025](https://eartharxiv.org/repository/view/8869/)
+[Amostra e caracterização: Moncinhatto et al. (2019)](https://academic.oup.com/gji/article/220/2/821/5603748)
 </div>
 
 ===============================================================================
