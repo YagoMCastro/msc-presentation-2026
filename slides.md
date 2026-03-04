@@ -887,7 +887,7 @@ $$\Gamma(\mathbf{m}) = \|\mathbf{d}^{o}-\mathbf{A}\mathbf{m}\|^2=(\mathbf{d}^{o}
 <p class="text-left">O que leva às equações normais:</p>
 $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
-<p class="fragment">A solução fornece o momento de dipolo estimado ($\mathbf{m}$)</p>
+<p class="fragment">A solução fornece o <b>momento de dipolo estimado ($\mathbf{m}$)</b></p>
 
 
 ===============================================================================
