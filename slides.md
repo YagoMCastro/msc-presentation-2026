@@ -1041,7 +1041,7 @@ COMPLETAR SLIDE
 # Otimização via Levenberg-Marquardt
 <div class="fragment text-left">
 
-- Utilizamos este método porr ser **baseado em gradiente**, sendo melhor optimizado quando comparado a métodos que **independem de derivadas**, como Nelder-Mead, para problemas **suaves e diferenciáveis**
+- Utilizamos este método por ser **baseado em gradiente**, sendo melhor optimizado quando comparado a métodos que **independem de derivadas**, como Nelder-Mead, para problemas **suaves e diferenciáveis**
 
 </div>
 <div class="fragment text-left">
@@ -1052,11 +1052,6 @@ $$\Psi(\mathbf{v}) = \| \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \|^2$$
 
 - $\mathbf{d}^o$: dados observados do campo magnético
 - $\mathbf{d}(\mathbf{v})$: dados preditos
-
-</div>
-<div class="footnote-center">
-
-[Souza-Junior et al. (2025)](https://eartharxiv.org/repository/view/8869/)
 
 </div>
 
@@ -1406,11 +1401,10 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <div class="row">
 <div class="col">
 
-- **Simple:** Magali apresenta um erro de intensidade menor em comparação a Souza Júnior (2025) e é de **~1 Am^2**
+- **Simple:** Magali apresenta um erro de intensidade menor em comparação a Souza Júnior (2025) e é de ~1 $Am^2$
 
-- **1-Interf.:** Souza-Junior (2025) apresenta um erro de intensidade menor em comparação ao do Magali e é de **~5 Am^2** enquanto Magali é de **~0.6 Am^2**
+- **1-Interf.:** Souza-Junior (2025) apresenta um erro de intensidade menor em comparação ao do Magali e é de ~5 $Am^2$ enquanto Magali é de ~0.6 $Am^2$
 
-CONSERTAR FIGURA
 </div>
 <div class="col-medium"><img src="assets/intensity_error.png" style="width: 100%" ></div>
 </div>
@@ -1448,7 +1442,7 @@ CONSERTAR FIGURA
   - **Magali:** inicia a valor similar ao de Souza-Junior (2025) e decai levemente conforme a densidade de pontos aumenta
 
 </div>
-<div class="col-medium"><img src="assets/angular_error.png" style="width: 100%" ></div>
+<div class="col-medium"><img src="assets/angular_error_simple.png" style="width: 100%" ></div>
 </div>
 
 ===============================================================================
@@ -1461,7 +1455,7 @@ CONSERTAR FIGURA
   - **Magali:** diminui conforme $N$ aumenta em ambos os cenários, se aproximando a **6 graus**
 
 </div>
-<div class="col-medium"><img src="assets/angular_error.png" style="width: 100%" ></div>
+<div class="col-medium"><img src="assets/angular_error_one_interf.png" style="width: 100%" ></div>
 </div>
 
 ===============================================================================
