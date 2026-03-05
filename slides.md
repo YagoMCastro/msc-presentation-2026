@@ -1513,7 +1513,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </style>
 <pre class="compact"><code class="python" data-trim data-noescape>
 <span class="fragment code">data_paths = {</span>
-<span class="fragment code">    # Use the Ensaio package to fetch the speleothem dataset from the internet</span>
+<span class="fragment code">    # Use o pacote Ensaio para buscar o conjunto de dados de espeleotema na internet</span>
 <span class="fragment code">    "speleothem": ensaio.fetch_morroco_speleothem_qdm(</span>
 <span class="fragment code">        version=1,</span>
 <span class="fragment code">        file_format="matlab",</span>
@@ -1549,8 +1549,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </style>
 <pre class="compact"><code class="python" data-trim data-noescape>
 <span>
-<span class="fragment code"># Repeat the processing for each dataset but using slightly different parameters</span>
-<span class="fragment code">size_ranges = {"speleothem": [20, 150], "ceramic": [10, 150], "basalt": [10, 30]}</span>
+<span class="fragment code"># Repita o processamento para cada conjunto de dados, mas utilizando parâmetros ligeiramente diferentes</span><span class="fragment code">size_ranges = {"speleothem": [20, 150], "ceramic": [10, 150], "basalt": [10, 30]}</span>
 <span class="fragment code">detection_thresholds = {"speleothem": 0.02, "ceramic": 0.02, "basalt": 0.002}</span>
 <span class="fragment code">datasets, locations, dipole_moments, bounding_boxes = {}, {}, {}, {}</span>
 </code></pre>
@@ -1582,7 +1581,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <pre class="compact"><code class="python" data-trim data-noescape>
 <span>
 <span class="fragment code">for name in ["speleothem", "ceramic", "basalt"]:</span>
-<span class="fragment code">    # Use Magali to load the data from Harvard's QDM Matlab file format</span>
+<span class="fragment code">    # Use o Magali para carregar os dados do formato de arquivo QDM Matlab de Harvard</span>
 <span class="fragment code">    datasets[name] = mg.read_qdm_harvard
 </code></pre>
 </section>
@@ -1659,9 +1658,9 @@ Attributes:
 <pre class="compact"><code class="python" data-trim data-noescape>
 <span>
 <span class="code">for name in ["speleothem", "ceramic", "basalt"]:</span>
-<span class="code">    # Use Magali to load the data from Harvard's QDM Matlab file format</span>
-<span class="code">    datasets[name] = mg.read_qdm_harvard(data_paths[name])</span>
-<span class="fragment code" style="margin-top: +0.3em !important;">    # Upward continue the data by 5 microns using the Harmonica package</span>
+<span style="margin-top: +0.5em !important;"  class="fragment code">    # Use o Magali para carregar os dados do formato de arquivo QDM Matlab de Harvard</span>
+<span class="fragment code">    datasets[name] = mg.read_qdm_harvard(data_paths[name])</span>
+<span class="fragment code">    # Continue os dados para cima em 5 micrômetros utilizando o pacote Harmonica</span>
 <span class="fragment code">    height_difference = 5</span>
 <span class="fragment code">    data_up = (</span>
 <span class="fragment code">        hm.upward_continuation(datasets[name], height_difference)</span>
@@ -1670,9 +1669,9 @@ Attributes:
 <span class="fragment code">        .assign_coords(z=datasets[name].z + height_difference)</span>
 <span class="fragment code">        .rename("bz")</span>
 <span class="fragment code">    )</span>
-<span class="fragment code">    # Calculate data derivatives and TGA</span>
+<span class="fragment code">    # Calcule as derivadas dos dados e o TGA</span>
 <span class="fragment code">    data_tga = mg.total_gradient_amplitude_grid(data_up)</span>
-<span class="fragment code">    # Stretch the TGA contrast to highlight weak sources</span>
+<span class="fragment code">    # Estique o contraste do TGA para destacar fontes fracas</span>
 <span class="fragment code">    data_stretched = skimage.exposure.rescale_intensity(</span>
 <span class="fragment code">        data_tga,</span>
 <span class="fragment code">        in_range=tuple(np.percentile(data_tga, (1, 99))),</span>
@@ -1704,14 +1703,14 @@ Attributes:
 </style>
 <pre class="compact"><code class="python" data-trim data-noescape>
 <span>
-<span class="fragment code">    # Use the LoG to detect the sources in the stretched TGA</span>
+<span class="fragment code">    # Use o LoG para detectar as fontes no TGA com contraste esticado</span>
 <span class="fragment code">    bounding_boxes[name] = mg.detect_anomalies(</span>
 <span class="fragment code">        data_stretched,</span>
 <span class="fragment code">        size_range=size_ranges[name],  # μm</span>
 <span class="fragment code">        detection_threshold=detection_thresholds[name],</span>
 <span class="fragment code">        border_exclusion=2,</span>
 <span class="fragment code">    )</span>
-<span class="fragment code">    # Run the non-linear inversion to estimate dipole moments and locations</span>
+<span class="fragment code">    # Execute a inversão não linear para estimar os momentos dipolares e as localizações</span>
 <span class="fragment code">    results = mg.iterative_nonlinear_inversion(</span>
 <span class="fragment code">        data_up, bounding_boxes[name], copy_data=True</span>
 <span class="fragment code">    )</span>
