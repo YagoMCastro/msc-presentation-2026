@@ -14,7 +14,7 @@ The reveal.js configuration can be found in index.html
 <h1 id="talk-title">
   
 Magali: uma ferramenta aberta para a comunidade de microscopia
-magnética🧲🔬
+magnética
 
 </h1>
 <p id="talk-authors">
