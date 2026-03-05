@@ -1326,12 +1326,12 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 - **Simple:** 
 
-  - **Souza Júnior (2025):** mantém um erro quase constante, menor que do **Magali** e abaixo de **0,5 μm**
+  - **Souza Júnior (2025):** mantém um erro quase constante, menor que do **Magali** e abaixo de **0,2 μm**
   
-  - **Magali:** **estabiliza** em um erro pouco acima de **0,5 μm** para altas densidades de pontos
+  - **Magali:**  cresce conforme aumenta a densidade de dados e **estabiliza** em um erro de **~0,6 μm** para altas densidades de pontos
 
 </div>
-<div class="col-medium"><img src="assets/location_difference.png" style="width: 100%" ></div>
+<div class="col-medium"><img src="assets/location-simple.png" style="width: 100%" ></div>
 </div>
 
 
@@ -1347,19 +1347,31 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
   - **Magali:** melhora com o aumento de $N$, atingindo valores menores que **1 μm**
 
 </div>
-<div class="col-medium"><img src="assets/location_difference.png" style="width: 100%" ></div>
+<div class="col-medium"><img src="assets/location-one-interf.png" style="width: 100%" ></div>
 </div>
 
 ===============================================================================
 <div class="row">
 <div class="col">
 
-- **Simple:** Magali apresenta um erro de intensidade menor em comparação a Souza Júnior (2025) e é de ~1 $10^{-14}Am^2$
-
-- **1-Interf.:** Souza-Junior et al. (2025) apresenta um erro de intensidade menor em comparação ao do Magali e é de ~5 $10^{-14}Am^2$ enquanto Magali é de ~0.6 $10^{-14}Am^2$
+- **Simple:** 
+  - Magali tem um erro de intensidade muito próximo comparação a Souza-Junior et al. (2025), tendo ambos <br>~1$\times10^{-14}Am^2$
 
 </div>
-<div class="col-medium"><img src="assets/intensity_error.png" style="width: 100%" ></div>
+<div class="col-medium"><img src="assets/intensity_simple.png" style="width: 100%" ></div>
+</div>
+
+
+===============================================================================
+<div class="row">
+<div class="col">
+
+- **1-Interf.:** 
+  - Souza-Junior et al. (2025) apresenta um erro de intensidade de ~5 $10^{-14}Am^2$ 
+  - Magali apresenta erro de intensidade de ~0.6 $10^{-14}Am^2$
+
+</div>
+<div class="col-medium"><img src="assets/intensity_one_interf.png" style="width: 100%" ></div>
 </div>
 
 ===============================================================================
