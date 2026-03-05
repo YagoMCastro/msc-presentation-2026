@@ -1196,10 +1196,10 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </div>
 
 ===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="black" -->
+<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#080808f5" -->
 
 ===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-conda.png"  data-background-size="contain" data-background-color="black" -->
+<!-- .slide: data-background-opacity="1" data-background-image="assets/installing-conda.png"  data-background-size="contain" data-background-color="#080808f5" -->
 
 ===============================================================================
 # Sumário
@@ -1459,7 +1459,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </ul>
 
 ===============================================================================
-
+<!-- .slide: data-background-opacity="0" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#080808e6" -->
 <section>
 <style>
   pre.compact code {
@@ -1490,6 +1490,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </section>
 
 ===============================================================================
+<!-- .slide: data-background-opacity="0" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#080808e6" -->
 
 <section>
 <style>
@@ -1525,6 +1526,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 
 ===============================================================================
+<!-- .slide: data-background-opacity="0" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#080808e6" -->
 
 <section>
 <style>
@@ -1555,6 +1557,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </section>
 
 ===============================================================================
+<!-- .slide: data-background-opacity="0" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#080808e6" -->
 
 <section>
 <style>
@@ -1586,6 +1589,8 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 
 ===============================================================================
+<!-- .slide: data-background-opacity="0" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#080808e6" -->
+
 <section>
 <style>
   pre.compact code {
@@ -1629,6 +1634,7 @@ Attributes:
 
 
 ===============================================================================
+<!-- .slide: data-background-opacity="0" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#080808e6" -->
 
 <section>
 <style>
@@ -1675,6 +1681,8 @@ Attributes:
 </section>
 
 ===============================================================================
+<!-- .slide: data-background-opacity="0" data-background-image="assets/installing-pip.png"  data-background-size="contain" data-background-color="#080808e6" -->
+
 <section>
 <style>
   pre.compact code {
