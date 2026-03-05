@@ -86,25 +86,25 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 # Como os minerais são magnetizados?
 
 - <!-- .element: class="fragment" -->
-  **Magnetização Remanente Termal (TRM):** rochas ígneas registram o campo magnético  à medida que esfriam abaixo do ponto de Curie (ex.: magnetita pura: **580°C**)
+  - **Magnetização Remanente Termal (TRM):** rochas ígneas registram o campo magnético  à medida que esfriam abaixo do ponto de Curie (ex.: magnetita pura: **580°C**)
 
 - <!-- .element: class="fragment" -->
-  **Magnetização Remanente Deposicional (DRM):** partículas magnéticas em sedimentos se alinham com o campo magnético da Terra durante a deposição em ambientes aquáticos
+  - **Magnetização Remanente Deposicional (DRM):** partículas magnéticas em sedimentos se alinham com o campo magnético da Terra durante a deposição em ambientes aquáticos
 
 ===============================================================================
 # Por que o paleomagnetismo é importante?
 
 - <!-- .element: class="fragment" -->
-  **Reversões geomagnéticas:** mostram que o campo magnético da Terra já se inverteu muitas vezes ao longo de sua história
+  - **Reversões geomagnéticas** mostram que o campo magnético da Terra já se **inverteu** muitas vezes ao longo de sua história
 
 - <!-- .element: class="fragment" -->
-  **Deriva continental e tectônica de placas:** ajudou a confirmar a teoria da deriva continental e a reconstruir as posições passadas dos continentes
+  - Ajudou a confirmar a teoria da **deriva continental** e a reconstruir as **posições** passadas dos continentes
 
 - <!-- .element: class="fragment" -->
-  **Datação geológica:** utilizado como ferramenta de datação relativa ao comparar registros em rochas com a escala de tempo conhecida das reversões magnéticas (magnetoestratigrafia)
+  - Utilizado como ferramenta de **datação relativa** ao comparar registros em rochas com a escala de tempo conhecida das reversões magnéticas **(magnetoestratigrafia)**
 
 - <!-- .element: class="fragment" -->
-  **Reconstrução do paleocampo:** permite compreender como o campo magnético terrestre evoluiu ao longo de centenas de milhões de anos
+  - Permite compreender como o **campo magnético** terrestre **evoluiu** ao longo de centenas de milhões de anos
 
 ===============================================================================
 # Tipos de Grãos Magnéticos
@@ -112,10 +112,12 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 
 - **Multidomínio (MD):** são grãos maiores que se subdividem em vários domínios, cada uma apontando em direções diferentes. Isto reduz a estabilidade magnética, tornando-os registradores pouco confiáveis
 </div>
+
 <div class="text-left fragment">
 
 - **Domínio Único (SD):** são grãos pequenos em que a magnetização permanece uniforme e alinhada em uma única direção, apresentando altíssima estabilidade
 </div>
+
 <div class="text-left fragment">
 
 - **Pseudo-Domínio Único (PSD):** apresentam tamanhos intermediários, podem registrar o campo magnético com elevada fidelidade e estabilidade, contrariando interpretações mais antigas que os consideravam menos confiáveis
@@ -127,10 +129,12 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 
 - Sobreposição com **magnetizações secundárias** e impossibilidade de **separar o sinal** de minerais diferentes (ex: magnetita vs. hematita)
 </div>
+
 <div class="text-left fragment">
 
 - Amostras com **sinais muito fracos** não superam o ruído de fundo dos magnetômetros convencionais
 </div>
+
 <div class="text-left fragment">
 
 - Diversos métodos **alteram a amostra**, seja alterando a magnetização ou destruindo-a
