@@ -236,7 +236,7 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 </div>
 <div class="fragment text-left">
 
-- **Demonstraram** que o quando as partículas são afetadas com campos de maiores que **10 μT**, o paleocampo é registrado com extrema precisão (**erro angular < 1°**)
+- **Demonstraram** que o quando as partículas são afetadas com campos de maiores que **20 μT**, o paleocampo é registrado com extrema precisão (**erro angular < 1°**)
 
 </div>
 
@@ -297,36 +297,8 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 
 ===============================================================================
 <!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
-<div class="huge">
 
-O que é o Magali?
-
-<div class="large fragment">
-
-Biblioteca em Python <br><i class="fab fa-python"></i>
-
-</div>
-
-<div class="large fragment">
-
-Software livre e de código aberto  
-
-<i class="fab fa-github"></i> <i class="fas fa-lock-open"></i> <i class="fab fa-osi"></i>
-
-</div>
-
-</div>
-<div class="large fragment">
-
-Modelagem e processamento de dados de microscopia magnética  
-<i class="fas fa-magnet"></i> <i class="fas fa-microscope"></i>
-
-</div>
-
-===============================================================================
-<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
-
-# Por que queremos desenvolvê-la?
+# Por que queremos desenvolvê-lo?
 <div class="fragment text-left">
 
 - Fornecer um código **fácil de usar**
@@ -350,6 +322,34 @@ Modelagem e processamento de dados de microscopia magnética
 <div class="fragment text-left">
 
 - Explorar o potencial de estudos emergentes em **microscopia magnética**
+</div>
+
+===============================================================================
+<!-- .slide: data-background-opacity="0.2" data-background-image="assets/magali-logo.png"  data-background-size="contain" data-background-color="#262626" -->
+<div class="huge">
+
+Magali
+
+<div class="large fragment">
+
+Biblioteca em Python <br><i class="fab fa-python"></i>
+
+</div>
+
+<div class="large fragment">
+
+Software livre e de código aberto  
+
+<i class="fab fa-github"></i> <i class="fas fa-lock-open"></i> <i class="fab fa-osi"></i>
+
+</div>
+
+</div>
+<div class="large fragment">
+
+Modelagem e processamento de dados de microscopia magnética  
+<i class="fas fa-magnet"></i> <i class="fas fa-microscope"></i>
+
 </div>
 
 ===============================================================================
