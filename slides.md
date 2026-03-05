@@ -110,7 +110,7 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 # Tipos de Grãos Magnéticos
 <div class="text-left fragment">
 
-- **Multidomínio (MD):** são grãos maiores que se subdividem em vários domínios, cada uma apontando em direções diferentes. Isto reduz a estabilidade magnética, tornando-os registradores pouco confiáveis
+- **Multidomínio (MD):** são grãos maiores que se subdividem em vários domínios, cada um apontando em direções diferentes. Isto reduz a estabilidade magnética, tornando-os registradores pouco confiáveis
 </div>
 
 <div class="text-left fragment">
@@ -127,7 +127,7 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 # Limitações do Paleomagnetismo
 <div class="text-left fragment">
 
-- Sobreposição com **magnetizações secundárias** e impossibilidade de **separar o sinal** de minerais diferentes (ex: magnetita vs. hematita)
+- Sobreposição com **magnetizações secundárias** e impossibilidade de **separar o sinal** de minerais diferentes **sem alterar** propriedades da amostra (ex: magnetita vs. hematita)
 </div>
 
 <div class="text-left fragment">
@@ -240,7 +240,7 @@ Aplicação de medições magnéticas de minerais de rochas para resolver proble
 </div>
 <div class="fragment text-left">
 
-- **Demonstraram** que o quando as partículas são afetadas com campos de maiores que **20 μT**, o paleocampo é registrado com extrema precisão (**erro angular < 1°**)
+- **Demonstraram** que o quando as partículas são afetadas com campos maiores que **20 μT**, o paleocampo é registrado com extrema precisão (**erro angular < 1°**)
 
 </div>
 
@@ -462,12 +462,29 @@ $$\partial_y f(x, y, z) \approx \frac{f(x, y + \Delta y, z) - f(x , y + \Delta y
 
 ===============================================================================
 # Vantagens do TGA
-<ul>
-  <li class="text-left fragment"><b>Gera</b> valores estritamente positivos</li>
-  <li class="text-left fragment"><b>Centraliza</b> os picos diretamente sobre as fontes magnéticas</li>
-  <li class="text-left fragment"><b>Minimiza</b> a dependência da direção de magnetização original</li>
-  <li class="text-left fragment"><b>Atua</b> como um <b>filtro passa-alta</b>, removendo ruídos de longo comprimento de onda</li>
-</ul>
+
+<div class="text-left fragment">
+
+- Gera valores **estritamente positivos**
+</div>
+
+
+<div class="text-left fragment">
+
+- **Centraliza** os picos diretamente sobre as **fontes magnéticas**
+</div>
+
+
+<div class="text-left fragment">
+
+- **Minimiza** a dependência da **direção de magnetização** original
+</div>
+
+
+<div class="text-left fragment">
+
+- Atua como um filtro **passa-alta**, removendo ruídos de **longo comprimento de onda**
+</div>
 
 ===============================================================================
 <div class="row">
@@ -658,7 +675,7 @@ A taxa de **variação do campo** ($\nabla f$) multiplicada pela **distância ve
 $$
 (x - x_c)\partial_x f + (y - y_c)\partial_y f + (z - z_c)\partial_z f = (b - f)\eta
 $$ 
-<p class="fragment"> Isolando os parâmetros parâmetros $x_c, y_c, z_c, b$</p>
+<p class="fragment"> Isolar os parâmetros parâmetros $x_c, y_c, z_c, b$</p>
 <div class="fragment">
 
 $$
@@ -729,7 +746,7 @@ $$
 
 <div class="text-left fragment">
 
-<p class="text-left">Utilizamos uma <b>solução de mínimos quadrados</b>, cuja função objetivo é:</p>
+<p class="text-left">Cuja função objetivo é:</p>
 
 $$
 \Phi (\mathbf{p}) = ||\mathbf{h}^o - \mathbf{h}||^2
@@ -767,8 +784,8 @@ $$
       }
     \]
   </li>
-  <li class="fragment">
-    <b>Assim estimamos $x_c$, $y_c$, $z_c$ e $b$:</b><br>
+  <li class="text-center fragment">
+    <b>Assim estimamos $x_c$, $y_c$, $z_c$ e $b$</b><br>
   </li>
 </ol>
 
@@ -883,7 +900,7 @@ b_{z_2} \\
 b_{z_N}
 \end{bmatrix}}_{\text{Observação}}
 \]
-<p class="fragment">$$\mathbf{Am=d}$$</p>
+<p class="fragment">$$\mathbf{Am=d^o}$$</p>
 
 ===============================================================================
 # Estimativa por Mínimos Quadrados
@@ -990,7 +1007,7 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
     <b>2. Inversão acoplada (Loop Principal):</b>
     <ul>
       <li class="fragment">
-        (A) <b>Estimativa linear:</b> fixa a posição e calcula o momento ($\mathbf{m}$) via Mínimos Quadrados
+        (A) <b>Estimativa linear:</b> fixa a posição e calcula o momento ($\mathbf{m}$)
       </li>
       <li class="fragment">
         (B) <b>Atualização não linear:</b> refina a posição da fonte ($\mathbf{v}$) via algoritmo Levenberg-Marquardt
@@ -998,7 +1015,7 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
     </ul>
   </li>
   <li class="fragment">
-    <b>3. Convergência:</b> o processo encerra quando a redução da função objetivo atinge a tolerância  de $10^{-2}$ 
+    <b>3. Convergência:</b> o processo encerra quando a redução do valor da função objetivo atinge a tolerância  de $10^{-2}$ 
   </li>
 </ul>
 
@@ -1015,6 +1032,7 @@ $$\mathbf{A}^T\mathbf{A}\mathbf{m} = \mathbf{A}^T\mathbf{d}^{o}$$
 
 $$\Psi(\mathbf{v}) = \| \mathbf{d}^o - \mathbf{d}(\mathbf{v}) \|^2$$
 
+- $\mathbf{v}$: posição
 - $\mathbf{d}^o$: dados observados do campo magnético
 - $\mathbf{d}(\mathbf{v})$: dados preditos
 
@@ -1030,8 +1048,8 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 - $\mathbf{J}$: matriz Jacobiana
 - $\mathbf{J}^T \mathbf{J}$: aproximação da Hessiana
-- $\alpha \cdot \mathrm{diag}(\mathbf{J}^T \mathbf{J})$: amortecimento escalonado pela curvatura local
 - $(\mathbf{d}^o - \mathbf{d}(\mathbf{v}))$: vetor de resíduos
+- $\alpha \cdot \mathrm{diag}(\mathbf{J}^T \mathbf{J})$: amortecimento escalonado pela curvatura local
 </div>
 
 ===============================================================================
@@ -1177,9 +1195,6 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <!-- .slide: data-background-opacity="1" data-background-image="assets/test.png"  data-background-size="contain" data-background-color="#262626" -->
 
 ===============================================================================
-<!-- .slide: data-background-opacity="1" data-background-image="assets/checks.png"  data-background-size="contain" data-background-color="#262626" -->
-
-===============================================================================
 # Distribuição e Ciência Aberta
 <div class="fragment text-left">
 
@@ -1202,6 +1217,13 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <!-- .slide: data-background-opacity="1" data-background-image="assets/installing-conda.png"  data-background-size="contain" data-background-color="#080808f5" -->
 
 ===============================================================================
+<!-- .slide: data-background-opacity="1" data-background-image="assets/checks.png"  data-background-size="contain" data-background-color="#262626" -->
+
+===============================================================================
+
+
+
+
 # Sumário
 <ul style="list-style: none">
   <li><b>Paleomagnetismo</b></li>
@@ -1330,7 +1352,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 - **Simple:** 
 
-  - **Souza Júnior (2025):** mantém um erro quase constante, menor que do **Magali** e abaixo de **0,2 μm**
+  - **Souza-Junior et al. (2025):** mantém um erro quase constante, menor que do **Magali** e abaixo de **0,2 μm**
   
   - **Magali:**  cresce conforme aumenta a densidade de dados e **estabiliza** em um erro de **~0,6 μm** para altas densidades de pontos
 
@@ -1346,7 +1368,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 - **1-Interf.:** 
 
-  - **Souza Júnior (2025):** mantém um erro quase constante pouco acima de **2 μm** 
+  - **Souza-Junior et al. (2025):** mantém um erro quase constante pouco acima de **2 μm** 
  
   - **Magali:** melhora com o aumento de $N$, atingindo valores menores que **1 μm**
 
@@ -1371,8 +1393,8 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <div class="col">
 
 - **1-Interf.:** 
-  - Souza-Junior et al. (2025) apresenta um erro de intensidade de ~5 $10^{-14}Am^2$ 
-  - Magali apresenta erro de intensidade de ~0.6 $10^{-14}Am^2$
+  - Souza-Junior et al. (2025) apresenta um erro de intensidade de ~0.5$\times 10^{-14}Am^2$ 
+  - Magali apresenta erro de intensidade de ~0.6$\times 10^{-14}Am^2$
 
 </div>
 <div class="col-medium"><img src="assets/intensity_one_interf.png" style="width: 100%" ></div>
@@ -1383,7 +1405,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <div class="row">
 <div class="col">
 
-- **Souza Júnior (2025):** tempo de execução **cresce linearmente** com o aumento do númeo de dados ($N$).
+- **Souza-Junior et al. (2025):** tempo de execução **cresce linearmente** com o aumento do númeo de dados ($N$).
 
 - **Magali:** mantém tempos de execução estáveis e abaixo de **0,5 segundos**.
 </div>
@@ -1396,7 +1418,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 
 - **1-Interf.:** melhoria de aproximadamente **90%** para todos os números de dados
 
-- **Simple:** Melhoria quase sempre maior que **60%** superando **90%** em cenários com mais de **5.000 pontos**
+- **Simple:** melhoria quase sempre maior que **60%** superando **90%** em cenários com mais de **5.000 pontos**
 </div>
 <div class="col-medium"><img src="assets/percentage_of_improvement_execution_time.png" style="width: 100%" ></div>
 </div>
@@ -1408,7 +1430,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 - **Simple:**
   - **Souza-Junior et al. (2025):** é constante a **~1 grau**
 
-  - **Magali:** inicia a valor similar ao de Souza-Junior et al. (2025) e decai levemente conforme a densidade de pontos aumenta
+  - **Magali:** inicia a valor similar ao de Souza-Junior et al. (2025) e decai conforme a densidade de pontos aumenta atingindo **~0.4 grau**
 
 </div>
 <div class="col-medium"><img src="assets/angular_error_simple.png" style="width: 100%" ></div>
@@ -1419,9 +1441,9 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <div class="col">
 
 - **1-Interf.:**
-  - **Souza Júnior (2025):**  permanece praticamente constante aa **12 graus**, independentemente do volume de dados
+  - **Souza-Junior et al. (2025):**  permanece praticamente constante a **12 graus**, independentemente do volume de dados
 
-  - **Magali:** diminui conforme $N$ aumenta em ambos os cenários, se aproximando a **6 graus**
+  - **Magali:** diminui conforme $N$ aumenta, se aproximando a **6 graus**
 
 </div>
 <div class="col-medium"><img src="assets/angular_error_one_interf.png" style="width: 100%" ></div>
@@ -1549,7 +1571,8 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 </style>
 <pre class="compact"><code class="python" data-trim data-noescape>
 <span>
-<span class="fragment code"># Repita o processamento para cada conjunto de dados, mas utilizando parâmetros ligeiramente diferentes</span><span class="fragment code">size_ranges = {"speleothem": [20, 150], "ceramic": [10, 150], "basalt": [10, 30]}</span>
+<span class="fragment code"># Processa cada conjunto de dados, mas utilizando parâmetros ligeiramente diferentes</span>
+<span class="fragment code">size_ranges = {"speleothem": [20, 150], "ceramic": [10, 150], "basalt": [10, 30]}</span>
 <span class="fragment code">detection_thresholds = {"speleothem": 0.02, "ceramic": 0.02, "basalt": 0.002}</span>
 <span class="fragment code">datasets, locations, dipole_moments, bounding_boxes = {}, {}, {}, {}</span>
 </code></pre>
@@ -1582,7 +1605,7 @@ $$\left( \mathbf{J}^T \mathbf{J} + \alpha \cdot \mathrm{diag}(\mathbf{J}^T \math
 <span>
 <span class="fragment code">for name in ["speleothem", "ceramic", "basalt"]:</span>
 <span class="fragment code">    # Use o Magali para carregar os dados do formato de arquivo QDM Matlab de Harvard</span>
-<span class="fragment code">    datasets[name] = mg.read_qdm_harvard
+<span class="fragment code">    datasets[name] = mg.read_qdm_harvard(data_paths[name])
 </code></pre>
 </section>
 
@@ -1866,14 +1889,14 @@ Attributes:
 ===============================================================================
 <div class="quote">
 
-Implementação do  **workflow completo** de Souza-Junior et al (2025) com o avanço metodológico da **inversão híbrida** que  utiliza **derivadas analíticas**, evitando **normalização** e busca **extensiva**, em uma biblioteca **open-source**
+Implementação do  **workflow completo** de Souza-Junior et al. (2025) com o avanço metodológico da **inversão híbrida** que  utiliza **derivadas analíticas**, evitando **normalização** e busca **extensiva**, em uma biblioteca **open-source**
 </div>
 
 ===============================================================================
 
-- Tempo de execução abaixo de 1 segundo com ganho de **&gt; 90% de eficiência**
+- Tempo de execução abaixo de 1 segundo e com ganho de **&gt; 90% de eficiência**
 
-- Redução do erro angular **&gt; 60%** para o modelo simples e de **40%** para o modelo com interferência
+- Redução do erro angular **&gt; 60%** para o modelo simples e de **> 40%** para o modelo com interferência
 
 ===============================================================================
 <div class="text-left">
